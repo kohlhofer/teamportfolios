@@ -1,0 +1,21 @@
+development:
+  adapter: mysql
+  database: teamportfolios_development
+  username: root
+  password:
+  host: localhost
+  encoding: utf8
+test:
+  adapter: mysql
+  database: teamportfolios_test
+  username: root
+  password:
+  host: localhost
+  encoding: utf8
+production:
+  adapter: mysql
+  database: teamportfolios_development
+  username: root
+  password: 
+  host: localhost
+  encoding: utf8
