@@ -8,16 +8,20 @@
     <%= stylesheet_link_tag :all, :cache => true %>
 </head>
 <body>
-
+  
   <div id="wrap">
-    <ul id="userNav">
-    <% if logged_in? -%>
-      <li>Logged in as <%= link_to current_user.login, current_user %></li>
-      <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
-    <% else -%>
-      <li><%= link_to "Log in",  login_path,  { :title => "Log in" } %></li>
-    <% end -%>
-    </ul>
+    <div id="header">
+      <% if logged_in? -%>
+      <ul id="navigation">
+        <li>Logged in as <%= link_to current_user.login, current_user %></li>
+        <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
+      </ul>
+      <% else -%>
+        <%= link_to "Log in",  login_path,  { :title => "Log in", :id => "loginLink" }  %>
+      <% end -%>
+      <%= link_to "Team Portfolios", root_url, :id => "logo" %>
+    </div>
+    
     <%= render :partial => 'layouts/flash_details' %>
     
     <%= yield :layout %>
