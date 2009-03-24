@@ -9,8 +9,11 @@
 </head>
 <body>
   <h1>BIG ONE</h1>
+	     <%= render :partial => 'layouts/usernav' %>
+	     <%= render :partial => 'layouts/flash_details' %>
   <div id="wrap">
     <%= yield :layout %>
   </div>
+	
 </body>
 </html>

@@ -1,5 +1,9 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+
+$: << File.expand_path(File.dirname(__FILE__) + "/integration/dsl")
+require 'basics_dsl'
+require 'teamportfolios_dsl'
 require 'test_help'
 
 class ActiveSupport::TestCase
@@ -35,4 +39,44 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+    include AuthenticatedTestHelper
+
 end
+
+class ActionController::IntegrationTest
+
+  def new_session(&block) 
+    open_session do | session | 
+      session.extend(BasicsDsl)
+      session.extend(TeamportfoliosDsl)
+      session.host!("teamportfolios.dev")
+      session.instance_eval(&block) if block
+      session
+    end 
+  end 
+  
+  def new_session_as(user_symbol, &block)
+    session = new_session
+    session.login(user_symbol)
+    session.instance_eval(&block) if block
+    session
+  end 
+  
+  def logger
+    Rails.logger
+  end
+    
+end
+
+
+module ActionController
+  module Integration
+    module Runner
+      def reset!
+        @integration_session = new_session
+      end
+    end
+  end
+end
+
+
