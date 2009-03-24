@@ -55,10 +55,23 @@ table {
 
 
 
+
+
+
+
 body {
 	font-family:arial, sans-serif;
 }
 
+p {
+	margin:0.7em 0;
+	line-height:1.4em;
+}
+
+h1 {
+	font-size:1.3em;
+	margin:0 0 1em 0;
+}
 
 
 #wrap {
@@ -124,9 +137,48 @@ body {
 
 #navigation a {
 	padding:0.5em 0;
-	color:#DDD;
+	color:#3DF;
+	text-decoration:none;
 }
 
 #navigation a:hover {
-	color:#FFF;
+	text-decoration:underline;
+}
+
+
+
+
+
+
+#login {
+	margin-top:2em;
+}
+
+label {
+	display:block;
+	font-size:0.9em;
+}
+
+label.inlineLabel {
+	display:inline;
+	font-weight:bold;
+	font-size:1em;
+}
+
+input {
+	font-size:1.4em;
+}
+
+input[type="submit"], button {
+	padding:0.5em 1.1em;
+	font-size:1em;
+}
+
+
+#teaserList {
+	margin:1em 0;
+}
+
+#teaserList li {
+	margin:1em;
 }

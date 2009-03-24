@@ -13,11 +13,11 @@
     <div id="header">
       <% if logged_in? -%>
       <ul id="navigation">
-        <li>Logged in as <%= link_to current_user.login, current_user %></li>
+        <li>Logged in as <%= link_to current_user.name, current_user %></li>
         <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
       </ul>
       <% else -%>
-        <%= link_to "Log in",  login_path,  { :title => "Log in", :id => "loginLink" }  %>
+        <%= link_to "Sign in",  login_path,  { :title => "Log in", :id => "loginLink" }  %>
       <% end -%>
       <%= link_to "Team Portfolios", root_url, :id => "logo" %>
     </div>
