@@ -3,17 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Team Portfolis</title>
+    <title><%=h @page_title ? "#{@page_title} | Team Portfolios" : "Team Portfolios" %></title>
     <%= javascript_include_tag :all, :cache => true %>
     <%= stylesheet_link_tag :all, :cache => true %>
 </head>
 <body>
-  <h1>BIG ONE</h1>
-	     <%= render :partial => 'layouts/usernav' %>
-	     <%= render :partial => 'layouts/flash_details' %>
+
   <div id="wrap">
+    <ul id="userNav">
+    <% if logged_in? -%>
+      <li>Logged in as <%= link_to current_user.login, current_user %></li>
+      <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
+    <% else -%>
+      <li><%= link_to "Log in",  login_path,  { :title => "Log in" } %></li>
+    <% end -%>
+    </ul>
+    <%= render :partial => 'layouts/flash_details' %>
+    
     <%= yield :layout %>
   </div>
-	
+
 </body>
 </html>
