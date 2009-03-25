@@ -10,6 +10,8 @@ class LoginAndOutTest < ActionController::IntegrationTest
       assert_has_login_form
       
       login('alex')
+      assert_response :success
+      assert_doesnt_have_login_form      
       get("/")
       assert_doesnt_have_login_form      
       assert_select "a[href=/logout]"

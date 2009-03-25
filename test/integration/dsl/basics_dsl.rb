@@ -94,10 +94,10 @@ module BasicsDsl
 #  end
   
     def assert_has_login_form 
-    assert_select 'form#login'
+    assert_select 'form#loginForm'
   end
   def assert_doesnt_have_login_form 
-    assert_select 'form#login', :count=>0
+    assert_select 'form#loginForm', :count=>0
   end
   
 

@@ -1,0 +1,18 @@
+
+weewar:
+  title: WeeWar
+  name: weewar
+  description: WeeWar is so cool..
+  homepage: http://weewar.com
+
+permatime:
+  title: Permatime
+  name: permatime
+  description: Permatime gets my clocks off
+  homepage: http://permatime.com
+  
+tcr:
+  title: The Connected Republic
+  name: the_connected_republic
+  description: Get a load of this republic
+  homepage: http://theconnectedrepublic.org

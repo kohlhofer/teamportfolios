@@ -1,0 +1,10 @@
+<h1>All Projects</h1>
+<ul id="projects">
+	<% @projects.each do |project|%>
+  <li>
+	  <h2><%= link_to project.title, project %></h2>
+		<p><%= project.description %></p>
+		<p><%= link_to nil, project.homepage %></p>
+  </li>
+	<% end %>
+</ul>

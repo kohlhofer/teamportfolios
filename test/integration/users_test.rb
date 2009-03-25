@@ -14,6 +14,7 @@ class UsersTest < ActionController::IntegrationTest
   context "Logged in user" do
     should "be able to see user page" do
       login('alex')
+      view
       get("users/alex")
       assert_response :success
       assert_doesnt_have_login_form
