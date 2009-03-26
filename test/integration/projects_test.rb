@@ -28,6 +28,23 @@ class ProjectsTest < ActionController::IntegrationTest
       view
       assert_select 'a[href=http://weewar.com]', :count => 1
     end
+
+      should "be able to edit collaborating project page" do
+      login('alex')
+      put_via_redirect "/projects/weewar", :user => { :name => "Fandango" }
+      assert_response :success
+      assert_doesnt_have_login_form
+      assert_select 'h1', :text => /Fandango/
+    end
+    
+    should "should not be able to edit non-collaborating project page" do
+      login('alex')
+      put_via_redirect "/projects/cleverplugs", :user => { :name => "Golgomesh" }
+      assert_response :success
+      assert_doesnt_have_login_form
+      assert_select 'h1', :text => /Alexander Kohlhofer/
+    end
+
   end
   
 end

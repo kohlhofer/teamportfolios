@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :projects
   map.resource :session
+  map.resource :settings
 
   # The priority is based upon order of creation: first created -> highest priority.
 

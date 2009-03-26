@@ -1,0 +1,27 @@
+<% form_for @user, :url => settings_path do | f | %>
+
+  <%= error_messages_for(:post, :object => @post ) %>
+    
+  <p>
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name, :class => :largeInput %>
+  </p>
+
+  <p>
+    <%= f.label :login, "Username" %>
+    <%= f.text_field :login, :class => :largeInput %>
+  </p>
+
+  <p>
+    <%= f.label :password%>
+    <%= f.password_field :password, :class => :largeInput %>
+    <%= f.label :password_confirmation%>
+    <%= f.password_field :password_confirmation, :class => :largeInput %>
+  </p>
+  
+
+  <p class="submitBlock">
+    <%= submit_tag   "Save", :disable_with => "Saving..." %> or <%= link_to "Cancel", @user %>
+  </p> 
+	
+<% end %>

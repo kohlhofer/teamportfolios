@@ -12,14 +12,17 @@ class UsersTest < ActionController::IntegrationTest
   end
   
   context "Logged in user" do
+    setup do
+        login('alex')
+    end
+
     should "be able to see user page" do
-      login('alex')
-      view
-      get("users/alex")
+      get("users/tim")
       assert_response :success
       assert_doesnt_have_login_form
-      assert_select 'h1#this_user', :text => /.*alex.*/
+      assert_select 'h1', :text => /Tim Diggins/
     end
+    
   end
   
 end
