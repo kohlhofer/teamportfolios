@@ -1,3 +1,5 @@
+/* @override http://localhost:3000/stylesheets/teamportfolios.css?1237922222 */
+
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
 
@@ -80,8 +82,7 @@ h1 {
 }
 
 #header {
-	position:relative;
-	height:100px;
+	height:3em;
 }
 
 #logo {
@@ -89,14 +90,11 @@ h1 {
 	font-weight:bold;
 	text-decoration:none;
 	color:#999;
-	position:absolute;
-	top:20px;
-	left:0;
 }
 
 
 #navigation  {
-	position:absolute;
+	float: right;
 	top:0;
 	right:0;
 	height:2em;
