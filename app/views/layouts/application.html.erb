@@ -9,22 +9,20 @@
 </head>
 <body>
   
-  <div id="wrap">
     <div id="header">
-      <% if logged_in? -%>
       <ul id="navigation">
         <li><%= link_to "Team Portfolios", root_url %></li>
-        <li>Logged in as <%= link_to current_user.name, current_user %></li>
-        <li><%= link_to "Your Account", settings_path, { :title => "Change your profile settings" }    %></li>
-        <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
+         <% if logged_in? -%>
+         <li>Logged in as <%= link_to current_user.name, current_user %></li>
+         <li><%= link_to "Your Account", settings_path, { :title => "Change your profile settings" }    %></li>
+         <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
+        <% else -%>
+          <%= link_to "Sign in",  login_path,  { :title => "Log in", :id => "loginLink" }  %>
+        <% end -%>
       </ul>
-      <% else -%>
-        <%= link_to "Sign in",  login_path,  { :title => "Log in", :id => "loginLink" }  %>
-      <% end -%>
     </div>
-    
-    <%= render :partial => 'layouts/flash_details' %>
-    
+    <div id="wrap">
+      <%= render :partial => 'layouts/flash_details' %>
     <%= yield :layout %>
   </div>
 

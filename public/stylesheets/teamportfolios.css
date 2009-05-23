@@ -1,4 +1,7 @@
-/* @override http://localhost:3000/stylesheets/teamportfolios.css?1237922222 */
+/* @override 
+	http://localhost:3000/stylesheets/teamportfolios.css?1237922222
+	http://localhost:3000/stylesheets/teamportfolios.css?1243080198
+*/
 
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
@@ -81,10 +84,6 @@ h1 {
 	width:940px;
 }
 
-#header {
-	height:3em;
-}
-
 #logo {
 	font-size:2em;
 	font-weight:bold;
@@ -92,44 +91,27 @@ h1 {
 	color:#999;
 }
 
+#header {
+	height:2em;
+	line-height: 2em;
+	background-color:#333;
+	border-bottom: 1px solid #000;
+	margin-bottom: 2em;
+	}
 
 #navigation  {
-	float: right;
-	top:0;
-	right:0;
 	height:2em;
 	background-color:#333;
-	border-top:2px solid #000;
 	padding: 0 0.5em;
 	font-size:0.9em;
-	-moz-border-radius-bottomleft: 5px;
-	-webkit-border-bottom-left-radius: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-webkit-border-bottom-right-radius: 5px;
+	float:right;
 }
 
-#loginLink {
-	position:absolute;
-	top:0;
-	right:0;
-	height:2em;
-	line-height:1.9em;
-	padding:0 0.8em;
-	background-color:#DDD;
-	font-size:0.9em;
-	font-size:0.9em;
-	-moz-border-radius-bottomleft: 5px;
-	-webkit-border-bottom-left-radius: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-webkit-border-bottom-right-radius: 5px;
-	color:#333;
-}
 
 #navigation li {
 	float:left;
 	padding: 0 0.5em;
 	height:2em;
-	line-height:1.9em;
 	color:#AAA;
 }
 
