@@ -2,7 +2,10 @@
 
 <h2>Projects:</h2>
 <p>
-<ul>
-  <li>project 1</li>
-  <li>project 2</li>
+<ul id="projects">
+	<% @user.projects.each do |project| %>
+    <li><%= link_to project, project%></li>
+	<% end %>
 </ul>
+
+<p><%= link_to "New project", new_project_path, {:id=>"new-project-link"} %></p>

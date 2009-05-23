@@ -30,6 +30,7 @@ class ProjectsTest < ActionController::IntegrationTest
     
     should "be able to create new project page" do
       login("alex")
+      get 'users/alex'
       click_link "new-project-link"
       assert_response_ok
       fill_in :title, :with => 'My Lovely New Project'
