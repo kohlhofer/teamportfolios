@@ -25,11 +25,29 @@ class ProjectsTest < ActionController::IntegrationTest
       get("projects/weewar")
       assert_response :success
       assert_doesnt_have_login_form
-      view
       assert_select 'a[href=http://weewar.com]', :count => 1
     end
-
-      should "be able to edit collaborating project page" do
+    
+    should "be able to create new project page" do
+      login("alex")
+      click_link "new-project-link"
+      assert_response_ok
+      fill_in :title, :with => 'My Lovely New Project'
+      fill_in :description, :with => 'Some nice body text'
+      fill_in :homepage, :with => 'http://somehomepage.com'
+      click_button
+      assert_redirected_to 'http://teamportfolios.dev/projects/my_lovely_new_project'
+      follow_redirect!
+      view
+      assert_select 'h1', "My Lovely New Project"
+      assert_select "a[href='http://somehomepage.com']", 'http://somehomepage.com'
+      assert_select "ul#contributors" do 
+        assert_select"a[href='/users/alex']"
+      end
+      
+    end
+    
+    should "be able to edit collaborating project page" do
       login('alex')
       put_via_redirect "/projects/weewar", :user => { :name => "Fandango" }
       assert_response :success
@@ -44,7 +62,7 @@ class ProjectsTest < ActionController::IntegrationTest
       assert_doesnt_have_login_form
       assert_select 'h1', :text => /Alexander Kohlhofer/
     end
-
+    
   end
   
 end

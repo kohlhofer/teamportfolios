@@ -1,6 +1,10 @@
-<h1><%=@project.title%></h1>
-<p><%= @project.description %></p>
+<h1><%=h(@project.title)%></h1>
+<p><%= h(@project.description) %></p>
 <p><%= link_to nil, @project.homepage %></p>
 
-<ul id="collaborators">
+<h2>Contributors</h2>
+<ul id="contributors">
+  <%@project.contributors.each do |user|%>
+	 <li><%= link_to user.name, user %></li>
+  <%end%>
 </ul>

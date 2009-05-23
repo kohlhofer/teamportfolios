@@ -1,0 +1,24 @@
+
+alex_works_on_weewar:
+  project: weewar
+  user: alex
+
+alex_works_on_permatime:
+  project: permatime
+  user: alex
+
+alex_works_on_tcr:
+  project: tcr
+  user: alex
+
+tim_works_on_permatime:
+  project: permatime
+  user: tim
+
+tim_works_on_tcr:
+  project: tcr
+  user: tim
+
+duff_works_on_tcr:
+  project: tcr
+  user: duff

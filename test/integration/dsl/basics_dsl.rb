@@ -8,9 +8,13 @@ module BasicsDsl
   end
   
   def login(login, password = "monkey")
+    print 'L[1'
     post session_url, { :login => login, :password => password }
+    print '2'
     result = response.redirect_url == root_url
+    print '3'
     follow_redirect! while redirect?
+    print ']'
     result
   end
   

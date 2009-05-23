@@ -13,17 +13,53 @@ class SettingsTest < ActionController::IntegrationTest
   
   context "Logged in user" do
     setup do
-        login('alex')
+      login('alex')
     end
     
     should "should be able to view settings form" do
       get "/settings"
       assert_response :success
-      assert_select 'form' do
-        assert_select 'input', :text=>/Alexander Kohlhofer/, :count=>1
-        assert_select 'input', :text=>/alex@teamportfolios.com/, :count=>1
+      select_form do
+        assert_select 'input#user_login[value=alex]', :count=>1
+        assert_select 'input#user_name[value=Alexander Kohlhofer]', :count=>1
+        assert_select 'input#user_email[value=alex@teamportfolios.com]', :count=>1
+        assert_select 'input#user_password', :count=>1
+        assert_select 'input#user_password_confirmation', :count=>1
       end
     end
+    
+    should "should be able to view and submit settings form" do
+      
+      get "/settings"
+      new_settings = {
+        :login => "manglewurzler",
+        :name => "Mangle Wurzler",
+        :email => 'mw@implements.com',
+        :password => 'neupasswort',
+        :password_confirmation => 'neupasswort'
+      }
+      
+      
+      get '/settings'
+      assert_response :success
+      
+      submit_form do |form|
+        form.user.update(new_settings)
+      end
+      assert_response :success
+      assert_select 'h1', :text => /Mangle Wurzler/
+      
+      user = assigns(:new_settings)
+      
+      assert_kind_of User, user
+      assert_valid user
+      
+      new_settings.each do |attribute,expects|
+        assert_equal expects, user.send(attribute)
+      end
+      
+    end
+    
     should "should be able to edit settings" do
       put_via_redirect "/settings", :user => { :name => "Fandango" }
       assert_response :success
