@@ -11,6 +11,7 @@
     <p>
     	<%=avatar_for(@user, :large) %>
 			</p>
+			<p><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path) %></p>
   </div>
   
   <div class="grid_9">
