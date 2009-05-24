@@ -3,6 +3,7 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1243080198
 	http://localhost:3000/stylesheets/teamportfolios.css?1243090741
 	http://localhost:3000/stylesheets/teamportfolios.css?1243115228
+	http://localhost:3000/stylesheets/teamportfolios.css?1243171404
 */
 
 /* v1.0 | 20080212 */
@@ -172,8 +173,13 @@ input[type="submit"], button {
   	margin-bottom: 2em;
 }
 
+#flash {
+  	text-align: center;
+  	font-size: 0.9em;
+}
+
 #header.user {
-  	background-color: #EEE;
+  	background-color: #EFE;
 }
 
 #header.project {
