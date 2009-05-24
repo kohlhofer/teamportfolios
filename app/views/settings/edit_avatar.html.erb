@@ -1,11 +1,31 @@
+<div id="login-page" class="container_16">
+  <div class="grid_6 prefix_3 alpha">
+    <h1><%= @page_title = "Edit your avatar" %></h1>
+  </div>
 
-<% form_for @user, :url => save_new_avatar_settings_url, :html => { :method => :put, :multipart => true } do | f | %>
+  <div class="clear-this"> </div>
 
-  <p>
-    <%= f.file_field :uploaded_data %> 
-  </p>
+
   
-  <p class="submitBlock">
-    <%= submit_tag "Upload new picture" %>
-  </p>
-<% end %>
+  <div class="grid_6 prefix_3 alpha">
+    <% form_for @user, :url => save_new_avatar_settings_url, :html => { :method => :put, :multipart => true } do | f | %>
+
+      <p>
+        <%= f.file_field :uploaded_data %> 
+      </p>
+
+      <p class="submitBlock">
+        <%= submit_tag "Upload new picture" %>
+      </p>
+    <% end %>
+
+  </div>
+  
+  <div class="grid_5 omega ">
+    <p>Maximum size file size: 5MB</p>
+    <p>Images that are more than 160 pixels work best.</p>
+  </div>
+  
+</div>
+  
+  
