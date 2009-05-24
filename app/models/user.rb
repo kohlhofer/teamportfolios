@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
-  alias_attribute :to_s, :login
+  alias_attribute :to_s, :name
   alias_attribute :to_param, :login
 
   # HACK HACK HACK -- how to do attr_accessible from here?

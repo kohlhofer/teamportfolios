@@ -1,0 +1,20 @@
+  <% form_for [ @project, @unvalidated_contributor ], :html=> {:id => 'add-contributor'} do | f | %>
+    <%= f.error_messages %>
+      <%= f.hidden_field :project_id %>
+    
+    <p>
+      <%= f.label :name, "Full name of contributor" %>
+      <%= f.text_field :name, :class => :largeInput %>
+    </p>
+    <p>
+      <%= f.label :email, "Email user (optional)" %>
+      <%= f.text_field :email, :class => :largeInput %>
+      <span class="note">(We won't disclose the email, 
+        but will contact the user to see if they want to add a page for themselves on this system 
+        (or link to it if they are already a member)) 
+      </span>
+    </p>
+    <p>
+        <%= submit_tag "Add as contributor" %>
+    </p>
+  <% end %>

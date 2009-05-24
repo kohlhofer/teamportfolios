@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   
   def show
     @project = Project.find_by_name(params[:id])
+    @unvalidated_contributor = UnvalidatedContributor.new(:project_id => @project.id)
   end
   
   def new

@@ -1,0 +1,2 @@
+module UnvalidatedContributorsHelper
+end
