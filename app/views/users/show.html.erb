@@ -6,7 +6,7 @@
   <div class="clear-this"> </div>
 </div>
 
-<div id="content" class="grid_16 user">
+<div id="content" class="grid_16">
   <div class="grid_3 alpha">
     <p>Photo and links</p>
   </div>
@@ -18,7 +18,7 @@
     	<% @user.projects.each do |project| %>
         <div class="project-preview grid_3 <%= cycle ('alpha','','omega') %>">
           <% link_to(project) do %>
-            <img src="/images/project_preview_image.png" width="160px" height="90px" alt="<%= project %>" />
+            <img src="/images/project_preview_small.png" width="160px" height="90px" alt="<%= project %>" />
           <% end %>
           <div class="description">
              <h3><%= link_to project, project %></h3>
