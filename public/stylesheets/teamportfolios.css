@@ -108,7 +108,7 @@ h1 {
 
 
 #navigation li {
-	float:left;
+	float: right;
 	height:2em;
 	color:#AAA;
 }
@@ -116,10 +116,10 @@ h1 {
 #navigation a {
 	padding:0 0.6em;
 	color:#3DF;
-	display: block;
-	float: left;
+	display: right;
 	height:2em;
 	line-height: 2.2em;
+		float:left;
 	text-decoration:none;
 }
 
