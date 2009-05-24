@@ -28,20 +28,27 @@
   <div class="grid_4 omega">
     <p><%= link_to nil, @project.homepage %></p>
     
-    <h2>Created by:</h2>
+    <h2>Brought to you by:</h2>
     <ul id="contributors">
       <%@project.contributors.each do |user|%>
         <li class="validated">
           <% link_to user do %>
 						<%= avatar_for(user) %>
-	          <%= user %>
-	          <%= user.strapline %>
+						<div class="user-details">
+  	          <strong><%= user %></strong>
+  	          <span class="strapline"><%= user.strapline %></span>
+	          </div>
+	          <div class="clear-this"> </div>
 					<% end %>
         </li>
       <%end%>
       <%@project.unvalidated_contributors.each do |uvc|%>
         <li class="not-validated">
-          <%= uvc.name %>
+          <img src="/images/no-avatar-small.png" width="40px" height="40px" />
+          <div class="user-details">
+	          <%= uvc.name %>
+	          <span class="strapline">(unclaimed profile)</span>
+          </div>
         </li>
       <%end%>
     </ul>

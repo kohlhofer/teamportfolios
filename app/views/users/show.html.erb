@@ -8,9 +8,7 @@
 
 <div id="content" class="container_16">
   <div class="grid_3 alpha">
-    <p>
     	<%=avatar_for(@user, :large) %>
-			</p>
 			<% if logged_in? && current_user == @user %>
 			 <p><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path) %></p>
 			 <% end %>

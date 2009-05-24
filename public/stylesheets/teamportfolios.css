@@ -9,6 +9,7 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1243184339
 	http://localhost:3000/stylesheets/teamportfolios.css?1243186223
 	http://localhost:3000/stylesheets/teamportfolios.css?1243188155
+	http://localhost:3000/stylesheets/teamportfolios.css?1243189389
 */
 
 /* v1.0 | 20080212 */
@@ -280,19 +281,41 @@ h1 span.edit {
 
 
 
-
-
-#contributors li {
-  	padding: 0.5em 0;
-  	font-size: 0.9em;
+#contributors {
+	line-height: 1.3em;
+	font-size: 0.9em;
 }
 
-#contributors img {
-  	vertical-align: top;
-  	margin-right: 0.5em;
+li.not-validated {
+  	margin: 0.8em 0;
+  	color: #666;
 }
-
 
 li.validated {
-  	
+  	padding: 0;
+}
+
+li.validated a {
+  	display: block;
+  	margin: 0.8em 0;
+  	text-decoration: none;
+  	color: #052e78;
+}
+
+#contributors strong {
+  	text-decoration: underline;
+}
+
+#contributors li img {
+  	float: left;
+}
+
+li .user-details {
+  	margin-left: 50px;
+}
+
+li .strapline {
+  	font-size: 0.9em;
+  	color: #999;
+  	display: block;
 }
