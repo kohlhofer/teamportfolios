@@ -18,7 +18,7 @@
     	<% @user.projects.each do |project| %>
         <div class="project-preview grid_3 <%= cycle ('alpha','','omega') %>">
           <% link_to(project) do %>
-            <img src="#" width="160px" height="90px" alt="<%= project %>" />
+            <img src="/images/project_preview_image.png" width="160px" height="90px" alt="<%= project %>" />
           <% end %>
           <div class="description">
              <h3><%= link_to project, project %></h3>
