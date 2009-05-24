@@ -1,8 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :unvalidated_contributors
+
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.resources :users
-  map.resources :projects, :has_many => [ :contributors ]
+  map.resources :projects, :has_many => [ :contributors, :unvalidated_contributors ]
   map.resource :session
   map.resource :settings
 

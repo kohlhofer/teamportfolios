@@ -42,6 +42,7 @@ class ProjectsTest < ActionController::IntegrationTest
       click_button
       assert_redirected_to 'http://teamportfolios.dev/projects/my_lovely_new_project'
       follow_redirect!
+      view
       assert_select 'h1', "My Lovely New Project"
       assert_select "a[href='http://somehomepage.com']", 'http://somehomepage.com'
       assert_select "ul#contributors" do 
@@ -67,10 +68,12 @@ class ProjectsTest < ActionController::IntegrationTest
       assert_select 'h1', :text => /Fandango/
     end
     
-    should "should able to add other contributor" do
-      assert_select 'a#add-contributor-link', :count=>1
-      click_link "add-contributor-link"
-      put_via_redirect "/projects/cleverplugs/contributors/duff"
+    should "be able to add other contributor by name only" do
+      assert_select 'form#add-contributor', :count=>1
+      fill_in 'unvalidated_contributor[name]', :with => 'Some Random Name' 
+      click_button
+      follow_redirect!
+      assert_select 'li', "Some Random Name"
     end
   end
   
@@ -89,7 +92,7 @@ class ProjectsTest < ActionController::IntegrationTest
     end
     
     should "should not be able to add contributor" do
-      assert_select 'a#add-contributor-link', :count=>0
+      assert_select 'form#add-contributor', :count=>0
       put "projects/cleverplugs/contributors/alex"
       assert_response 403
     end

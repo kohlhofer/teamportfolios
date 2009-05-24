@@ -31,16 +31,17 @@
     <h2>Contributors</h2>
     <ul id="contributors">
       <%@project.contributors.each do |user|%>
-    	 <li><%= link_to user.name, user %></li>
+       <li><%= link_to user.name, user %></li>
+      <%end%>
+      <%@project.unvalidated_contributors.each do |uvc|%>
+       <li><%= uvc.name %></li>
       <%end%>
     </ul>
 
-	<% if logged_in? && current_user.contributor_to?(@project) %>
-  	<p>
-<%= link_to "Add contributor", new_project_contributor_path(@project), :id=>'add-contributor-link' %>
-	</p>
-	<% end %>
-    
+    <% if logged_in? && current_user.contributor_to?(@project) %>
+      <%= render 'unvalidated_contributor_form'%>
+    <% end %>
+		
     <p>Teams</p>
   </div>
   <div class="clear-this"> </div>

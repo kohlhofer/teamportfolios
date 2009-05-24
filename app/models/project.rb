@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
   validates_presence_of :title
   
   has_many :contributions, :dependent => :destroy
+  has_many :unvalidated_contributors, :dependent => :destroy
   has_many :contributors, :through => :contributions, :source => :user, :uniq => true
 
   before_create do |project|
