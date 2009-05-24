@@ -203,6 +203,24 @@ h1 span.edit {
 }
 
 
+
+
+
+
+
+#login-page {
+ 	padding-top: 3em; 	
+}
+
+#login-page form {
+	padding: 0.5em 1em;
+	background-color: #EEE;
+}
+
+
+
+
+
 .project-preview h3 { 
 	margin: 0.8em 0 0.5em 0;
 	font-size: 0.9em;
