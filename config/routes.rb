@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :projects, :has_many => [ :contributors, :unvalidated_contributors ]
   map.resource :session
-  map.resource :settings
+  map.resource :settings, :collection => { :save_new_avatar => :put, :edit_avatar => :get}
 
   # The priority is based upon order of creation: first created -> highest priority.
 

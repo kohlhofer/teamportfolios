@@ -1,0 +1,11 @@
+
+<% form_for @user, :url => save_new_avatar_settings_url, :html => { :method => :put, :multipart => true } do | f | %>
+
+  <p>
+    <%= f.file_field :uploaded_data %> 
+  </p>
+  
+  <p class="submitBlock">
+    <%= submit_tag "Upload new picture" %>
+  </p>
+<% end %>
