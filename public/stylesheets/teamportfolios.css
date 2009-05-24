@@ -8,6 +8,7 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1243181757
 	http://localhost:3000/stylesheets/teamportfolios.css?1243184339
 	http://localhost:3000/stylesheets/teamportfolios.css?1243186223
+	http://localhost:3000/stylesheets/teamportfolios.css?1243188155
 */
 
 /* v1.0 | 20080212 */
@@ -237,6 +238,8 @@ h1 span.edit {
 
 
 
+
+
 .project-preview h3 { 
 	margin: 0.8em 0 0.5em 0;
 	font-size: 0.9em;
@@ -273,4 +276,23 @@ h1 span.edit {
   overflow: hidden;
   margin: 0px;
   padding: 0px;
+}
+
+
+
+
+
+#contributors li {
+  	padding: 0.5em 0;
+  	font-size: 0.9em;
+}
+
+#contributors img {
+  	vertical-align: top;
+  	margin-right: 0.5em;
+}
+
+
+li.validated {
+  	
 }
