@@ -1,6 +1,7 @@
 module AvatarsHelper
-
+  
   def avatar_for(user, size=:small) 
+    return '' if (size==:large && !user.avatar)    
     image_tag(avatar_filename(user, size), :class => "user_avatar_#{size}", :alt=> (size==:small ? nil : 'avatar'))
   end
   
