@@ -32,10 +32,15 @@
     <h2>Created by:</h2>
     <ul id="contributors">
       <%@project.contributors.each do |user|%>
-       <li><%= link_to user.name, user %></li>
+        <li class="validated">
+          <img src="/images/no-avatar-small.png" width="40" height="40px" alt="avatar"/>
+          <%= link_to user.name, user %>
+        </li>
       <%end%>
       <%@project.unvalidated_contributors.each do |uvc|%>
-       <li><%= uvc.name %></li>
+        <li class="not-validated">
+          <%= uvc.name %>
+        </li>
       <%end%>
     </ul>
 
