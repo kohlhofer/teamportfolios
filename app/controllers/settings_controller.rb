@@ -18,9 +18,12 @@ class SettingsController < ApplicationController
   
   
   def save_new_avatar
-    avatar = Avatar.new(params[:user])
-    avatar.user_id = @user.id
-    unless avatar.valid? && avatar.save
+    avatar = @user.avatar || Avatar.new
+    uploaded_data = params[:user][:uploaded_data]
+    avatar.uploaded_data = uploaded_data
+    @user.avatar = avatar unless uploaded_data.to_s.blank?  
+
+    unless avatar.valid? && @user.valid? && @user.save
       return render(:edit_avatar)
     end
     
