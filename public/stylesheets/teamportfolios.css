@@ -167,20 +167,26 @@ input[type="submit"], button {
 
 
 
-
+#header {
+  	padding: 5em 0 0.5em 0;
+  	margin-bottom: 2em;
+}
 
 #header.user {
   	background-color: #EEE;
-  	padding: 5em 0 0.5em 0;
 }
 
-#header.user h1 {
+#header.project {
+  	background-color: #EEF;
+}
+
+#header h1 {
   	margin: 0;
   	font-size: 1.8em;
   	font-weight: normal;
 }
 
-#header.user p {
+#header p {
   	margin: 0.5em 0;
 }
 
