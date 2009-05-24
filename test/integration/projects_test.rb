@@ -10,14 +10,14 @@ class ProjectsTest < ActionController::IntegrationTest
       assert_doesnt_have_login_form
       assert_select 'a[href=http://weewar.com]', :count => 1
     end
-
-        should "be able to see projects listing" do
+    
+    should "be able to see projects listing" do
       get("projects")
       assert_response :success
       assert_doesnt_have_login_form
       assert_select 'ul#projects li', :count => 4
     end
-
+    
   end
   
   context "Logged in user" do
@@ -29,7 +29,7 @@ class ProjectsTest < ActionController::IntegrationTest
       get("users/alex")
       assert_response :success
       assert_doesnt_have_login_form
-      assert_select 'ul#projects li', :count => 3
+      assert_select 'div#projects div.project-preview', :count => 3
     end
     
     should "be able to create new project page" do
@@ -42,7 +42,6 @@ class ProjectsTest < ActionController::IntegrationTest
       click_button
       assert_redirected_to 'http://teamportfolios.dev/projects/my_lovely_new_project'
       follow_redirect!
-      view
       assert_select 'h1', "My Lovely New Project"
       assert_select "a[href='http://somehomepage.com']", 'http://somehomepage.com'
       assert_select "ul#contributors" do 
@@ -62,18 +61,16 @@ class ProjectsTest < ActionController::IntegrationTest
     
     should "be able to edit it" do
       click_link "edit-project-link"
-      put_via_redirect "/projects/weewar", :user => { :name => "Fandango" }
+      put_via_redirect "/projects/weewar", :project => { :title => "Fandango" }
       assert_response :success
       assert_doesnt_have_login_form
       assert_select 'h1', :text => /Fandango/
     end
     
     should "should able to add other contributor" do
+      assert_select 'a#add-contributor-link', :count=>1
       click_link "add-contributor-link"
-      put_via_redirect "/projects/cleverplugs", :user => { :name => "Golgomesh" }
-      assert_response :success
-      assert_doesnt_have_login_form
-      assert_select 'h1', :text => /Alexander Kohlhofer/
+      put_via_redirect "/projects/cleverplugs/contributors/duff"
     end
   end
   
@@ -92,10 +89,9 @@ class ProjectsTest < ActionController::IntegrationTest
     end
     
     should "should not be able to add contributor" do
-      put_via_redirect "/projects/cleverplugs", :user => { :name => "Golgomesh" }
-      assert_response :success
-      assert_doesnt_have_login_form
-      assert_select 'h1', :text => /Alexander Kohlhofer/
+      assert_select 'a#add-contributor-link', :count=>0
+      put "projects/cleverplugs/contributors/alex"
+      assert_response 403
     end
     
   end

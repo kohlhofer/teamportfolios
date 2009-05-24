@@ -20,6 +20,10 @@
    <p><%= h(@project.description) %></p>
   </div>
   
+<% if logged_in? && current_user.contributor_to?(@project) %>
+  <p><%= link_to "Edit project details", edit_project_path(@project), :id=>'edit-project-link' %></p>
+<% end %>
+
   <div class="grid_4 omega">
     <h2>Links</h2>
     <p><%= link_to nil, @project.homepage %></p>
@@ -30,6 +34,12 @@
     	 <li><%= link_to user.name, user %></li>
       <%end%>
     </ul>
+
+	<% if logged_in? && current_user.contributor_to?(@project) %>
+  	<p>
+<%= link_to "Add contributor", new_project_contributor_path(@project), :id=>'add-contributor-link' %>
+	</p>
+	<% end %>
     
     <p>Teams</p>
   </div>

@@ -8,6 +8,11 @@
   </p>
 
   <p>
+    <%= f.label :login, "Login" %>
+    <%= f.text_field :login, :class => :largeInput %>
+  </p>
+
+  <p>
     <%= f.label :strapline, "Strapline" %>
     <%= f.text_field :strapline, :class => :largeInput %>
   </p>
@@ -25,7 +30,8 @@
   <p>
     <%= f.label :password%>
     <%= f.password_field :password, :class => :largeInput %>
-    <%= f.label :password_confirmation%>
+    
+		<%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, :class => :largeInput %>
   </p>
   
