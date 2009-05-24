@@ -1,7 +1,6 @@
 <h1 id="logo"><%= @page_title = "Team Portfolios" %></h1>
 
-<p>Temporary index page</p>
 
-<ul>
-	<li><%= link_to 'projects listing', projects_path%></li>
-</ul>
+<% @projects.each do |project|%>
+  <%= render 'projects/preview', :project => project %>
+<% end %>

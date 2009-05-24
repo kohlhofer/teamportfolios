@@ -1,5 +1,5 @@
 <div id="header" class="grid_16 user">
-  <div class="grid_12 prefix_3 alpha">
+  <div class="grid_13 prefix_3 alpha">
     <h1><%= @page_title = h(@user.name) %></h1>
     <p><%= h(@user.strapline)%></p>
   </div>
@@ -16,27 +16,20 @@
     
     <div id="projects">
     	<% @user.projects.each do |project| %>
-        <div class="project-preview grid_3 <%= cycle ('alpha','','omega') %>">
-          <% link_to(project) do %>
-            <img src="/images/project_preview_small.png" width="160px" height="90px" alt="<%= project %>" />
-          <% end %>
-          <div class="description">
-             <h3><%= link_to project, project %></h3>
-            <p><%= project.description %></p>
-          </div>
-        </div>
-    	<% end %>
+    	  	<%= render 'projects/preview', :project => project %>
+      <% end %>    
+    	<div class="clear-this"> </div>
+    	
+    	
+    	<p><%= link_to "New project", new_project_path, {:id=>"new-project-link"} %></p>
+    	
     </div>
     
   </div>
   
   <div class="grid_4 omega">
-    <p>Collaborators</p>
-    
-    <p>Teams</p>
+    <p>Projects Collaborators</p>
   </div>
   <div class="clear-this"> </div>
 </div>
 
-
-<p><%= link_to "New project", new_project_path, {:id=>"new-project-link"} %></p>

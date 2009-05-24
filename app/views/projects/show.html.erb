@@ -1,6 +1,11 @@
 <div id="header" class="grid_16 project">
   <div class="grid_11 prefix_5 alpha">
-    <h1><%= @page_title = @project.title %></h1>
+    <h1>
+      <%= @page_title = h(@project.title) %>
+      <% if logged_in? && current_user.contributor_to?(@project) %>
+        <span class="edit">(<%= link_to "Edit project", edit_project_path(@project), :id=>'edit-project-link' %>)</span>
+      <% end %>
+    </h1>
     <p>This is a free form projects's strapline</p>
   </div>
   <div class="clear-this"> </div>
@@ -19,16 +24,12 @@
   <div class="grid_7">
    <p><%= h(@project.description) %></p>
   </div>
-  
-<% if logged_in? && current_user.contributor_to?(@project) %>
-  <p><%= link_to "Edit project details", edit_project_path(@project), :id=>'edit-project-link' %></p>
-<% end %>
 
   <div class="grid_4 omega">
     <h2>Links</h2>
     <p><%= link_to nil, @project.homepage %></p>
     
-    <h2>Contributors</h2>
+    <h2>Created by:</h2>
     <ul id="contributors">
       <%@project.contributors.each do |user|%>
        <li><%= link_to user.name, user %></li>
@@ -42,7 +43,6 @@
       <%= render 'unvalidated_contributor_form'%>
     <% end %>
 		
-    <p>Teams</p>
   </div>
   <div class="clear-this"> </div>
 </div>
