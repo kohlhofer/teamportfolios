@@ -1,7 +1,7 @@
 module AvatarsHelper
 
   def avatar_for(user, size=:small) 
-    image_tag(avatar_filename(user, size), :class => "profile_avatar")
+    image_tag(avatar_filename(user, size), :class => "user_avatar_#{size}", :alt=> (size==:small ? nil : 'avatar'))
   end
   
   def link_to_avatar_for(user, size=:small, html_options = {}) 
@@ -12,7 +12,7 @@ module AvatarsHelper
     if user.avatar
       user.avatar.public_filename(size)
     else 
-      "default_avatar_#{size}.png"
+      "no-avatar-#{size}.png"
     end 
   end
   
