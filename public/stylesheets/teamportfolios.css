@@ -4,6 +4,7 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1243090741
 	http://localhost:3000/stylesheets/teamportfolios.css?1243115228
 	http://localhost:3000/stylesheets/teamportfolios.css?1243171404
+	http://localhost:3000/stylesheets/teamportfolios.css?1243177458
 */
 
 /* v1.0 | 20080212 */
@@ -107,13 +108,12 @@ h1 {
 
 #navigation li {
 	float:left;
-	padding: 0 0.5em;
 	height:2em;
 	color:#AAA;
 }
 
 #navigation a {
-	padding:0 0.5em;
+	padding:0 0.6em;
 	color:#3DF;
 	display: block;
 	float: left;
