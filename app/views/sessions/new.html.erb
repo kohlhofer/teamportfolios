@@ -1,35 +1,43 @@
-<h1><%= @page_title = "Sign in" %></h1>
-<p>
-  At the moment you can only join Team Portfolios if an existing member adds you as a collaborator to a project.
-</p>
-<p>
-  A paid option with a number of extra features will be available soon, though. Some of these will include:
-</p>
-<ul id="teaserList">
-  <li>Custom Domain name for your Team Portfolio</li>
-  <li>Customizable Design</li>
-  <li>Tight control which profiles and projects are accessible from you Team Portfolio</li>
-  <li>...</li>
-</ul>  
-<p>If you already have an account you can sign in below</p>
+<div id="login-page" class="container_16">
+  <div class="grid_5 prefix_8 alpha">
+    <h1><%= @page_title = "Sign in" %></h1>
+  </div>
+
+  <div class="clear-this"> </div>
+
+  <div class="grid_5 prefix_3 alpha ">
+    <p>Only Team Portfolio members can create new projects.</p>
+    <p>You can only join, if an existing member wants to show you as a collaborator on a project.</p>
+  </div>
   
+  <div class="grid_6 omega">
+    <% form_tag session_path, {:id=>'loginForm'} do -%>
+      <p>
+        <%= label_tag 'login','User name' %>
+        <%= text_field_tag 'login', @login %>
+      </p>
+
+      <p>
+        <%= label_tag 'password', 'Password' %>
+        <%= password_field_tag 'password', nil %>
+      </p>
+
+      <p>
+        <%= check_box_tag 'remember_me', '1', @remember_me %><%= label_tag 'remember_me', 'Remember me', :class => "inlineLabel" %>
+      </p>
+
+      <p>
+        <button type="submit" value="submit">Sign in</button>
+      </p>
+    <% end -%>
+
+  </div>
+  
+  
+  
+
+</div>
+
+
     
-<% form_tag session_path, {:id=>'loginForm'} do -%>
-  <p>
-    <%= label_tag 'login','User name' %>
-    <%= text_field_tag 'login', @login %>
-  </p>
 
-  <p>
-    <%= label_tag 'password', 'Password' %>
-    <%= password_field_tag 'password', nil %>
-  </p>
-
-  <p>
-    <%= check_box_tag 'remember_me', '1', @remember_me %><%= label_tag 'remember_me', 'Remember me', :class => "inlineLabel" %>
-  </p>
-  
-  <p>
-    <button type="submit" value="submit">Login in</button>
-  </p>
-<% end -%>

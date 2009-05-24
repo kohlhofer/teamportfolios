@@ -1,4 +1,4 @@
-<div id="header" class="grid_16 project">
+<div id="header" class="container_16 project">
   <div class="grid_11 prefix_5 alpha">
     <h1>
       <%= @page_title = h(@project.title) %>
@@ -11,7 +11,7 @@
   <div class="clear-this"> </div>
 </div>
 
-<div id="content" class="grid_16">
+<div id="content" class="container_16">
   
   
   <div class="grid_5 alpha">
@@ -32,10 +32,15 @@
     <h2>Created by:</h2>
     <ul id="contributors">
       <%@project.contributors.each do |user|%>
-       <li><%= link_to user.name, user %></li>
+        <li class="validated">
+          <img src="/images/no-avatar-small.png" width="40" height="40px" alt="avatar"/>
+          <%= link_to user.name, user %>
+        </li>
       <%end%>
       <%@project.unvalidated_contributors.each do |uvc|%>
-       <li><%= uvc.name %></li>
+        <li class="not-validated">
+          <%= uvc.name %>
+        </li>
       <%end%>
     </ul>
 

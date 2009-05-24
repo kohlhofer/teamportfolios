@@ -1,4 +1,4 @@
-<div id="header" class="grid_16 user">
+<div id="header" class="container_16 user">
   <div class="grid_13 prefix_3 alpha">
     <h1><%= @page_title = h(@user.name) %></h1>
     <p><%= h(@user.strapline)%></p>
@@ -6,13 +6,15 @@
   <div class="clear-this"> </div>
 </div>
 
-<div id="content" class="grid_16">
+<div id="content" class="container_16">
   <div class="grid_3 alpha">
-    <p>Photo and links</p>
+    <p><img src="/images/no-avatar-large.png" width="160px" height="200px" alt="avatar"/></p>
   </div>
   
   <div class="grid_9">
-    <p>User's description goes here</p>
+    <div id="user-description">
+      <p>User's description goes here</p>
+    </div>
     
     <div id="projects">
     	<% @user.projects.each do |project| %>

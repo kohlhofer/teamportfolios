@@ -5,6 +5,9 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1243115228
 	http://localhost:3000/stylesheets/teamportfolios.css?1243171404
 	http://localhost:3000/stylesheets/teamportfolios.css?1243177458
+	http://localhost:3000/stylesheets/teamportfolios.css?1243181757
+	http://localhost:3000/stylesheets/teamportfolios.css?1243184339
+	http://localhost:3000/stylesheets/teamportfolios.css?1243186223
 */
 
 /* v1.0 | 20080212 */
@@ -72,6 +75,12 @@ body {
 	font-family:arial, sans-serif;
 }
 
+
+form {
+	padding: 0.5em 1em;
+	background-color: #EEE;  	
+}
+
 p {
 	margin:0.7em 0;
 	line-height:1.4em;
@@ -79,7 +88,8 @@ p {
 
 h1 {
 	font-size:1.3em;
-	margin:0 0 1em 0;
+	margin:3em 0 1em 0;
+	font-weight: normal;
 }
 
 
@@ -92,32 +102,41 @@ h1 {
 
 #navigation {
 	height:2em;
+	font-size:0.9em;
 	line-height: 2em;
 	background-color:#333;
-	border-bottom: 1px solid #000;
+
 	}
 
 #navigation ul {
-	height:2em;
-	background-color:#333;
-	padding: 0 0.5em;
-	font-size:0.9em;
 	float:right;
+	margin-right: -0.5em;
 }
 
 
 #navigation li {
-	float:left;
+	float: left;
 	height:2em;
 	color:#AAA;
 }
 
-#navigation a {
-	padding:0 0.6em;
-	color:#3DF;
+#navigation li a {
+	padding:0 0.5em;
 	display: block;
-	float: left;
 	height:2em;
+	line-height: 2em;
+}
+
+#navigation #small-logo {
+    font-weight: bold;
+    display: block;
+    float: left;
+    padding: 0 0.5em;
+    margin-left: -0.5em;
+}
+
+#navigation a {
+	color:#3DF;
 	text-decoration:none;
 }
 
@@ -169,8 +188,8 @@ input[type="submit"], button {
 
 
 #header {
-  	padding: 5em 0 0.5em 0;
-  	margin-bottom: 2em;
+  	padding: 5em 0 1em 0;
+  	margin-bottom: 0.5em;
 }
 
 #flash {
@@ -179,11 +198,9 @@ input[type="submit"], button {
 }
 
 #header.user {
-  	background-color: #EFE;
 }
 
 #header.project {
-  	background-color: #EEF;
 }
 
 #header h1 {
@@ -201,6 +218,23 @@ h1 span.edit {
   	margin-left: 0.5em;
   	color: #666;
 }
+
+
+
+
+
+
+
+#login-page {
+ 	padding-top: 3em; 	
+}
+
+#user-description {
+  	margin-bottom: 3em;
+}
+
+
+
 
 
 .project-preview h3 { 
