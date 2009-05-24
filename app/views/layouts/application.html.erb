@@ -10,26 +10,23 @@
 <body>
     <div id="navigation">
       <div class="container_16">
-        <div class="grid_2">
-          logo
+        <div class="grid_5 alpha">
+          <%= link_to "Team Portfolios", root_url, { :title => "Go to the home page", :id => "small-logo" } %>
         </div>
-        <div class="grid_14">  
+        <div class="grid_11 omega">  
           <ul>
-            <li><%= link_to "Team Portfolios", root_url, { :title => "Go to the home page" } %></li>
              <% if logged_in? -%>
-             <li><%= link_to "Your Profile", current_user, { :title => "View you puplic profile" } %></li>
-             <li><%= link_to "Your Account", settings_path, { :title => "Edit you account" } %></li>
-             <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
-            <% else -%>
-              <%= link_to "Sign in",  login_path,  { :title => "Log in", :id => "loginLink" }  %>
-            <% end -%>
+              <li><%= link_to "Your Profile", current_user, { :title => "View you puplic profile" } %></li>
+              <li><%= link_to "Your Account", settings_path, { :title => "Edit you account" } %></li>
+              <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
+             <% else -%>
+              <li><%= link_to "Sign in",  login_path,  { :title => "Log in", :id => "loginLink" }  %></li>
+             <% end -%>
           </ul>
         </div>
       </div>
     </div>
-    <div class="">
-      <%= render :partial => 'layouts/flash_details' %>
-      <%= yield :layout %>
-    </div>
+    <%= render :partial => 'layouts/flash_details' %>
+    <%= yield :layout %>
 </body>
 </html>

@@ -1,6 +1,10 @@
+<div class="container_16">
+
 <h1 id="logo"><%= @page_title = "Team Portfolios" %></h1>
 
 
 <% @projects.each do |project|%>
   <%= render 'projects/preview', :project => project %>
 <% end %>
+
+</div>

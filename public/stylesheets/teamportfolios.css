@@ -6,6 +6,7 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1243171404
 	http://localhost:3000/stylesheets/teamportfolios.css?1243177458
 	http://localhost:3000/stylesheets/teamportfolios.css?1243181757
+	http://localhost:3000/stylesheets/teamportfolios.css?1243184339
 */
 
 /* v1.0 | 20080212 */
@@ -93,33 +94,41 @@ h1 {
 
 #navigation {
 	height:2em;
+	font-size:0.9em;
 	line-height: 2em;
 	background-color:#333;
-	border-bottom: 1px solid #000;
+
 	}
 
 #navigation ul {
-	height:2em;
-	background-color:#333;
-	padding: 0 0.5em;
-	font-size:0.9em;
 	float:right;
+	margin-right: -0.5em;
 }
 
 
 #navigation li {
-	float: right;
+	float: left;
 	height:2em;
 	color:#AAA;
 }
 
-#navigation a {
-	padding:0 0.6em;
-	color:#3DF;
-	display: right;
+#navigation li a {
+	padding:0 0.5em;
+	display: block;
 	height:2em;
-	line-height: 2.2em;
-		float:left;
+	line-height: 2em;
+}
+
+#navigation #small-logo {
+    font-weight: bold;
+    display: block;
+    float: left;
+    padding: 0 0.5em;
+    margin-left: -0.5em;
+}
+
+#navigation a {
+	color:#3DF;
 	text-decoration:none;
 }
 
