@@ -10,8 +10,8 @@ class SettingsController < ApplicationController
     @user = current_user
     
     @user.attributes = params[:user]
-    @user.valid?
-    return render(:action => :edit) unless @user.save
+    
+    return render(:action => :edit) unless (@user.valid? && @user.save)
     
     flash[:notice] = "Successfully updated settings"
     redirect_to @user
