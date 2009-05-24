@@ -6,7 +6,7 @@
         <span class="edit">(<%= link_to "Edit project", edit_project_path(@project), :id=>'edit-project-link' %>)</span>
       <% end %>
     </h1>
-    <p>This is a free form projects's strapline</p>
+    <p><%=h(@project.strapline || "Another brilliant project")%></p>
   </div>
   <div class="clear-this"> </div>
 </div>
@@ -32,8 +32,11 @@
     <ul id="contributors">
       <%@project.contributors.each do |user|%>
         <li class="validated">
-          <img src="/images/no-avatar-small.png" width="40" height="40px" alt="avatar"/>
-          <%= link_to user.name, user %>
+          <% link_to user do %>
+						<%= avatar_for(user) %>
+	          <%= user %>
+	          <%= user.strapline %>
+					<% end %>
         </li>
       <%end%>
       <%@project.unvalidated_contributors.each do |uvc|%>

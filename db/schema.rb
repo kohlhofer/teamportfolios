@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090524164220) do
+ActiveRecord::Schema.define(:version => 20090524193528) do
 
   create_table "avatars", :force => true do |t|
     t.integer  "user_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20090524164220) do
     t.string   "homepage"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "strapline"
   end
 
   create_table "unvalidated_contributors", :force => true do |t|
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20090524164220) do
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
     t.string   "strapline"
+    t.text     "bio"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

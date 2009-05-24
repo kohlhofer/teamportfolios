@@ -17,10 +17,12 @@
   </div>
   
   <div class="grid_9">
-    <div id="user-description">
-      <p>User's description goes here</p>
-    </div>
-    
+    <% unless @user.bio.blank? %>
+			<div id="user-description">
+	      <p><%= @user.bio %></p>
+	    </div>
+    <% end %>
+	 
     <div id="projects">
     	<% @user.projects.each do |project| %>
     	  	<%= render 'projects/preview', :project => project %>
