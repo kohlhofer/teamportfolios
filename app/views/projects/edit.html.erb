@@ -1,0 +1,13 @@
+<h1>Edit Project</h1>
+
+<% form_for(@project) do |form| %>
+  <%= form.error_messages %>
+
+  <%= render :partial=>'form', :object=>form%>
+
+  <p>
+    <%= form.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Cancel', root_path %>

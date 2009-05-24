@@ -94,6 +94,12 @@ class UserTest < ActiveSupport::TestCase
     assert users(:quentin).remember_token_expires_at.between?(before, after)
   end
 
+  should "know what has contributed to" do
+    alex = users(:alex)
+    assert alex.contributor_to? projects(:weewar) 
+    assert !alex.contributor_to?(projects(:cleverplugs)) 
+  end
+  
 protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))

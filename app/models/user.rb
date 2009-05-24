@@ -49,6 +49,10 @@ class User < ActiveRecord::Base
     write_attribute :email, (value ? value.downcase : nil)
   end
 
+  def contributor_to? project
+    projects.include? project
+  end
+
   protected
     
 
