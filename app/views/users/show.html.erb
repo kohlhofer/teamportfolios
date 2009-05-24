@@ -1,11 +1,42 @@
-<h1><%= @page_title = @user.name %></h1>
+<div id="header" class="grid_16 user">
+  <div class="grid_12 prefix_3 alpha">
+    <h1><%= @page_title = @user.name %></h1>
+    <p>This is a free form user's strapline</p>
+  </div>
+  <div class="clear-this"> </div>
+</div>
 
-<h2>Projects:</h2>
-<p>
-<ul id="projects">
-	<% @user.projects.each do |project| %>
-    <li><%= link_to project, project%></li>
-	<% end %>
-</ul>
+<div id="content" class="grid_16 user">
+  <div class="grid_3 alpha">
+    <p>Photo and links</p>
+  </div>
+  
+  <div class="grid_9">
+    <p>User's description goes here</p>
+    
+    <div id="projects">
+    	<% @user.projects.each do |project| %>
+        <div class="project-preview grid_3 <%= cycle ('alpha','','omega') %>">
+          <% link_to(project) do %>
+            <img src="#" width="160px" height="90px" alt="<%= project %>" />
+          <% end %>
+          <div class="description">
+             <h3><%= link_to project, project %></h3>
+            <p><%= project.description %></p>
+          </div>
+        </div>
+    	<% end %>
+    </div>
+    
+  </div>
+  
+  <div class="grid_4 omega">
+    <p>Collaborators</p>
+    
+    <p>Teams</p>
+  </div>
+  <div class="clear-this"> </div>
+</div>
+
 
 <p><%= link_to "New project", new_project_path, {:id=>"new-project-link"} %></p>

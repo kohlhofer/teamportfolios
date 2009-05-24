@@ -1,6 +1,8 @@
 /* @override 
 	http://localhost:3000/stylesheets/teamportfolios.css?1237922222
 	http://localhost:3000/stylesheets/teamportfolios.css?1243080198
+	http://localhost:3000/stylesheets/teamportfolios.css?1243090741
+	http://localhost:3000/stylesheets/teamportfolios.css?1243115228
 */
 
 /* v1.0 | 20080212 */
@@ -79,11 +81,6 @@ h1 {
 }
 
 
-#wrap {
-	margin:0 auto;
-	width:940px;
-}
-
 #logo {
 	font-size:2em;
 	font-weight:bold;
@@ -91,15 +88,14 @@ h1 {
 	color:#999;
 }
 
-#header {
+#navigation {
 	height:2em;
 	line-height: 2em;
 	background-color:#333;
 	border-bottom: 1px solid #000;
-	margin-bottom: 2em;
 	}
 
-#navigation  {
+#navigation ul {
 	height:2em;
 	background-color:#333;
 	padding: 0 0.5em;
@@ -116,8 +112,11 @@ h1 {
 }
 
 #navigation a {
-	padding:0.5em 0;
+	padding:0 0.5em;
 	color:#3DF;
+	display: block;
+	float: left;
+	height:2em;
 	text-decoration:none;
 }
 
@@ -128,11 +127,6 @@ h1 {
 
 
 
-
-
-#loginForm {
-	margin-top:2em;
-}
 
 label {
 	display:block;
@@ -161,4 +155,72 @@ input[type="submit"], button {
 
 #teaserList li {
 	margin:1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#header.user {
+  	background-color: #EEE;
+  	padding: 5em 0 0.5em 0;
+}
+
+#header.user h1 {
+  	margin: 0;
+  	font-size: 1.8em;
+  	font-weight: normal;
+}
+
+#header.user p {
+  	margin: 0.5em 0;
+}
+
+
+
+
+.project-preview h3 { 
+	margin: 0.8em 0 0.5em 0;
+	font-size: 0.9em;
+}
+
+.project-preview a { 
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.project-preview a:hover { 
+	text-decoration: underline;
+}
+
+.project-preview .description {
+	overflow: hidden;
+	height: 130px;
+	margin-bottom: 1.5em;
+}
+
+.project-preview p { 
+	color: #333;
+	font-size: 0.8em;
+}
+
+
+
+
+
+.clear-this {
+  clear: both;
+  height: 0px;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
 }

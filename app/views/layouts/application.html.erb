@@ -8,12 +8,11 @@
     <%= stylesheet_link_tag :all, :cache => true %>
 </head>
 <body>
-  
-    <div id="header">
-      <ul id="navigation">
+    <div id="navigation">
+      <ul>
         <li><%= link_to "Team Portfolios", root_url %></li>
          <% if logged_in? -%>
-         <li>Logged in as <%= link_to current_user.name, current_user %></li>
+         <li><%= link_to "Logged in as #{current_user.name}", current_user %></li>
          <li><%= link_to "Your Account", settings_path, { :title => "Change your profile settings" }    %></li>
          <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
         <% else -%>
@@ -21,10 +20,9 @@
         <% end -%>
       </ul>
     </div>
-    <div id="wrap">
+    <div class="container_16">
       <%= render :partial => 'layouts/flash_details' %>
     <%= yield :layout %>
   </div>
-
 </body>
 </html>
