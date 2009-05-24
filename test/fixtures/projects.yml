@@ -16,3 +16,9 @@ tcr:
   name: the_connected_republic
   description: Get a load of this republic
   homepage: http://theconnectedrepublic.org
+
+cleverplugs:
+  title: Clever Plugs
+  name: cleverplugs
+  description: Nice 3d guys
+  homepage: http://www.cleverplugs.com
