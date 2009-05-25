@@ -26,9 +26,11 @@
   </div>
 
   <div class="grid_4 omega">
-    <p><%= link_to nil, @project.homepage %></p>
+    <div id="project-links">
+      <%= link_to nil, @project.homepage %>
+    </div>
     
-    <h2>Brought to you by:</h2>
+    <h2 class="small-headline">Created by</h2>
     <ul id="contributors">
       <%@project.contributors.each do |user|%>
         <li class="validated">
@@ -55,7 +57,7 @@
 
     <% if logged_in? && current_user.contributor_to?(@project) %>
       <div id="manage-contributors">
-        <p><a href="#">Add amother contributor...</a></p>
+        <p id="show-form-link"><a href="#">Add amother contributor...</a></p>
         <%= render 'unvalidated_contributor_form'%>
       </div>
     <% end %>
