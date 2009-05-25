@@ -3,15 +3,13 @@
       <%= f.hidden_field :project_id %>
     
     <p>
-      <%= f.label :name, "Full name of contributor" %>
+      <%= f.label :name, "Full name of additional contributor" %>
       <%= f.text_field :name, :class => :largeInput %>
     </p>
     <p>
-      <%= f.label :email, "Email user (optional)" %>
+      <%= f.label :email, "Email for this contributor (optional)" %>
       <%= f.text_field :email, :class => :largeInput %>
-      <span class="note">(We won't disclose the email, 
-        but will contact the user to see if they want to add a page for themselves on this system 
-        (or link to it if they are already a member)) 
+      <span class="note">If you supply an email we will invite the user to add a profile page for themselves or link to it if they are already a member.
       </span>
     </p>
     <p>

@@ -1,18 +1,3 @@
-/* @override 
-	http://localhost:3000/stylesheets/teamportfolios.css?1237922222
-	http://localhost:3000/stylesheets/teamportfolios.css?1243080198
-	http://localhost:3000/stylesheets/teamportfolios.css?1243090741
-	http://localhost:3000/stylesheets/teamportfolios.css?1243115228
-	http://localhost:3000/stylesheets/teamportfolios.css?1243171404
-	http://localhost:3000/stylesheets/teamportfolios.css?1243177458
-	http://localhost:3000/stylesheets/teamportfolios.css?1243181757
-	http://localhost:3000/stylesheets/teamportfolios.css?1243184339
-	http://localhost:3000/stylesheets/teamportfolios.css?1243186223
-	http://localhost:3000/stylesheets/teamportfolios.css?1243188155
-	http://localhost:3000/stylesheets/teamportfolios.css?1243189389
-	http://localhost:3000/stylesheets/teamportfolios.css?1243195960
-*/
-
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
 
@@ -82,6 +67,10 @@ body {
 form {
 	padding: 0.5em 1em;
 	background-color: #EEE;  	
+}
+
+a {
+  	color: #06439d;
 }
 
 p {
@@ -162,26 +151,21 @@ label.inlineLabel {
 	font-size:1em;
 }
 
-input {
+input[type="text"], input[type="password"] {
 	font-size:1.4em;
+	width: 400px;
+}
+
+textarea {
+  	font-size: 1.2em;
+  	width: 400px;
 }
 
 input[type="submit"], button {
 	padding:0.5em 1.1em;
 	font-size:1em;
+	margin-right: 0.5em;
 }
-
-
-#teaserList {
-	margin:1em 0;
-}
-
-#teaserList li {
-	margin:1em;
-}
-
-
-
 
 
 
@@ -269,6 +253,11 @@ h1 span.edit {
 }
 
 
+#show-form-link {
+  	font-size: 0.9em;
+  	margin-top: 1.5em;
+}
+
 
 
 
@@ -300,10 +289,9 @@ li.validated a {
   	display: block;
   	margin: 0.8em 0;
   	text-decoration: none;
-  	color: #052e78;
 }
 
-#contributors strong {
+#contributors a:hover strong {
   	text-decoration: underline;
 }
 
@@ -322,16 +310,37 @@ li .strapline {
 }
 
 
+h2.small-headline {
+  	font-size: 0.9em;
+
+}
 
 
+#project-links {
+	font-size: 0.9em;
+  	margin-bottom: 2.5em;
+}
 
 
 #manage-contributors {
  position: relative; 	
 }
 
+form span.note {
+	display: block;
+  	font-size: 0.8em;
+  	color: #666;
+  	line-height: 1.5em;
+  	margin-top: 0.3em;
+}
+
 #manage-contributors form {
  position: absolute;
  right: 0;
- top: 0; 	
+ top: 0;
+ display:none;	
+}
+
+#manage-contributors form a {
+ font-size: 0.9em;	
 }

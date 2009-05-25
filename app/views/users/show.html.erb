@@ -12,6 +12,7 @@
 			<% if logged_in? && current_user == @user %>
 			 <p><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path) %></p>
 			 <% end %>
+			 <br />
   </div>
   
   <div class="grid_9">
@@ -35,7 +36,7 @@
   </div>
   
   <div class="grid_4 omega">
-    <p>Projects Collaborators</p>
+    <h2 class="small-headline">Projects Collaborators</h2>
   </div>
   <div class="clear-this"> </div>
 </div>
