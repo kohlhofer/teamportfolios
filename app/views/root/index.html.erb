@@ -1,14 +1,31 @@
 <div class="container_16">
 
-<h1 id="logo"><%= @page_title = "Team Portfolios" %></h1>
 
 
-<% @projects.each do |project|%>
-  <%= render 'projects/preview', :project => project %>
-<% end %>
+  <h1 id="logo"><%= @page_title = "Share your work..." %></h1>
 
-</div>
+  <div class="clear-this"> </div>
+  
+  <div id="teaser" class="grid_6 alpha">
+    <p>You can join Team Portfolios, if an existing member wants to show you as a collaborator on a project.</p>
+    
+    <% if !logged_in? -%>
+      <p>If you have an account, <%= link_to "sign in here...",  login_path,  { :title => "Log in" }  %></p>
+     <% end -%>
+    
+  </div>
+  
+  
 
-<div>
-	<%= render :partial=> "sessions/login_form" %>
+  
+  <div class="grid_9 prefix_1 omega">
+    <% @projects.each do |project|%>
+      <%= render 'projects/preview', :project => project %>
+    <% end %>
+
+    
+  </div>
+  
+  <div class="clear-this"> </div>
+  
 </div>

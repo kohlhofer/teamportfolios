@@ -86,10 +86,10 @@ h1 {
 
 
 #logo {
-	font-size:2em;
-	font-weight:bold;
+	font-size:1.5em;
+	font-weight:normal;
 	text-decoration:none;
-	color:#999;
+
 }
 
 #navigation {
@@ -153,12 +153,12 @@ label.inlineLabel {
 
 input[type="text"], input[type="password"] {
 	font-size:1.4em;
-	width: 400px;
+	width: 90%;
 }
 
 textarea {
   	font-size: 1.2em;
-  	width: 400px;
+  	width: 90%;
 }
 
 input[type="submit"], button {
@@ -169,6 +169,10 @@ input[type="submit"], button {
 
 
 
+#teaser {
+  	font-size: 0.9em;
+  	margin-top: -1em;
+}
 
 
 
