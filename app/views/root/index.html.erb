@@ -1,14 +1,32 @@
 <div class="container_16">
 
-<h1 id="logo"><%= @page_title = "Team Portfolios" %></h1>
 
 
-<% @projects.each do |project|%>
-  <%= render 'projects/preview', :project => project %>
-<% end %>
+  <h1 id="logo"><%= @page_title = "Team Portfolios" %></h1>
 
-</div>
+  <div class="clear-this"> </div>
+  
+  <div id="teaser" class="grid_6 alpha">
+    <p>Only Team Portfolio members can create new projects.</p>
+    <p>You can only join, if an existing member wants to show you as a collaborator on a project.</p>
+    
+    <% if !logged_in? -%>
+      <p>If you have an account you can <%= link_to "sign in",  login_path,  { :title => "Log in" }  %>.</p>
+     <% end -%>
+    
+  </div>
+  
+  
 
-<div>
-	<%= render :partial=> "sessions/login_form" %>
+  
+  <div class="grid_9 prefix_1 omega">
+    <% @projects.each do |project|%>
+      <%= render 'projects/preview', :project => project %>
+    <% end %>
+
+    
+  </div>
+  
+  <div class="clear-this"> </div>
+  
 </div>
