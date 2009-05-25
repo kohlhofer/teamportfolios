@@ -151,14 +151,20 @@ label.inlineLabel {
 	font-size:1em;
 }
 
-input {
+input[type="text"], input[type="password"] {
 	font-size:1.4em;
+	width: 400px;
+}
+
+textarea {
+  	font-size: 1.2em;
+  	width: 400px;
 }
 
 input[type="submit"], button {
 	padding:0.5em 1.1em;
 	font-size:1em;
-	margin-right: 1em;
+	margin-right: 0.5em;
 }
 
 
@@ -250,7 +256,6 @@ h1 span.edit {
 #show-form-link {
   	font-size: 0.9em;
   	margin-top: 1.5em;
-  	padding-left: 50px;
 }
 
 
@@ -284,10 +289,6 @@ li.validated a {
   	display: block;
   	margin: 0.8em 0;
   	text-decoration: none;
-}
-
-#contributors strong {
-
 }
 
 #contributors a:hover strong {
