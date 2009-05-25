@@ -10,6 +10,7 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1243186223
 	http://localhost:3000/stylesheets/teamportfolios.css?1243188155
 	http://localhost:3000/stylesheets/teamportfolios.css?1243189389
+	http://localhost:3000/stylesheets/teamportfolios.css?1243195960
 */
 
 /* v1.0 | 20080212 */
@@ -318,4 +319,19 @@ li .strapline {
   	font-size: 0.9em;
   	color: #999;
   	display: block;
+}
+
+
+
+
+
+
+#manage-contributors {
+ position: relative; 	
+}
+
+#manage-contributors form {
+ position: absolute;
+ right: 0;
+ top: 0; 	
 }

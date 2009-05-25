@@ -54,7 +54,10 @@
     </ul>
 
     <% if logged_in? && current_user.contributor_to?(@project) %>
-      <%= render 'unvalidated_contributor_form'%>
+      <div id="manage-contributors">
+        <p><a href="#">Add amother contributor...</a></p>
+        <%= render 'unvalidated_contributor_form'%>
+      </div>
     <% end %>
 		
   </div>
