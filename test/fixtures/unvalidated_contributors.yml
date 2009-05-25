@@ -1,11 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  project_id: 1
-  name: MyString
-  email: MyString
+alex_is_unvalidated_contributor_of_treesforcities:
+  project: treesforcities
+  name: Alexxx Khlhofer
+  email: alex@teamportfolios.com
 
-two:
-  project_id: 1
-  name: MyString
-  email: MyString

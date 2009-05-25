@@ -15,7 +15,7 @@ class ProjectsTest < ActionController::IntegrationTest
       get("projects")
       assert_response :success
       assert_doesnt_have_login_form
-      assert_select 'ul#projects li', :count => 4
+      assert_select '#projects div.project-preview', :count => 5
     end
     
   end
@@ -29,7 +29,7 @@ class ProjectsTest < ActionController::IntegrationTest
       get("users/alex")
       assert_response :success
       assert_doesnt_have_login_form
-      assert_select 'div#projects div.project-preview', :count => 3
+      assert_select '#projects div.project-preview', :count => 3
     end
     
     should "be able to create new project page" do
@@ -42,12 +42,9 @@ class ProjectsTest < ActionController::IntegrationTest
       click_button
       assert_redirected_to 'http://teamportfolios.dev/projects/my_lovely_new_project'
       follow_redirect!
-      view
-      assert_select 'h1', "My Lovely New Project"
+      assert_select 'h1', :text=>/.*My Lovely New Project.*/
       assert_select "a[href='http://somehomepage.com']", 'http://somehomepage.com'
-      assert_select "ul#contributors" do 
-        assert_select"a[href='/users/alex']"
-      end
+      assert_am_contributor_to_this_project
     end
     
   end 
@@ -73,10 +70,50 @@ class ProjectsTest < ActionController::IntegrationTest
       fill_in 'unvalidated_contributor[name]', :with => 'Some Random Name' 
       click_button
       follow_redirect!
-      assert_select 'li', "Some Random Name"
+      assert_select 'li.not-validated', /.*Some Random Name.*/
     end
   end
   
+  def assert_not_able_to_edit_project
+    assert_select 'a#edit-project-link', :count=>0
+    post_via_redirect request.url, :project => {:title => 'GilgameshProj'}
+    assert_response 405
+  end
+  
+  def assert_not_able_to_add_contributor_to_project
+    assert_select 'form#add-contributor', :count=>0
+    post "projects/cleverplugs/unvalidated_contributors", :params=>{:unvalidated_contributor=>{:name=>'Some Random Name or Other'}}
+    assert_response :forbidden
+  end
+  def assert_no_validation_link
+    assert_select 'form#validate-self-as-contributor', :count=>0
+    post "projects/cleverplugs/unvalidated_contributors", :params=>{:unvalidated_contributor=>{:name=>'Some Random Name or Other'}}
+    assert_response 405
+  end
+  
+  context "User who is unvalidated contributor to project" do
+    
+    setup do
+      login 'alex'
+      get 'projects/treesforcities'
+    end
+    
+    should "be able to validate self as contributor" do
+      assert_select 'form#validate-self-as-contributor', :count=>1
+      submit_form 'validate-self-as-contributor'
+      follow_redirect!
+      assert_am_contributor_to_this_project
+    end
+    
+    should "not be able to edit it" do
+      assert_not_able_to_edit_project
+    end
+    
+    should "should not be able to add contributor" do
+      assert_not_able_to_add_contributor_to_project
+    end
+    
+  end
   
   context "User not contributing to project" do
     
@@ -86,17 +123,18 @@ class ProjectsTest < ActionController::IntegrationTest
     end
     
     should "not be able to edit it" do
-      assert_select 'a#edit-project-link', :count=>0
-      post_via_redirect request.url, :project => {:title => 'GilgameshProj'}
-      assert_response :unauthorized
+      assert_not_able_to_edit_project
     end
     
     should "should not be able to add contributor" do
-      assert_select 'form#add-contributor', :count=>0
-      put "projects/cleverplugs/contributors/alex"
-      assert_response 403
+      assert_not_able_to_add_contributor_to_project
     end
     
   end
   
+  def assert_am_contributor_to_this_project
+    assert_select "ul#contributors" do 
+      assert_select"a[href='/users/alex']"
+    end
+  end
 end

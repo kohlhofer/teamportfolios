@@ -1,4 +1,8 @@
 class UnvalidatedContributorsController < ApplicationController
+  before_filter :is_contributor, :except => [:index, :show, :validate_self, :refuse_self]
+  before_filter :is_unvalidated_contributor, :only => [:validate_self, :refuse_self]
+  
+  
   # GET /unvalidated_contributors
   # GET /unvalidated_contributors.xml
   def index
@@ -86,4 +90,33 @@ class UnvalidatedContributorsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def validate_self
+    raise Exception.new("you are already a contributor to this project") if current_user.contributor_to? @project    
+    Contribution.new(:project_id=>@project.id, :user_id=>current_user.id).save!
+    @unvalidated_contributor.destroy
+    redirect_to @project
+  end
+
+  def refuse_self
+    @unvalidated_contributor.email = nil
+    @unvalidated_contributor.save!
+    redirect_to @project
+  end
+  
+  protected
+  def is_contributor
+    @project = Project.find_by_name(params[:project_id])
+    return access_denied unless authorized? 
+    if ! current_user.contributor_to? @project
+      return access_forbidden
+    end
+  end
+  def is_unvalidated_contributor
+    @project = Project.find_by_name(params[:project_id])
+    return access_denied unless authorized? 
+    @unvalidated_contributor = UnvalidatedContributor.find(params[:id])
+    return forbidden unless @unvalidated_contributor.email == current_user.email
+  end
+  
 end
