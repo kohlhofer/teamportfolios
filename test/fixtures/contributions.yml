@@ -19,6 +19,10 @@ tim_works_on_tcr:
   project: tcr
   user: tim
 
+tim_works_on_treesforcities:
+  project: treesforcities
+  user: tim
+
 duff_works_on_tcr:
   project: tcr
   user: duff

@@ -49,13 +49,16 @@
 	          <%= uvc.name %>
 	          <span class="strapline">(unclaimed profile)</span>
           </div>
+					<% if logged_in? && uvc.email==current_user.email%>
+					   <%= render :partial=>'validate_self_as_contributor', :object=>uvc %>
+					<% end %>
         </li>
       <%end%>
     </ul>
 
     <% if logged_in? && current_user.contributor_to?(@project) %>
       <div id="manage-contributors">
-        <p><a href="#">Add amother contributor...</a></p>
+        <p><a href="javascript:$('add-contributor').show()">Add amother contributor...</a></p>
         <%= render 'unvalidated_contributor_form'%>
       </div>
     <% end %>
