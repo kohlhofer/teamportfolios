@@ -86,10 +86,10 @@ h1 {
 
 
 #logo {
-	font-size:2em;
-	font-weight:bold;
+	font-size:1.5em;
+	font-weight:normal;
 	text-decoration:none;
-	color:#999;
+
 }
 
 #navigation {
@@ -170,7 +170,8 @@ input[type="submit"], button {
 
 
 #teaser {
-  	font-size: 1.1em;
+  	font-size: 0.9em;
+  	margin-top: -1em;
 }
 
 
