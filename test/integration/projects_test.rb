@@ -78,6 +78,24 @@ class ProjectsTest < ActionController::IntegrationTest
   end
   
   
+  context "User who is unvalidated contributor to project" do
+    
+    setup do
+      login 'alex'
+      get 'projects/cleverplugs'
+    end
+    
+    should "not be able to edit it" do
+      assert_select 'a#edit-project-link', :count=>0
+      post_via_redirect request.url, :project => {:title => 'GilgameshProj'}
+      assert_response :unauthorized
+    end
+    
+    should "should not be able to add contributor" do
+      assert_select 'form#add-contributor', :count=>0
+      put "projects/cleverplugs/contributors/alex"
+      assert_response 403
+    end
   context "User not contributing to project" do
     
     setup do

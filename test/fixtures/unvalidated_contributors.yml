@@ -1,6 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
+alex_is_unvalidated_contributor_of_tfc:
   project_id: 1
   name: MyString
   email: MyString
