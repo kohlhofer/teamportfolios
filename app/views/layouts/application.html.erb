@@ -18,6 +18,7 @@
              <% if logged_in? -%>
               <li><%= link_to "Your Profile", current_user, { :title => "View you puplic profile" } %></li>
               <li><%= link_to "Your Account", settings_path, { :title => "Edit you account" } %></li>
+              <li><%= link_to "New a Project", new_project_path %></li>
               <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
              <% else -%>
               <li><%= link_to "Sign in",  login_path,  { :title => "Log in", :id => "loginLink" }  %></li>
