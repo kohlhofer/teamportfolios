@@ -18,8 +18,10 @@
     <% @project.images.each do |image|%>
 		<div class="project-image">
 			
-      <p><img src="<%=image.public_filename(:medium)%>" width="280px" height="158px" alt="<%= @project %>" /></p>
-      <p>This image has no caption.</p>
+      <p><img src="<%=image.public_filename(:medium)%>" width="<%=image.width%>" height="<%=image.height%>" alt="<%= image.caption || @project %>" /></p>
+      <% unless image.caption.nil? && image.caption.blank?%>
+			   <p><%=image.caption%></p>
+			<%end%>
     </div>
 		<% end %>
 		<p><%=link_to "Add image", new_project_image_path(@project)%></p>
