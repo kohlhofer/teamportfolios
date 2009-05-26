@@ -1,7 +1,5 @@
 <div class="project-preview grid_3 <%= cycle ('alpha','','omega') %>">
-  <% link_to(project) do %>
-    <img src="/images/project_preview_small.png" width="160px" height="90px" alt="<%= project %>" />
-  <% end %>
+  <%=link_using_main_project_image(project) %>
   <div class="description">
     <h3><%= link_to project, project %></h3>
     <p><%= project.description %></p>

@@ -67,7 +67,7 @@ class ImagesController < ApplicationController
     respond_to do |format|
       if @image.update_attributes(params[:image])
         flash[:notice] = 'Image was successfully updated.'
-        format.html { redirect_to(@image) }
+        format.html { redirect_to(@project) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -83,7 +83,7 @@ class ImagesController < ApplicationController
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to(images_url) }
+      format.html { redirect_to(@project) }
       format.xml  { head :ok }
     end
   end

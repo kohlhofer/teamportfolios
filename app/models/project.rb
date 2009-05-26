@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   has_many :contributions, :dependent => :destroy
   has_many :unvalidated_contributors, :dependent => :destroy
   has_many :contributors, :through => :contributions, :source => :user, :uniq => true
-  has_many :images
+  has_many :images, :dependent => :destroy
   
   before_create do |project|
     name = project.title 
@@ -18,4 +18,7 @@ class Project < ActiveRecord::Base
     project.name = name 
   end
 
+  def image
+    images.first
+  end
 end
