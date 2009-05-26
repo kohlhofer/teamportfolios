@@ -63,7 +63,7 @@
 
     <% if logged_in? && current_user.contributor_to?(@project) %>
       <div id="manage-contributors">
-        <p><a id="show-form-link" href="javascript:$('add-contributor').show()">Add amother contributor...</a></p>
+        <p><a id="show-form-link" href="javascript:$('add-contributor').show()">Add another contributor...</a></p>
         <%= render 'unvalidated_contributor_form'%>
       </div>
     <% end %>
