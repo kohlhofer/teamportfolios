@@ -22,13 +22,16 @@
   </div>
   
   <div class="grid_7">
-   <p><%= h(@project.description) %></p>
+   <div id="project-description">  
+     <p><%= h(@project.description) %></p>
+   </div>
+   
+   <div id="project-links">
+     <%= link_to nil, @project.homepage %>
+   </div>
   </div>
 
   <div class="grid_4 omega">
-    <div id="project-links">
-      <%= link_to nil, @project.homepage %>
-    </div>
     
     <h2 class="small-headline">Created by</h2>
     <ul id="contributors">

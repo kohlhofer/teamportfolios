@@ -322,9 +322,11 @@ h2.small-headline {
 
 #project-links {
 	font-size: 0.9em;
-  	margin-bottom: 2.5em;
 }
 
+#project-description {
+  	margin-bottom: 2em;
+}
 
 #manage-contributors {
  position: relative; 	
