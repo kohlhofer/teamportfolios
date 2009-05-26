@@ -216,7 +216,7 @@ h1 span.edit {
 
 
 
-#login-page {
+#large-form {
  	padding-top: 3em; 	
 }
 
@@ -322,9 +322,11 @@ h2.small-headline {
 
 #project-links {
 	font-size: 0.9em;
-  	margin-bottom: 2.5em;
 }
 
+#project-description {
+  	margin-bottom: 2em;
+}
 
 #manage-contributors {
  position: relative; 	
@@ -346,4 +348,17 @@ form span.note {
 
 #manage-contributors form a {
  font-size: 0.9em;	
+}
+
+
+
+#footer {
+   font-size: 0.8em;
+   color: #AAA;
+   text-align: center;
+   padding-top: 5em;
+}
+
+#footer a {
+   color: #AAA;
 }
