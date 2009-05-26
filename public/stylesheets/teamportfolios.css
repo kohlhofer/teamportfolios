@@ -355,8 +355,9 @@ form span.note {
 #footer {
    font-size: 0.8em;
    color: #AAA;
-   text-align: center;
+   text-align: left;
    padding-top: 5em;
+   clear: both;
 }
 
 #footer a {

@@ -29,7 +29,7 @@
     	<div class="clear-this"> </div>
     	
     	
-    	<p><%= link_to "New project", new_project_path, {:id=>"new-project-link"} %></p>
+    	<p><%= link_to "Add another project...", new_project_path, {:id=>"new-project-link"} %></p>
     	
     </div>
     
@@ -38,6 +38,8 @@
   <div class="grid_4 omega">
     <h2 class="small-headline">Project Collaborators</h2>
   </div>
-  <div class="clear-this"> </div>
+  <div id="footer" class="prefix_3">
+      <p>Portfolios and profiles powered by <%= link_to "Team Portfolios", root_url, { :title => "Go to the home page and find out more..." } %>.
+  </div>
 </div>
 
