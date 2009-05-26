@@ -9,6 +9,8 @@
   
   <div class="grid_6 prefix_3 alpha">
     <% form_for @user, :url => save_new_avatar_settings_url, :html => { :method => :put, :multipart => true } do | f | %>
+  
+	  <%= f.error_messages %>
 
       <p>
         <%= f.file_field :uploaded_data %> 

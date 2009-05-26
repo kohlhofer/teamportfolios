@@ -1,11 +1,38 @@
-<h1>New image</h1>
+<div class=" large-form container_16">
+  <div class="grid_6 prefix_3 alpha">
+    <h1><%= @page_title = "New image for #{@image.project}" %></h1>
+  </div>
 
-<% form_for(@image) do |f| %>
-  <%= f.error_messages %>
+  <div class="clear-this"> </div>
 
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
 
-<%= link_to 'Back', images_path %>
+  
+  <div class="grid_6 prefix_3 alpha">
+    <% form_for @image, :url=>project_images_path(@image.project), :html => { :multipart => true } do | f | %>
+      <%= f.error_messages %>
+
+      <p>
+        <%= f.file_field :uploaded_data %> 
+      </p>
+      
+			<p>
+        <%= f.label :caption %>
+        <%= f.text_field :caption %> 
+      </p>
+
+      <p class="submitBlock">
+        <%= submit_tag "Upload new image" %>
+        <%= link_to 'Cancel', @image.project %>
+      </p>
+    <% end %>
+
+  </div>
+  
+  <div class="grid_5 omega ">
+    <p>Maximum size file size: 5MB</p>
+    <p>Images that are 16x9 and are more than xxx (?) pixels wide work best.</p>
+  </div>
+  
+</div>
+  
+  

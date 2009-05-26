@@ -1,7 +1,7 @@
 class Image < ActiveRecord::Base
-  belongs_to      :project
+  belongs_to :project
   has_attachment(
-    :content_type => :image, :storage => :file_system, :path_prefix=>'project_images',
+    :content_type => :image, :storage => :file_system, :path_prefix=>'public/project_images',
     :thumbnails => { :small => '160x90', :medium => '280' }, 
     :max_size => 5.megabytes, :processor => 'ImageScience')
   validates_as_attachment

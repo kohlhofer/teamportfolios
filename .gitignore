@@ -11,6 +11,7 @@ public/.integration_test_output_for_browser.html
 config/cookie_secret
 deploy_history.txt
 public/avatars
+public/project_images
 tmp/*
 test/tmp
 db/*.sqlite3

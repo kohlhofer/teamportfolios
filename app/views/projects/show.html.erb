@@ -15,10 +15,14 @@
   
   
   <div class="grid_5 alpha">
-    <div class="project-image">
-      <p><img src="/images/project_preview_medium.png" width="280px" height="158px" alt="<%= @project %>" /></p>
+    <% @project.images.each do |image|%>
+		<div class="project-image">
+			
+      <p><img src="<%=image.public_filename(:medium)%>" width="280px" height="158px" alt="<%= @project %>" /></p>
       <p>This image has no caption.</p>
     </div>
+		<% end %>
+		<p><%=link_to "Add image", new_project_image_path(@project)%></p>
   </div>
   
   <div class="grid_7">

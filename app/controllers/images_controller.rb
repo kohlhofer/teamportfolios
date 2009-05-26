@@ -1,4 +1,7 @@
 class ImagesController < ApplicationController
+  before_filter :find_project
+  before_filter :login_required, :except=>[:index,:show]  
+  
   # GET /images
   # GET /images.xml
   def index
@@ -24,7 +27,8 @@ class ImagesController < ApplicationController
   # GET /images/new
   # GET /images/new.xml
   def new
-    @image = Image.new
+    @image = Image.new()
+    @image.project = @project
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,11 +45,12 @@ class ImagesController < ApplicationController
   # POST /images.xml
   def create
     @image = Image.new(params[:image])
+    @image.project = @project
 
     respond_to do |format|
       if @image.save
         flash[:notice] = 'Image was successfully created.'
-        format.html { redirect_to(@image) }
+        format.html { redirect_to(@image.project) }
         format.xml  { render :xml => @image, :status => :created, :location => @image }
       else
         format.html { render :action => "new" }
@@ -81,5 +86,10 @@ class ImagesController < ApplicationController
       format.html { redirect_to(images_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  protected
+  def find_project
+        @project = Project.find_by_name(params[:project_id])
   end
 end
