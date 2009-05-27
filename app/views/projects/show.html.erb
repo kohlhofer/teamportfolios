@@ -18,12 +18,12 @@
     <% @project.images.each do |image| %>
 		<div class="project-image">
 			
-      <p><%=project_image_for(image, :medium)%></p>
+      <%=project_image_for(image, :medium)%>
       <% unless image.caption.nil? && image.caption.blank?%>
-			   <p><%=image.caption%></p>
+			   <p class="caption"><%=image.caption%></p>
 			<%end%>
 			<% if current_user.contributor_to? @project %>
-			 <p><%=link_to "Delete image", project_image_path(@project, image), :method=>:delete, :confirm=>"Delete this image?"%></p>
+			 <p class="delete-image"><%=link_to "Delete image", project_image_path(@project, image), :method=>:delete, :confirm=>"Delete this image?"%></p>
 			<% end %>
 
     </div>

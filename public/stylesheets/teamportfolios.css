@@ -363,3 +363,24 @@ form span.note {
 #footer a {
    color: #AAA;
 }
+
+
+
+.caption {
+  	background-color: #000;
+  	margin: 0;
+  	padding: 0.5em 1em;
+  	color: #DDD;
+  	font-size: 0.8em;
+}
+
+
+.project-image {
+  	margin-bottom: 1em;
+}
+
+.delete-image {
+  	text-align: right;
+  	font-size: 0.8em;
+  	margin: 0.5em 0;
+}
