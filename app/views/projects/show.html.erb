@@ -22,13 +22,13 @@
       <% unless image.caption.nil? && image.caption.blank?%>
 			   <p><%=image.caption%></p>
 			<%end%>
-			<% if current_user.contributor_to? @project %>
+			<% if logged_in? && current_user.contributor_to?(@project) %>
 			 <p><%=link_to "Delete image", project_image_path(@project, image), :method=>:delete, :confirm=>"Delete this image?"%></p>
 			<% end %>
 
     </div>
 		<% end %>
-		<% if current_user.contributor_to? @project%>
+		<% if logged_in? && current_user.contributor_to?(@project) %>
 		  <p><%=link_to "Add image", new_project_image_path(@project)%></p>
 		<% end %>
   </div>
