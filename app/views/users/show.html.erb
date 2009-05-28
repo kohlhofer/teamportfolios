@@ -10,7 +10,7 @@
   <div class="grid_3 alpha">
     	<%=avatar_for(@user, :large) %>
 			<% if logged_in? && current_user == @user %>
-			 <p><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path) %></p>
+			 <p class="option"><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path) %></p>
 			 <% end %>
 			 <br />
   </div>
