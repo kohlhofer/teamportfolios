@@ -3,6 +3,7 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1243442154
 	http://localhost:3000/stylesheets/teamportfolios.css?1243507708
 	http://localhost:3000/stylesheets/teamportfolios.css?1243508200
+	http://localhost:3000/stylesheets/teamportfolios.css?1243509208
 */
 
 /* v1.0 | 20080212 */
@@ -403,4 +404,17 @@ form span.note {
   	text-align: right;
   	font-size: 0.8em;
   	margin: 0.5em 0;
+}
+
+
+#self-validation {
+  	clear: both;
+  	padding: 0.5em 0;
+  	margin-left: 50px;
+}
+#self-validation form {
+padding: 0;
+margin: 0;
+background-color: #FFF;
+border: 0px;
 }

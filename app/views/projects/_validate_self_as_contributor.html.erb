@@ -1,6 +1,8 @@
+<div id="self-validation">
   <% form_for [ @project, validate_self_as_contributor ], :url=> validate_self_project_unvalidated_contributor_path(:project_id=>@project.name, :id=>validate_self_as_contributor), :html=> {:id => 'validate-self-as-contributor', :method=>:put} do | f | %>
-        <%= submit_tag "Validate yourself" %>
+        <%= submit_tag "Link with your profile" %> or
   <% end %>
   <% form_for [ @project, validate_self_as_contributor ], :url=> refuse_self_project_unvalidated_contributor_path(:project_id=>@project.name, :id=>validate_self_as_contributor), :html=> {:id => 'refuse-self-as-contributor', :method=>:put} do | f | %>
-        <%= submit_tag "Reject" %>
+        <%= submit_tag "Reject request" %>
   <% end %>
+</div>
