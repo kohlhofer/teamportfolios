@@ -2,6 +2,7 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1243441318
 	http://localhost:3000/stylesheets/teamportfolios.css?1243442154
 	http://localhost:3000/stylesheets/teamportfolios.css?1243507708
+	http://localhost:3000/stylesheets/teamportfolios.css?1243508200
 */
 
 /* v1.0 | 20080212 */
@@ -72,7 +73,8 @@ body {
 
 form {
 	padding: 0.5em 1em;
-	background-color: #EEE;  	
+	background-color: #c8daed;
+  	border: 1px solid #a5b4c4;
 }
 
 a {
@@ -361,6 +363,7 @@ form span.note {
  position: absolute;
  right: 0;
  top: 0;
+ width: 400px;
 }
 
 #manage-contributors form a {

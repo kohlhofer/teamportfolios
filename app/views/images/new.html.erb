@@ -23,9 +23,9 @@
 
       <p class="submitBlock">
         <%= submit_tag "Upload new image" %>
-        <%= link_to 'Cancel', @image.project %>
       </p>
     <% end %>
+    <p>or <%= link_to "go back to #{@image.project}", @image.project %></p>
 
   </div>
   
