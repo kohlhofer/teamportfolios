@@ -1,6 +1,6 @@
 <div class=" large-form container_16">
   <div class="grid_6 prefix_3 alpha">
-    <h1><%= @page_title = "New image for #{@image.project}" %></h1>
+    <h1><%= @page_title = "Add an image to #{@image.project}" %></h1>
   </div>
 
   <div class="clear-this"> </div>
@@ -12,11 +12,12 @@
       <%= f.error_messages %>
 
       <p>
+        <%= f.label :uploaded_data  , "Select a File" %>
         <%= f.file_field :uploaded_data %> 
       </p>
       
 			<p>
-        <%= f.label :caption %>
+        <%= f.label :caption, "Caption (optional)" %>
         <%= f.text_field :caption %> 
       </p>
 
@@ -28,7 +29,7 @@
 
   </div>
   
-  <div class="grid_5 omega ">
+  <div class="grid_5 omega disclaimer ">
     <p>Maximum size file size: 5MB</p>
     <p>Images that are 16x9 and are more than xxx (?) pixels wide work best.</p>
   </div>
