@@ -4,6 +4,8 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1243507708
 	http://localhost:3000/stylesheets/teamportfolios.css?1243508200
 	http://localhost:3000/stylesheets/teamportfolios.css?1243509208
+	http://localhost:3000/stylesheets/teamportfolios.css?1243509433
+	http://localhost:3000/stylesheets/teamportfolios.css?1243509784
 */
 
 /* v1.0 | 20080212 */
@@ -277,10 +279,14 @@ h1 span.edit {
 
 
 #show-form-link {
-  	font-size: 0.9em;
   	margin-top: 1.5em;
 }
 
+
+p.option {
+	margin: 0 0 1em 0;
+    font-size: 0.8em;	
+}
 
 
 
@@ -297,6 +303,7 @@ h1 span.edit {
 #contributors {
 	line-height: 1.3em;
 	font-size: 0.9em;
+	margin-bottom: 1.5em;
 }
 
 li.not-validated {
