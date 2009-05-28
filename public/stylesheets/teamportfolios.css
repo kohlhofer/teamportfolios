@@ -76,9 +76,7 @@ body {
 
 form {
 	padding: 0.5em 1em;
-	background-color: #c8daed;
-  	border: 1px solid #a5b4c4;
-}
+	background-color: #c8daed;}
 
 a {
   	color: #06439d;
@@ -372,6 +370,8 @@ form span.note {
  right: 0;
  top: 0;
  width: 400px;
+   	border: 1px solid #a5b4c4;
+
 }
 
 #manage-contributors form a {
