@@ -29,8 +29,9 @@
     	<div class="clear-this"> </div>
     	
     	
-    	<p><%= link_to "Add another project...", new_project_path, {:id=>"new-project-link"} %></p>
-    	
+	  <% if logged_in? && current_user == @user %>
+      <p><%= link_to "Add another project...", new_project_path, {:id=>"new-project-link"} %></p>
+    <% end%>  	
     </div>
     
   </div>
