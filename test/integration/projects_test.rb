@@ -6,7 +6,6 @@ class ProjectsTest < ActionController::IntegrationTest
     
     should "be able to see  individual project page" do
       get("projects/weewar")
-      view
       assert_response :success
       assert_doesnt_have_login_form
       assert_select 'a[href=http://weewar.com]', :count => 1
