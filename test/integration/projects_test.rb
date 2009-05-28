@@ -76,8 +76,8 @@ class ProjectsTest < ActionController::IntegrationTest
   
   def assert_not_able_to_edit_project
     assert_select 'a#edit-project-link', :count=>0
-    post_via_redirect request.url, :project => {:title => 'GilgameshProj'}
-    assert_response 405
+    put_via_redirect request.url, :project => {:title => 'GilgameshProj'}
+    assert_response :forbidden
   end
   
   def assert_not_able_to_add_contributor_to_project
