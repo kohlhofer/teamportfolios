@@ -1,6 +1,7 @@
 class UnvalidatedContributorsController < ApplicationController
-  before_filter :is_contributor, :except => [:index, :show, :validate_self, :refuse_self]
-  before_filter :is_unvalidated_contributor, :only => [:validate_self, :refuse_self]
+  before_filter :find_project, :except => [:index, :show]
+  before_filter :require_contributor, :except => [:index, :show, :validate_self, :refuse_self]
+  before_filter :require_unvalidated_contributor, :only => [:validate_self, :refuse_self]
   
   
   # GET /unvalidated_contributors
@@ -105,15 +106,11 @@ class UnvalidatedContributorsController < ApplicationController
   end
   
   protected
-  def is_contributor
+  
+def find_project
     @project = Project.find_by_name(params[:project_id])
-    return access_denied unless authorized? 
-    if ! current_user.contributor_to? @project
-      return access_forbidden
-    end
-  end
-  def is_unvalidated_contributor
-    @project = Project.find_by_name(params[:project_id])
+end
+  def require_unvalidated_contributor
     return access_denied unless authorized? 
     @unvalidated_contributor = UnvalidatedContributor.find(params[:id])
     return forbidden unless @unvalidated_contributor.email == current_user.email

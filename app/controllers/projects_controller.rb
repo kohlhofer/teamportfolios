@@ -1,12 +1,13 @@
 class ProjectsController < ApplicationController
+  before_filter :find_project, :except=> [:index, :new, :create]
   before_filter :login_required, :except => [ :index, :show ]
+  before_filter :require_contributor, :except => [:index, :show, :new, :create]
   
   def index
     @projects = Project.find(:all)
   end
   
   def show
-    @project = Project.find_by_name(params[:id])
     @unvalidated_contributor = UnvalidatedContributor.new(:project_id => @project.id)
   end
   
@@ -25,18 +26,19 @@ class ProjectsController < ApplicationController
   end
   
   def edit
-    @project = Project.find_by_name(params[:id])  
   end
   
   def update
-    @project = Project.find_by_name(params[:id])
     if @project.update_attributes(params[:project])
       flash[:notice] = 'Project was successfully updated.'
       redirect_to(@project) 
     else
       render :action => "edit" 
-    end    
-    
+    end        
   end
   
+  def find_project
+    @project = Project.find_by_name(params[:id])
+  end
+
 end
