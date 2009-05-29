@@ -1,7 +1,8 @@
 <div class="project-preview grid_3 <%= cycle('alpha','','omega') %>">
-  <%=link_using_main_project_image(project) %>
   <div class="description">
+    <div class="preview-image-link"><%=link_using_main_project_image(project) %></div>
     <h3><%= link_to project, project %></h3>
     <p><%= project.description %></p>
+    <div class="fade"> </div>
   </div>
 </div>
