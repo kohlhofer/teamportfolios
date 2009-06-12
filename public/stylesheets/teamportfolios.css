@@ -1,6 +1,13 @@
 /* @override 
 	http://localhost:3000/stylesheets/teamportfolios.css?1243600456
 	http://localhost:3000/stylesheets/teamportfolios.css?1244809203
+	http://localhost:3000/stylesheets/teamportfolios.css?1244813484
+	http://localhost:3000/stylesheets/teamportfolios.css?1244813786
+	http://localhost:3000/stylesheets/teamportfolios.css?1244813944
+	http://localhost:3000/stylesheets/teamportfolios.css?1244814058
+	http://localhost:3000/stylesheets/teamportfolios.css?1244814169
+	http://localhost:3000/stylesheets/teamportfolios.css?1244814304
+	http://localhost:3000/stylesheets/teamportfolios.css?1244814422
 */
 
 /* v1.0 | 20080212 */
@@ -74,7 +81,7 @@ form {
 	background-color: #c8daed;}
 
 a {
-  	color: #06439d;
+  	color: #0753af;
 }
 
 p {
@@ -86,6 +93,7 @@ h1 {
 	font-size:1.3em;
 	margin:3em 0 1em 0;
 	font-weight: normal;
+	color: #000;
 }
 
 
@@ -101,7 +109,7 @@ h1 {
 	font-size:0.8em;
 	line-height: 2.5em;
 	background-color:#333;
-	text-shadow: #000000 1px 1px 0;
+	text-shadow: #000 -1px -1px 0;
 	}
 
 #navigation ul {
@@ -120,25 +128,22 @@ h1 {
 		border-left: 1px solid #555;
 }
 
-#navigation li a {
+#navigation a {
 	padding:0 0.8em;
 	display: block;
 	height:2.5em;
 	line-height: 2.5em;
+		color: #CCC;
+	text-decoration:none;
 }
 
 #navigation #small-logo {
-    font-weight: bold;
-    display: block;
+	display: block;
     float: left;
     padding: 0 0.5em;
     margin-left: -0.5em;
 }
 
-#navigation a {
-	color:#3DF;
-	text-decoration:none;
-}
 
 #navigation a:hover {
 	text-decoration:underline;
@@ -212,6 +217,7 @@ input[type="submit"], button {
   	font-size: 1.8em;
   	font-weight: normal;
   	line-height: 1.4em;
+  	color: #000;
 }
 
 #header p {
@@ -235,8 +241,14 @@ h1 span.edit {
  	padding-top: 3em; 	
 }
 
-#user-description {
-  	margin-bottom: 3em;
+#user-description, #project-description {
+  	margin: 0 0 3em 0;
+  	font-size: 0.9em;
+  	color: #000;
+}
+
+#user-description p, #project-description p {
+	margin: 0 0 1em 0;
 }
 
 
@@ -255,7 +267,6 @@ h1 span.edit {
 }
 
 .project-preview h3 a { 
-	color: #000;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -281,7 +292,7 @@ h1 span.edit {
 }
 
 .project-preview p { 
-	color: #999;
+	color: #666;
 	font-size: 0.8em;
 	margin: 0.5em 1em;
 }
@@ -352,6 +363,7 @@ li .strapline {
 h2.small-headline {
   	font-size: 0.9em;
 	line-height: 1.4em;
+	color: #000;
 }
 
 
@@ -359,10 +371,7 @@ h2.small-headline {
 	font-size: 0.9em;
 }
 
-#project-description {
-  	margin: -1em 0 2em 0;
-  	font-size: 0.9em;
-}
+
 
 #manage-contributors {
  position: relative; 	
@@ -414,13 +423,13 @@ form span.note {
 
 
 .project-image {
-  	margin-bottom: 1.5em;
+  	margin: 0.3em 0 1.5em 0;
 }
 
 .delete-image {
-  	text-align: right;
   	font-size: 0.8em;
   	margin: 0.5em 0;
+  	float: right;
 }
 
 

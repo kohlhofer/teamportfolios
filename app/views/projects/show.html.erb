@@ -19,12 +19,12 @@
 		<div class="project-image">
 			
       <%=project_image_for(image, :medium)%>
+      <% if logged_in? && current_user.contributor_to?(@project) %>
+			 <p class="delete-image"><%=link_to "Delete image", project_image_path(@project, image), :method=>:delete, :confirm=>"Delete this image?"%></p>
+			<% end %>
       <% unless image.caption.nil? && image.caption.blank?%>
 			   <p class="caption"><%=image.caption%></p>
 			<%end%>
-			<% if logged_in? && current_user.contributor_to?(@project) %>
-			 <p class="delete-image"><%=link_to "Delete image", project_image_path(@project, image), :method=>:delete, :confirm=>"Delete this image?"%></p>
-			<% end %>
 
     </div>
 		<% end %>
