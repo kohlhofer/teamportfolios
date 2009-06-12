@@ -1,16 +1,6 @@
 /* @override 
-	http://localhost:3000/stylesheets/teamportfolios.css?1243441318
-	http://localhost:3000/stylesheets/teamportfolios.css?1243442154
-	http://localhost:3000/stylesheets/teamportfolios.css?1243507708
-	http://localhost:3000/stylesheets/teamportfolios.css?1243508200
-	http://localhost:3000/stylesheets/teamportfolios.css?1243509208
-	http://localhost:3000/stylesheets/teamportfolios.css?1243509433
-	http://localhost:3000/stylesheets/teamportfolios.css?1243509784
-	http://localhost:3000/stylesheets/teamportfolios.css?1243598232
-	http://localhost:3000/stylesheets/teamportfolios.css?1243598503
-	http://localhost:3000/stylesheets/teamportfolios.css?1243598615
-	http://localhost:3000/stylesheets/teamportfolios.css?1243598669
-	http://localhost:3000/stylesheets/teamportfolios.css?1243598738
+	http://localhost:3000/stylesheets/teamportfolios.css?1243600456
+	http://localhost:3000/stylesheets/teamportfolios.css?1244809203
 */
 
 /* v1.0 | 20080212 */
@@ -253,14 +243,13 @@ h1 span.edit {
 
 .project-preview  {
 	margin-bottom: 1em;
-	border-bottom: 1px solid #EEE;;
-}
+	}
 
 
 
 
 .project-preview h3 { 
-	margin: 0.8em 0 0.5em 0;
+	margin: 0.8em 1em 0.5em 1em;
 	font-size: 0.8em;
 	line-height: 1.4em;
 }
@@ -277,23 +266,24 @@ h1 span.edit {
 
 .project-preview .description {
 	overflow: hidden;
-	height: 250px;
+	height: 150px;
 	position: relative;
+	background:transparent url(../images/description.gif) no-repeat bottom left;
 }
 
 .fade {
 	position: absolute;
 	bottom: 0;
   	text-align: right;
-  	background:transparent url(../images/fade.png) repeat-x left top;
+  	background:transparent url(../images/fade.png) repeat-x left bottom;
   	width: 100%;
   	height: 35px;
-  	margin: 0;
 }
 
 .project-preview p { 
 	color: #999;
 	font-size: 0.8em;
+	margin: 0.5em 1em;
 }
 
 
@@ -451,7 +441,7 @@ border: 0px;
 .preview-image-link a {
   	display: block;
   	text-align: center;
-  	background-color: #EEE;
+  	background-color: #999;
   	height:90px;
   	width: 160px;
   	overflow: hidden;
