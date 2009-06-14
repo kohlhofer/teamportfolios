@@ -22,7 +22,7 @@
   <div class="grid_9">
     <% unless @user.bio.blank? %>
 			<div id="user-description">
-	      <p><%= @user.bio %></p>
+	      <%= htmltext(@user.bio) %>
 	    </div>
     <% end %>
 	 

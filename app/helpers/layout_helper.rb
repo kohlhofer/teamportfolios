@@ -9,4 +9,7 @@ module LayoutHelper
     flash.values.collect { | value | "<p>#{value}</p>"}.join("\n")
   end
   
+  def htmltext(text)
+    auto_link(simple_format(h(text)))
+  end
 end
