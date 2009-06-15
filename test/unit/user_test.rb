@@ -96,16 +96,24 @@ class UserTest < ActiveSupport::TestCase
   
   should "know what has contributed to" do
     alex = users(:alex)
-    assert alex.contributor_to? projects(:weewar) 
+    assert alex.contributor_to?(projects(:weewar)) 
     assert !alex.contributor_to?(projects(:cleverplugs)) 
   end
   
   should "know fellow collaborators" do
     alex = users(:alex)
     collabs = alex.collaborators 
+    puts collabs
     assert_equal 2, collabs.length
-    assert collabs.include? users(:duff)
-    assert collabs.include? users(:tim)
+    assert collabs.include?(users(:duff))
+    assert collabs.include?(users(:tim))
+  end
+  should "know fellow unvalidated_collaborator_names" do
+    tim = users(:tim)
+    collabs = tim.unvalidated_collaborator_names
+    puts collabs
+    assert_equal 1, collabs.length
+    assert collabs.include?("Alexxx Khlhofer")
   end
   
   protected
