@@ -69,13 +69,14 @@ class User < ActiveRecord::Base
   end
   def unvalidated_collaborator_names
     if @_unvalidated_collaborator_names.nil?
+      found_names = collaborators.collect {|c| c.name}
       @_unvalidated_collaborator_names = []
       projects.each do |p|
         p.unvalidated_contributors.each do |uvc|
-          @_unvalidated_collaborator_names << uvc.name 
+          @_unvalidated_collaborator_names << uvc.name unless found_names.include? uvc.name
+          found_names << uvc.name
         end
       end
-      @_unvalidated_collaborator_names .uniq!
     end
     @_unvalidated_collaborator_names
   end

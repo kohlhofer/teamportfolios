@@ -108,12 +108,18 @@ class UserTest < ActiveSupport::TestCase
     assert collabs.include?(users(:duff))
     assert collabs.include?(users(:tim))
   end
+  
   should "know fellow unvalidated_collaborator_names" do
     tim = users(:tim)
     collabs = tim.unvalidated_collaborator_names
-    puts collabs
     assert_equal 1, collabs.length
     assert collabs.include?("Alexxx Khlhofer")
+  end
+  
+  should "know fellow unvalidated_collaborator_names to not include identical to validated" do
+    alex = users(:alex)
+    collabs = alex.unvalidated_collaborator_names
+    assert_equal 0, collabs.length
   end
   
   protected
