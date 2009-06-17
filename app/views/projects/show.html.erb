@@ -67,8 +67,13 @@
 	          <%= uvc.name %>
 	          <span class="strapline">(unclaimed profile)</span>
           </div>
-					<% if logged_in? && uvc.email==current_user.email%>
-					   <%= render :partial=>'validate_self_as_contributor', :object=>uvc %>
+					<% if logged_in?%> 
+            <% if current_user.contributor_to?(@project)%>
+						  <%= link_to "Edit", edit_project_unvalidated_contributor_path(@project, uvc), :class=>'edit-unvalidated'%>
+						  <%= link_to "Delete", project_unvalidated_contributor_path(@project, uvc), :method=> :delete,:confirm=>"Delete this contributor?", :class=>'delete-unvalidated' %>
+            <% elsif uvc.email==current_user.email%>
+					     <%= render :partial=>'validate_self_as_contributor', :object=>uvc %>
+					  <% end %>
 					<% end %>
         </li>
       <%end%>

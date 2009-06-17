@@ -2,7 +2,7 @@ class UnvalidatedContributorsController < ApplicationController
   before_filter :find_project, :except => [:index, :show]
   before_filter :require_contributor, :except => [:index, :show, :validate_self, :refuse_self]
   before_filter :require_unvalidated_contributor, :only => [:validate_self, :refuse_self]
-  
+
   
   # GET /unvalidated_contributors
   # GET /unvalidated_contributors.xml
@@ -71,7 +71,7 @@ class UnvalidatedContributorsController < ApplicationController
     respond_to do |format|
       if @unvalidated_contributor.update_attributes(params[:unvalidated_contributor])
         flash[:notice] = 'UnvalidatedContributor was successfully updated.'
-        format.html { redirect_to(@unvalidated_contributor) }
+        format.html { redirect_to(@project) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -87,7 +87,7 @@ class UnvalidatedContributorsController < ApplicationController
     @unvalidated_contributor.destroy
     
     respond_to do |format|
-      format.html { redirect_to(unvalidated_contributors_url) }
+      format.html { redirect_to(Project.find_by_name(params[:project_id])) }
       format.xml  { head :ok }
     end
   end

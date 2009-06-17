@@ -72,11 +72,39 @@ class ProjectsTest < ActionController::IntegrationTest
       follow_redirect!
       assert_select 'li.not-validated', /.*Some Random Name.*/
     end
+    should "be able to remove unvalidated contributor" do
+      assert_select 'li.not-validated', /.*Tim Diggins.*/ do |elem|
+        assert_select 'a.delete-unvalidated'
+      end
+      delete_via_redirect project_unvalidated_contributor_path(projects(:weewar), unvalidated_contributors(:tim_is_unvalidated_contributor_of_weewar))
+      assert_select 'li.not-validated',  :count=>0
+    end
+    
+    should "be able to edit unvalidated contributor" do
+      assert_select 'li.not-validated', /.*Tim Diggins.*/ do |elem|
+        assert_select 'a.edit-unvalidated'
+      end
+      get edit_project_unvalidated_contributor_path(projects(:weewar), unvalidated_contributors(:tim_is_unvalidated_contributor_of_weewar))
+      assert_response_ok
+      fill_in :name, :with=> "Shnoggle"
+      click_button
+      follow_redirect!
+      assert_select 'li.not-validated', /.*Shnoggle.*/ 
+    end
   end
   
   def assert_not_able_to_edit_project
     assert_select 'a#edit-project-link', :count=>0
     put_via_redirect request.url, :project => {:title => 'GilgameshProj'}
+    assert_response :forbidden
+  end
+  
+  def assert_not_able_to_edit_or_remove_unvalidated_contributor(project, unvalidated_contributor)
+    assert_select 'a.edit-unvalidated', :count=>0
+    get edit_project_unvalidated_contributor_path(projects(project), unvalidated_contributors(unvalidated_contributor))
+    assert_response :forbidden
+    assert_select 'a.remove-unvalidated', :count=>0
+    delete_via_redirect project_unvalidated_contributor_path(projects(project), unvalidated_contributors(unvalidated_contributor))
     assert_response :forbidden
   end
   
@@ -128,6 +156,10 @@ class ProjectsTest < ActionController::IntegrationTest
     
     should "should not be able to add contributor" do
       assert_not_able_to_add_contributor_to_project
+    end
+    
+    should "not be able to edit or remove unvalidated contributor" do
+      assert_not_able_to_edit_or_remove_unvalidated_contributor(:cleverplugs, :duff_is_unvalidated_contributor_of_cleverplugs)
     end
     
   end

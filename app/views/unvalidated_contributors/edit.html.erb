@@ -1,0 +1,20 @@
+<h1>Edit Unvalidated Contributor</h1>
+
+<% form_for([@project, @unvalidated_contributor]) do |form| %>
+  <%= form.error_messages %>
+
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :email %>
+    <%= form.text_field :email, :class => :largeInput %>
+  </p>
+
+  <p>
+    <%= form.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Cancel', root_path %>
