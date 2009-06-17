@@ -31,7 +31,7 @@ class ProjectTest < ActiveSupport::TestCase
   context "Existing Project" do
     should "have existing contributors" do
       p = projects(:weewar)
-      assert_equal 1, p.contributors.count
+      assert_equal 2, p.contributors.count
       
       p = projects(:tcr)
       assert_equal 3, p.contributors.count

@@ -72,6 +72,7 @@ class ProjectsTest < ActionController::IntegrationTest
       follow_redirect!
       assert_select 'li.not-validated', /.*Some Random Name.*/
     end
+    
     should "be able to remove unvalidated contributor" do
       assert_select 'li.not-validated', /.*Tim Diggins.*/ do |elem|
         assert_select 'a.delete-unvalidated'
@@ -91,6 +92,31 @@ class ProjectsTest < ActionController::IntegrationTest
       follow_redirect!
       assert_select 'li.not-validated', /.*Shnoggle.*/ 
     end
+    
+    should "be able to leave project" do
+      print 'now'
+      logout
+      login(:bert)
+      get('projects/weewar')
+      assert_select 'a#leave-project'
+      assert_select 'a#delete-project', :count=>0
+      put leave_project_path(projects(:weewar))
+      assert_response_ok
+      get "projects/weewar"
+      assert_select 'a#leave-project', :count=>0
+      
+      logout
+      login(:alex)
+      get('projects/weewar')
+      assert_select 'a#leave-project', :count=>0
+      assert_select 'a#delete-project'
+      delete project_path(projects(:weewar))
+      assert_response_ok
+      get "projects/weewar"
+      view
+      assert_response 404
+    end
+
   end
   
   def assert_not_able_to_edit_project
@@ -105,6 +131,15 @@ class ProjectsTest < ActionController::IntegrationTest
     assert_response :forbidden
     assert_select 'a.remove-unvalidated', :count=>0
     delete_via_redirect project_unvalidated_contributor_path(projects(project), unvalidated_contributors(unvalidated_contributor))
+    assert_response :forbidden
+  end
+  
+  def assert_not_able_to_leave_project(project)
+    assert_select 'a#leave-project', :count=>0
+    put leave_project_path(projects(project))
+    assert_response :forbidden
+    assert_select 'a#delete-project', :count=>0
+    delete project_path(projects(project))
     assert_response :forbidden
   end
   
@@ -140,6 +175,9 @@ class ProjectsTest < ActionController::IntegrationTest
     should "should not be able to add contributor" do
       assert_not_able_to_add_contributor_to_project
     end
+    should "should not be able to leave project" do
+      assert_not_able_to_leave_project :treesforcities
+    end
     
   end
   
@@ -161,7 +199,11 @@ class ProjectsTest < ActionController::IntegrationTest
     should "not be able to edit or remove unvalidated contributor" do
       assert_not_able_to_edit_or_remove_unvalidated_contributor(:cleverplugs, :duff_is_unvalidated_contributor_of_cleverplugs)
     end
-    
+
+        should "should not be able to leave project" do
+      assert_not_able_to_leave_project :cleverplugs
+    end
+
   end
   
   def assert_am_contributor_to_this_project

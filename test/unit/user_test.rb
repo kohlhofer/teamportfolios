@@ -99,12 +99,19 @@ class UserTest < ActiveSupport::TestCase
     assert alex.contributor_to?(projects(:weewar)) 
     assert !alex.contributor_to?(projects(:cleverplugs)) 
   end
+  should "know what has sole contributed to" do
+    alex = users(:alex)
+    tim = users(:tim)
+    assert  !alex.sole_contributor_to?(projects(:weewar))
+    assert  tim.sole_contributor_to?(projects(:treesforcities))
+  end
   
   should "know fellow collaborators" do
     alex = users(:alex)
     collabs = alex.collaborators 
     puts collabs
-    assert_equal 2, collabs.length
+    assert_equal 3, collabs.length
+    assert collabs.include?(users(:bert))
     assert collabs.include?(users(:duff))
     assert collabs.include?(users(:tim))
   end

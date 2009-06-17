@@ -3,7 +3,17 @@
     <h1>
       <%= @page_title = h(@project.title) %>
       <% if logged_in? && current_user.contributor_to?(@project) %>
-        <span class="edit">(<%= link_to "Edit project", edit_project_path(@project), :id=>'edit-project-link' %>)</span>
+        <span class="edit">
+        	(
+					<%= link_to "Edit project", edit_project_path(@project), :id=>'edit-project-link' %>
+          |
+					<% if current_user.sole_contributor_to?(@project)%>
+	 				  <%= link_to "Delete project", project_path(@project), :method=>:delete, :id=>'delete-project', :confirm=> "Do you really want to leave this project and delete it?" %>
+          <% else %>
+					 <%= link_to "Leave project", leave_project_path(@project), :method=>:put, :id=>'leave-project', :confirm=> "Do you really want to leave this project?" %>
+				  <% end %>
+					)
+				</span>
       <% end %>
     </h1>
     <p><%=h(@project.strapline || "Another brilliant project")%></p>

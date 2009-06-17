@@ -3,6 +3,10 @@ alex_works_on_weewar:
   project: weewar
   user: alex
 
+bert_works_on_weewar:
+  project: weewar
+  user: bert
+
 alex_works_on_permatime:
   project: permatime
   user: alex

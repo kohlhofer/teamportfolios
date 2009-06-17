@@ -36,9 +36,19 @@ class ProjectsController < ApplicationController
       render :action => "edit" 
     end        
   end
-  
+
+    def leave
+    @project.contributors.delete(current_user)
+    redirect_to @project    
+  end
+    def destroy
+    @project.destroy
+    redirect_to current_user    
+  end
+
+  protected
   def find_project
-    @project = Project.find_by_name(params[:id])
+    @project = Project.find_by_name!(params[:id])
   end
 
 end

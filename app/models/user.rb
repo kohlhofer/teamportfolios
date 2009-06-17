@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     projects.include? project
   end
   
+  def sole_contributor_to? project
+    project.contributors == [self]
+  end
+  
   def collaborators
     if @_collaborators.nil?
       other_ids = []

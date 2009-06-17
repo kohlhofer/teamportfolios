@@ -51,3 +51,12 @@ tim:
   salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
   crypted_password:          7c629fe527bd6ff6edb4e696223b80bea25167af # 'monkey'
   created_at:                <%= 3.days.ago.to_s :db %>
+
+bert:
+  login:                     bert
+  name:                      Bert oBert
+  email:                     bert@teamportfolios.com
+  salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
+  crypted_password:          7c629fe527bd6ff6edb4e696223b80bea25167af # 'monkey'
+  created_at:                <%= 3.days.ago.to_s :db %>
+
