@@ -5,9 +5,7 @@ class LoginAndOutTest < ActionController::IntegrationTest
   context "normally" do
     should "be able to login and out" do
       get("/")
-      follow_redirect!
       assert_response :success
-      assert_has_login_form
       
       login('alex')
       assert_response :success
