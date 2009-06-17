@@ -16,7 +16,7 @@
         <div class="grid_11 omega">  
           <ul>
              <% if logged_in? -%>
-              <li><%= link_to "Your Profile", current_user, { :title => "View you public profile" } %></li>
+              <li><%= link_to current_user, current_user, { :title => "View you public profile" } %></li>
               <li><%= link_to "Your Account", settings_path, { :title => "Edit you account" } %></li>
               <li><%= link_to "New Project", new_project_path %></li>
               <li><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
