@@ -1,5 +1,3 @@
-/* @override http://localhost:3000/stylesheets/teamportfolios.css?1246366086 */
-
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
 
@@ -319,6 +317,11 @@ p.option {
 li.not-validated {
   	margin: 0.8em 0;
   	color: #666;
+}
+
+li.not-validated a {
+  	font-size: 0.8em;
+  	margin-right: 0.5em;
 }
 
 li.validated {
