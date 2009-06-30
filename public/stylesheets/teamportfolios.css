@@ -1,14 +1,4 @@
-/* @override 
-	http://localhost:3000/stylesheets/teamportfolios.css?1243600456
-	http://localhost:3000/stylesheets/teamportfolios.css?1244809203
-	http://localhost:3000/stylesheets/teamportfolios.css?1244813484
-	http://localhost:3000/stylesheets/teamportfolios.css?1244813786
-	http://localhost:3000/stylesheets/teamportfolios.css?1244813944
-	http://localhost:3000/stylesheets/teamportfolios.css?1244814058
-	http://localhost:3000/stylesheets/teamportfolios.css?1244814169
-	http://localhost:3000/stylesheets/teamportfolios.css?1244814304
-	http://localhost:3000/stylesheets/teamportfolios.css?1244814422
-*/
+/* @override http://localhost:3000/stylesheets/teamportfolios.css?1246366086 */
 
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
@@ -242,7 +232,7 @@ h1 span.edit {
 }
 
 #user-description, #project-description {
-  	margin: 0 0 3em 0;
+  	margin: 0 0 2em 0;
   	font-size: 0.9em;
   	color: #000;
 }
@@ -454,4 +444,30 @@ border: 0px;
   	height:90px;
   	width: 160px;
   	overflow: hidden;
+}
+
+#user-links {
+  	font-size: 0.9em;
+}
+
+.linkList li {
+  	margin: 0.3em 0;
+  	font-size: 0.9em;
+}
+
+.linkList a {
+	  background: transparent url(../images/bullet_green.png) no-repeat center left;
+	  padding-left: 18px;
+}
+
+
+.linkList a:hover {
+	  background: transparent url(../images/bullet_go.png) no-repeat center left;
+}
+
+
+
+
+.avatar {
+  	margin-bottom: 1em;
 }

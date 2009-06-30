@@ -48,10 +48,11 @@
    <div id="project-description">  
      <%= htmltext(@project.description) %>
    </div>
-   
-   <div id="project-links">
-     <%= link_to nil, @project.homepage %>
-   </div>
+   <ul id="project-links" class="linkList">
+     <li><%= link_to "Homepage", @project.homepage %></li>
+     <li><%= link_to "Twitter", @project.homepage %></li>
+     <li><%= link_to "Sources", @project.homepage %></li>
+   </ul>
   </div>
 
   <div class="grid_4 omega">

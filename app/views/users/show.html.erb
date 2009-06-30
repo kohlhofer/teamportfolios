@@ -12,11 +12,17 @@
 
 <div id="content" class="container_16">
   <div class="grid_3 alpha">
-    	<%=avatar_for(@user, :large) %>
-			<% if logged_in? && current_user == @user %>
-			 <p class="option"><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path) %></p>
-			 <% end %>
-			 <br />
+      <div class="avatar">
+      	<%=avatar_for(@user, :large) %>
+  			<% if logged_in? && current_user == @user %>
+  			 <p class="option"><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path) %></p>
+  			 <% end %>
+  		</div>
+  		 <ul id="user-links" class="linkList">
+         <li><%= link_to "Homepage", "http://google.com" %></li>
+         <li><%= link_to "Twitter", "http://google.com" %></li>
+         <li><%= link_to "Blog", "http://google.com" %></li>
+       </ul>
   </div>
   
   <div class="grid_9">
