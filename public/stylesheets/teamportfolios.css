@@ -8,6 +8,7 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1244814169
 	http://localhost:3000/stylesheets/teamportfolios.css?1244814304
 	http://localhost:3000/stylesheets/teamportfolios.css?1244814422
+	http://localhost:3000/stylesheets/teamportfolios.css?1246367325
 */
 
 /* v1.0 | 20080212 */
@@ -329,6 +330,11 @@ p.option {
 li.not-validated {
   	margin: 0.8em 0;
   	color: #666;
+}
+
+li.not-validated a {
+  	font-size: 0.8em;
+  	margin-right: 0.5em;
 }
 
 li.validated {
