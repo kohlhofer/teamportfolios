@@ -29,10 +29,26 @@
     <%= f.label :strapline, "Strapline" %>
     <%= f.text_field :strapline, :class => :largeInput %>
   </p>
+  
   <p>
     <%= f.label :bio, "Bio / Descriptive text on your profile" %>
     <%= f.text_area :bio, :class => :largeInput %>
   </p>
+  
+  <div id="links">
+    <h2>Add links to your profile</h2>
+    <div class="link">
+      <p >
+        <label>Link label (e.g. Twitter, Blog, etc...)</label>
+        <input type="text" />
+      </p>
+      <p >
+        <label>URL (http://...)</label>
+        <input type="text" />
+      </p>
+    </div>
+    <p><a href="#">Add another link</a></p>
+  </div>
 
 
   <p class="submitBlock">

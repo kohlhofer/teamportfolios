@@ -6,7 +6,22 @@
     <%= form.error_messages %>
 
     <%= render :partial=>'form', :object=>form%>
-
+    
+    <div id="links">
+      <h2>Add links for this project</h2>
+      <div class="link">
+        <p >
+          <label>Link label (e.g. Home page, Blog, etc...)</label>
+          <input type="text" />
+        </p>
+        <p >
+          <label>URL (http://...)</label>
+          <input type="text" />
+        </p>
+      </div>
+      <p><a href="#">Add another link</a></p>
+    </div>
+    
     <p>
       <%= form.submit 'Update' %> <%= link_to 'Cancel', root_path %>
     </p>
