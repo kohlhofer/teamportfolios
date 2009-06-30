@@ -1,13 +1,17 @@
-<h1>Edit Project</h1>
+<div class="container_16">
 
-<% form_for(@project) do |form| %>
-  <%= form.error_messages %>
+   <h1><%= @page_title = "Edit Project" %></h1>
 
-  <%= render :partial=>'form', :object=>form%>
+  <% form_for(@project) do |form| %>
+    <%= form.error_messages %>
 
-  <p>
-    <%= form.submit 'Update' %>
-  </p>
-<% end %>
+    <%= render :partial=>'form', :object=>form%>
 
-<%= link_to 'Cancel', root_path %>
+    <p>
+      <%= form.submit 'Update' %> <%= link_to 'Cancel', root_path %>
+    </p>
+  <% end %>
+
+  
+
+</div>
