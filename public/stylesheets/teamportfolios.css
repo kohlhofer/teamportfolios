@@ -1,3 +1,5 @@
+/* @override http://localhost:3000/stylesheets/teamportfolios.css?1246371452 */
+
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
 
@@ -362,6 +364,7 @@ h2.small-headline {
 
 #project-links {
 	font-size: 0.9em;
+	margin-bottom: 1em;
 }
 
 
@@ -451,6 +454,7 @@ border: 0px;
 
 #user-links {
   	font-size: 0.9em;
+  	margin-bottom: 1em;
 }
 
 .linkList li {
@@ -458,13 +462,21 @@ border: 0px;
   	font-size: 0.9em;
 }
 
-.linkList a {
+.linkList a.ext-link {
 	  background: transparent url(../images/bullet_green.png) no-repeat center left;
 	  padding-left: 18px;
+	  font-size: 1em;
+	  color: #0753af;
+	  margin-right: 0.5em;
+}
+
+.linkList a {
+	color: #999;
+	font-size: 0.9em;
 }
 
 
-.linkList a:hover {
+.linkList a.ext-link:hover {
 	  background: transparent url(../images/bullet_go.png) no-repeat center left;
 }
 
