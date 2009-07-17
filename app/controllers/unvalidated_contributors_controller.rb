@@ -1,30 +1,31 @@
 class UnvalidatedContributorsController < ApplicationController
+  include ProjectDescendantController
+
   before_filter :find_project, :except => [:index, :show]
   before_filter :require_contributor, :except => [:index, :show, :validate_self, :refuse_self]
   before_filter :require_unvalidated_contributor, :only => [:validate_self, :refuse_self]
-
   
-  # GET /unvalidated_contributors
-  # GET /unvalidated_contributors.xml
-  def index
-    @unvalidated_contributors = UnvalidatedContributor.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @unvalidated_contributors }
-    end
-  end
-  
-  # GET /unvalidated_contributors/1
-  # GET /unvalidated_contributors/1.xml
-  def show
-    @unvalidated_contributor = UnvalidatedContributor.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @unvalidated_contributor }
-    end
-  end
+#  # GET /unvalidated_contributors
+#  # GET /unvalidated_contributors.xml
+#  def index
+#    @unvalidated_contributors = UnvalidatedContributor.all
+#    
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.xml  { render :xml => @unvalidated_contributors }
+#    end
+#  end
+#  
+#  # GET /unvalidated_contributors/1
+#  # GET /unvalidated_contributors/1.xml
+#  def show
+#    @unvalidated_contributor = UnvalidatedContributor.find(params[:id])
+#    
+#    respond_to do |format|
+#      format.html # show.html.erb
+#      format.xml  { render :xml => @unvalidated_contributor }
+#    end
+#  end
   
   # GET /unvalidated_contributors/new
   # GET /unvalidated_contributors/new.xml

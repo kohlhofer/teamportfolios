@@ -1,0 +1,11 @@
+  <% form_for [ @project, @project.links.new ], :html=> {:id => 'add-link-form', :style=>'display:none;'} do | f | %>
+    <%= f.error_messages %>
+      <%= f.hidden_field :project_id %>
+
+      <%= render :partial => 'shared/link_fields', :object=>f %>
+
+    <p>
+        <%= submit_tag "Add link", :id=>'add-link-submit' %> <a href="javascript:$('add-contributor').hide();">Cancel</a>
+    </p>
+  <% end %>
+

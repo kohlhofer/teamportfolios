@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+alex_homepage:
+  user: alex
+  url: http://alex.homepage.com
+  label: homepage
+

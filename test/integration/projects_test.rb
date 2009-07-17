@@ -8,7 +8,7 @@ class ProjectsTest < ActionController::IntegrationTest
       get("projects/weewar")
       assert_response :success
       assert_doesnt_have_login_form
-      assert_select 'a[href=http://weewar.com]', :count => 1
+      assert_select 'a[href=http://weewar.com]', :text=>'homepage', :count => 1
     end
     
     should "be able to see projects listing" do
@@ -38,12 +38,12 @@ class ProjectsTest < ActionController::IntegrationTest
       assert_response_ok
       fill_in :title, :with => 'My Lovely New Project'
       fill_in :description, :with => 'Some nice body text'
-      fill_in :homepage, :with => 'http://somehomepage.com'
+      fill_in :url, :with => 'http://somehomepage.com'
       click_button
       assert_redirected_to 'http://teamportfolios.dev/projects/my_lovely_new_project'
       follow_redirect!
       assert_select 'h1', :text=>/.*My Lovely New Project.*/
-      assert_select "a[href='http://somehomepage.com']", 'http://somehomepage.com'
+      assert_select "a[href='http://somehomepage.com']", 'homepage'
       assert_am_contributor_to_this_project
     end
     
@@ -68,7 +68,7 @@ class ProjectsTest < ActionController::IntegrationTest
     should "be able to add other contributor by name only" do
       assert_select 'form#add-contributor', :count=>1
       fill_in 'unvalidated_contributor[name]', :with => 'Some Random Name' 
-      click_button
+      submit_form "add-contributor" 
       follow_redirect!
       assert_select 'li.not-validated', /.*Some Random Name.*/
     end
@@ -87,14 +87,13 @@ class ProjectsTest < ActionController::IntegrationTest
       end
       get edit_project_unvalidated_contributor_path(projects(:weewar), unvalidated_contributors(:tim_is_unvalidated_contributor_of_weewar))
       assert_response_ok
-      fill_in :name, :with=> "Shnoggle"
+      fill_in 'unvalidated_contributor[name]', :with=> "Shnoggle"
       click_button
       follow_redirect!
       assert_select 'li.not-validated', /.*Shnoggle.*/ 
     end
     
     should "be able to leave project" do
-      print 'now'
       logout
       login(:bert)
       get('projects/weewar')
@@ -113,10 +112,48 @@ class ProjectsTest < ActionController::IntegrationTest
       delete project_path(projects(:weewar))
       assert_response_ok
       get "projects/weewar"
-      view
       assert_response 404
     end
-
+    
+    should "be able to add link" do
+      assert_select "form#add-link-form", :count=>1
+      fill_in 'project_link[label]', :with=> 'blog'
+      fill_in 'project_link[url]', :with=>'http://blog.wee.com'
+      click_button
+      follow_redirect!
+      assert_select 'a[href=http://blog.wee.com]', :text=> 'blog', :count=>1
+      assert_select 'a[href=http://weewar.com]', :text=> 'homepage', :count=>1
+    end
+    
+    should "be able to edit link" do
+      assert_select "a.edit-link[href=#{edit_link_path}]", :count=>1
+      get_ok edit_link_path
+      fill_in 'project_link[url]', :with=>'http://better_link_for_weewar.com'
+      fill_in 'project_link[label]', :with=> 'lovelyhome'
+      click_button 
+      follow_redirect!
+      view
+      assert_select 'a[href=http://better_link_for_weewar.com]', :text=> 'lovelyhome', :count=>1
+    end
+    
+    should "be able to remove link" do
+      assert_select 'a.delete-link', :count=>1
+      p "delete #{link_path}"
+      delete link_path
+      assert_response_ok
+      get "projects/weewar"
+      assert_select 'a.delete-link', :count=>0
+    end
+  end
+  
+  def link_path
+    polymorphic_path([projects(:weewar), project_links(:weewar_homepage)])
+  end
+  def edit_link_path
+    edit_polymorphic_path([projects(:weewar), project_links(:weewar_homepage)])
+  end
+  def new_link_path
+    new_project_project_link_path(projects(:weewar))
   end
   
   def assert_not_able_to_edit_project
@@ -199,11 +236,29 @@ class ProjectsTest < ActionController::IntegrationTest
     should "not be able to edit or remove unvalidated contributor" do
       assert_not_able_to_edit_or_remove_unvalidated_contributor(:cleverplugs, :duff_is_unvalidated_contributor_of_cleverplugs)
     end
-
-        should "should not be able to leave project" do
+    
+    should "should not be able to leave project" do
       assert_not_able_to_leave_project :cleverplugs
     end
-
+    
+    should "not be able to add link" do
+      assert_select "form#add-link-form", :count=>0
+      put polymorphic_path([projects(:cleverplugs), project_links(:cleverplugs_homepage)]), :project_link=>{:url=>'somewhere', :label=>'something'}
+      assert_response :forbidden
+    end
+    
+    should "not be able to edit link" do
+      assert_select "a.edit-link[href=#{edit_link_path}]", :count=>0
+      get edit_polymorphic_path([projects(:cleverplugs), project_links(:cleverplugs_homepage)])
+      assert_response :forbidden
+    end
+    
+    should "not be able to remove link" do
+      assert_select 'a.delete-link', :count=>0
+      delete_via_redirect polymorphic_path([projects(:cleverplugs), project_links(:cleverplugs_homepage)])
+      assert_response :forbidden
+    end
+    
   end
   
   def assert_am_contributor_to_this_project

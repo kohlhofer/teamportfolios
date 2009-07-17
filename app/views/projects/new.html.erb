@@ -1,14 +1,25 @@
 <div id="content" class="container_16">
   <h1><%= @page_title = "New Project" %></h1>
 
-  <% form_for(@project) do |form| %>
+  <% form_for @project do |form| %>
     <%= form.error_messages %>
 
     <%= render :partial=>'form', :object=>form%>
+
+
+	  <div id="links">
+	  <h2>Link:</h2>
+		  <% form.fields_for :links do |link_form| %>
+      <% #will always be only one %>
+	      <div class="link">
+				     <%= render :partial => 'shared/link_fields', :object=>link_form %>
+	      </div>
+		  <% end %> 
+	  </div>
 
     <p>
       <%= form.submit 'Create' %> <%= link_to 'Cancel', root_path %>
     </p>
   <% end %>
-
 </div>
+

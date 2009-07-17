@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090526120455) do
+ActiveRecord::Schema.define(:version => 20090715212850) do
 
   create_table "avatars", :force => true do |t|
     t.integer  "user_id"
@@ -45,11 +45,18 @@ ActiveRecord::Schema.define(:version => 20090526120455) do
     t.datetime "updated_at"
   end
 
+  create_table "project_links", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "url"
+    t.string   "label"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.string   "title"
     t.text     "description"
-    t.string   "homepage"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "strapline"
@@ -59,6 +66,14 @@ ActiveRecord::Schema.define(:version => 20090526120455) do
     t.integer  "project_id"
     t.string   "name"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_links", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "url"
+    t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

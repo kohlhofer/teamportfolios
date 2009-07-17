@@ -21,3 +21,13 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+
+
+module ProjectDescendantController
+  
+  protected
+  def find_project
+    @project = Project.find_by_name!(params[:project_id])
+  end
+  
+end

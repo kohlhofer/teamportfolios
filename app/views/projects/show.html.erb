@@ -48,11 +48,22 @@
    <div id="project-description">  
      <%= htmltext(@project.description) %>
    </div>
-   <ul id="project-links" class="linkList">
-     <li><%= link_to "Homepage", @project.homepage %></li>
-     <li><%= link_to "Twitter", @project.homepage %></li>
-     <li><%= link_to "Sources", @project.homepage %></li>
+	 <ul id="project-links" class="linkList">
+   	<% @project.links.each do |link|%>
+     <li><%= link_to link.label, link.url %> 
+		  <% if logged_in? && current_user.contributor_to?(@project) %>
+        <%= link_to 'Edit', edit_project_project_link_path(@project, link) , :class=>'edit-link'%> 
+				<%=link_to 'Delete', project_project_link_path(@project, link) , :method=>:delete, :class=>'delete-link', :confirm=>"Are you sure you want to delete this link to #{link.url}?"%>
+		 <% end %>
+		 </li>
+	 <% end %>
    </ul>
+	  <% if logged_in? && current_user.contributor_to?(@project) %>
+      <div id="manage-links">
+        <p class="option"><a id="add-link" href="javascript:$('add-link-form').show()">Add a link...</a></p>
+        <%= render 'new_link_form'%>
+      </div>
+	 <% end %>
   </div>
 
   <div class="grid_4 omega">

@@ -1,7 +1,7 @@
 module BasicsDsl
   
-  def view
-    filename = File.dirname(__FILE__) + "/../../../public/.integration_test_output_for_browser.html"
+  def view name=nil
+    filename = File.dirname(__FILE__) + "/../../../public/.integration_test_#{name.nil? ? 'output_for_browser' : name}.html"
     flunk("There was no response to view") unless response
     File.open(filename, "w+") { | file | file.write(response.body) }
     `open #{filename}`

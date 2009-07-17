@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
   
   def new
     @project = Project.new()
+    @project.links.build(:label=>'homepage')
   end
   
   def create
@@ -45,7 +46,7 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to current_user    
   end
-
+  
   protected
   def find_project
     @project = Project.find_by_name!(params[:id])

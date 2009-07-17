@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   
   has_many :contributions, :dependent=>:destroy
   has_many :projects, :through=>:contributions, :uniq=>true
+  has_many :links, :class_name => 'UserLink'
   
   has_one :avatar
   

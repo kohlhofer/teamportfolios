@@ -1,0 +1,13 @@
+<h1>Editing project_link</h1>
+
+<% form_for([@project, @project_link]) do |f| %>
+  <%= f.error_messages %>
+
+  <%= render :partial => 'shared/link_fields', :object=>f %>
+
+  <p>
+    <%= f.submit 'Update' %> or
+<%= link_to 'Cancel', @project %>
+  </p>
+<% end %>
+

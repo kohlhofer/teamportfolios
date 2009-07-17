@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+weewar_homepage:
+  project: weewar
+  label: homepage
+  url: http://weewar.com
+
+permatime_homepage:
+  project: permatime
+  label: homepage
+  url: http://permatime.com
+  
+tcr_homepage:
+  project: tcr
+  label: homepage
+  url: http://theconnectedrepublic.org
+
+cleverplugs_homepage:
+  project: cleverplugs
+  label: homepage
+  url: http://www.cleverplugs.com
+
+cleverplugs_homepage:
+  project: cleverplugs
+  label: twitter
+  url: http://twitter.com/cleverplugs
+ 
