@@ -1,8 +1,8 @@
 <div id="header" class="container_16 user">
   <div class="grid_13 prefix_3 alpha">
     <h1><%= @page_title = h(@user.name) %>  
-      <% if logged_in? && current_user == @user %>
-        <span class="edit">(<%= link_to "Edit profile", settings_path, :id=>'edit-settings-link' %>)</span>
+      <% if @show_admin %>
+        <span class="edit">(<%= link_to "Edit profile", profile_settings_path, :id=>'edit-settings-link', :class=>'admin' %>)</span>
       <% end %>
     </h1>
     <p><%= h(@user.strapline)%></p>
@@ -11,18 +11,16 @@
 </div>
 
 <div id="content" class="container_16">
-  <div class="grid_3 alpha">
+  <div class="grid_3 alpha" id="user-lefthand">
       <div class="avatar">
       	<%=avatar_for(@user, :large) %>
-  			<% if logged_in? && current_user == @user %>
+  			<% if @show_admin %>
   			 <p class="option"><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path) %></p>
   			 <% end %>
   		</div>
-  		 <ul id="user-links" class="linkList">
-         <li><%= link_to "Homepage", "http://google.com" %></li>
-         <li><%= link_to "Twitter", "http://google.com" %></li>
-         <li><%= link_to "Blog", "http://google.com" %></li>
-       </ul>
+			
+			<%= render :partial=>'links/list' %>
+      <%= render :partial=>'links/add' if @show_admin %>
   </div>
   
   <div class="grid_9">
@@ -38,8 +36,8 @@
       <% end %>    
     	<div class="clear-this"> </div>
     	
-	    <% if logged_in? && current_user == @user %>
-        <p class="option"><%= link_to "Add another project...", new_project_path, {:id=>"new-project-link"} %></p>
+	    <% if @show_admin %>
+        <p class="option"><%= link_to "Add another project...", new_project_path, {:id=>"new-project-link", :class=>'admin'} %></p>
       <% end%>  	
     </div>
     
@@ -49,16 +47,7 @@
     <h2 class="small-headline">Collaborators</h2>
     <ul id="contributors">
       <% @user.collaborators.each do |user|%>
-        <li class="validated">
-          <% link_to user do %>
-            <%= avatar_for(user) %>
-            <div class="user-details">
-              <strong><%= user %></strong>
-              <span class="strapline"><%= user.strapline %></span>
-            </div>
-            <div class="clear-this"> </div>
-          <% end %>
-        </li>
+			         <%= render :partial => 'users/collabli', :object => user%>
       <%end%>
 		  <%@user.unvalidated_collaborator_names.each do |name|%>
         <li class="not-validated">

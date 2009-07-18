@@ -1,0 +1,16 @@
+<div class="container_16">
+
+  <h1><%= @page_title = "Your Profile" %></h1>
+
+  <% form_for @user, :url => settings_path do | form | %>
+
+    <%= error_messages_for(:user, :object => @user ) %>
+    
+    <%= render :partial=>'users/profile_fields', :object=>form %>
+
+	  <p class="submitBlock">
+	    <%= submit_tag   "Save", :disable_with => "Saving..." %> <%= link_to "Cancel", @user %>
+	  </p> 
+
+  <% end %>
+</div>

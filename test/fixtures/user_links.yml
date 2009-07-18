@@ -5,3 +5,8 @@ alex_homepage:
   url: http://alex.homepage.com
   label: homepage
 
+tim_homepage:
+  user: tim
+  url: http://tim.homepage.com
+  label: homepage
+

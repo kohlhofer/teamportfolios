@@ -26,6 +26,7 @@ class LinksController < ApplicationController
   
   # GET /project_links/1/edit
   def edit
+    render :template => "links/edit"
   end
   
   # POST /project_links
@@ -53,7 +54,7 @@ class LinksController < ApplicationController
         format.html { redirect_to(@linkable) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :template => "links/edit" }
         format.xml  { render :xml => @link.errors, :status => :unprocessable_entity }
       end
     end

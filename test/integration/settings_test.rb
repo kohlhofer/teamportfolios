@@ -19,21 +19,17 @@ class SettingsTest < ActionController::IntegrationTest
     
     
     should "should be able to view and submit settings form" do
-      
-      get "/settings"
       new_settings = {
         #        :login => "manglewurzler",
         :name => "Mangle Wurzler",
         :email => 'mw@implements.com',
-        :strapline => 'my lovely strapline',
         :password => 'neupasswort',
         :password_confirmation => 'neupasswort'
       }
       
       
       
-      get '/settings'
-      assert_response :success
+      get_ok '/settings'
       
       new_settings.each {|key,value| fill_in "user[%s]" % key, :with=>value}
       click_button
@@ -56,6 +52,28 @@ class SettingsTest < ActionController::IntegrationTest
       assert_select 'h1', :text => /Fandango/
     end
     
+    should "be able to view and submit profile details form" do
+              
+      new_profile = {
+        :strapline => 'my lovely strapline',
+        :bio => 'new bio'
+      }
+      get_ok 'settings/profile'
+      
+      new_profile.each {|key,value| fill_in "user[%s]" % key, :with=>value}
+      click_button
+      follow_redirect!
+      assert_response_ok
+      view
+      assert_select 'div#header p', :text => /.*my lovely strapline.*/
+      assert_select '#user-description', :text => /.*new bio.*/
+      
+      user = User.find_by_id(@logged_in_user_id)
+      
+      new_profile.each do |attribute,value|
+          assert_equal value, user.send(attribute) 
+      end  
+    end
   end
   
 end

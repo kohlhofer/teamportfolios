@@ -1,13 +1,13 @@
-<h1>Editing project_link</h1>
+<h1>Editing Link</h1>
 
-<% form_for([@project, @project_link]) do |f| %>
+<% form_for([@linkable, @link]) do |f| %>
   <%= f.error_messages %>
 
   <%= render :partial => 'links/fields', :object=>f %>
 
   <p>
     <%= f.submit 'Update' %> or
-<%= link_to 'Cancel', @project %>
+<%= link_to 'Cancel', @linkable %>
   </p>
 <% end %>
 

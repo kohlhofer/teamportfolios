@@ -6,6 +6,8 @@ class SettingsController < ApplicationController
     render :edit
   end
   
+  def profile
+  end
   
   def update    
     @user.attributes = params[:user]
