@@ -132,7 +132,6 @@ class ProjectsTest < ActionController::IntegrationTest
       fill_in 'project_link[label]', :with=> 'lovelyhome'
       click_button 
       follow_redirect!
-      view
       assert_select 'a[href=http://better_link_for_weewar.com]', :text=> 'lovelyhome', :count=>1
     end
     
