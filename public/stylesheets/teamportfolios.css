@@ -1,4 +1,8 @@
-/* @override http://localhost:3000/stylesheets/teamportfolios.css?1246371452 */
+/* @override 
+	http://localhost:3000/stylesheets/teamportfolios.css?1246371452
+	http://localhost:3000/stylesheets/teamportfolios.css?1247897361
+	http://localhost:3000/stylesheets/teamportfolios.css?1247910443
+*/
 
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
@@ -508,4 +512,11 @@ border: 0px;
 form .link {
   	padding: 0.3em 0;
   	border-bottom: 1px solid #96a3b1;
+}
+
+a.admin {
+	color: #a48d7d;
+}
+form.admin {
+	background-color: #d6c5b8;
 }
