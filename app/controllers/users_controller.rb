@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :check_for_hide_admin, :only=>:show
   
   # render new.rhtml
   def new
@@ -25,6 +26,6 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by_login(params[:id])
-    @show_admin = logged_in? && current_user == @user
+      @show_admin = logged_in? && current_user == @user unless !@show_admin.nil?
   end
 end

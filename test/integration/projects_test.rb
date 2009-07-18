@@ -65,6 +65,12 @@ class ProjectsTest < ActionController::IntegrationTest
       assert_select 'h1', :text => /Fandango/
     end
     
+    should "be able to see it hidden" do
+      assert_select 'a[href=/projects/weewar/edit]', :count=>1
+      get 'projects/weewar?hide_admin=true'
+      assert_select 'a[href=/projects/weewar/edit]', :count=>0
+    end
+    
     should "be able to add other contributor by name only" do
       assert_select 'form#add-contributor', :count=>1
       fill_in 'unvalidated_contributor[name]', :with => 'Some Random Name' 

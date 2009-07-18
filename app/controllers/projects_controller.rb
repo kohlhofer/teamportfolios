@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :find_project, :except=> [:index, :new, :create]
   before_filter :login_required, :except => [ :index, :show ]
   before_filter :require_contributor, :except => [:index, :show, :new, :create]
+  before_filter :check_for_hide_admin, :only=>:show
   
   def index
     @projects = Project.find(:all)
@@ -9,7 +10,7 @@ class ProjectsController < ApplicationController
   
   def show
     @unvalidated_contributor = UnvalidatedContributor.new(:project_id => @project.id)
-    @show_admin = logged_in? && current_user.contributor_to?(@project)
+    @show_admin = logged_in? && current_user.contributor_to?(@project) unless @show_admin == false
   end
   
   def new
@@ -38,12 +39,13 @@ class ProjectsController < ApplicationController
       render :action => "edit" 
     end        
   end
-
-    def leave
+  
+  def leave
     @project.contributors.delete(current_user)
     redirect_to @project    
   end
-    def destroy
+  
+  def destroy
     @project.destroy
     redirect_to current_user    
   end
@@ -52,5 +54,5 @@ class ProjectsController < ApplicationController
   def find_project
     @project = Project.find_by_name!(params[:id])
   end
-
+  
 end

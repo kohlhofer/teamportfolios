@@ -21,6 +21,11 @@ class ApplicationController < ActionController::Base
       return access_forbidden
     end
   end
+  
+  def check_for_hide_admin
+      @show_admin = false if params[:hide_admin]=='true'
+  end
+  
 end
 
 
