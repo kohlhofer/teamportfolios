@@ -23,10 +23,15 @@ module BasicsDsl
   
   # checks that the response is under 400 (ok or redirected)
   def assert_response_ok
-    if @response.redirect?
-      #should be ok to be a redirect of somekind... could make an option to fail if redirect
-    else
-      assert_response :success
+    begin
+      if @response.redirect?
+        #should be ok to be a redirect of somekind... could make an option to fail if redirect
+      else
+        assert_response :success
+      end
+    rescue
+      view :error
+      raise
     end
   end
   
@@ -53,7 +58,7 @@ module BasicsDsl
     end
     select_options = {:count=>1}
     select_options[:text] = options[:text] 
-
+    
     assert_select(selector, select_options, "Trying to click a link '#{selector}' #{"with text ''" % options[:text] if options[:text]} that did not exist") do | links |
       address = links.first.attributes['href']
       if options[:without_redirect]
@@ -84,23 +89,23 @@ module BasicsDsl
     assert_select("div.errorExplanation ul>li", error_text, "Expected there to be a validation error of '#{error_text}'") 
   end
   
-#  def assert_logged_in(user_or_user_symbol)
-#    user = user_or_user_symbol.kind_of?(User) ? user_or_user_symbol : users(user_or_user_symbol) 
-#    assert_equal(user.id, session[:user], "#{user} should have been logged in.")
-#  end
-#  
-#  def assert_not_logged_in
-#    assert_nil(session[:user], "No user should be logged in.")
-#  end
+  #  def assert_logged_in(user_or_user_symbol)
+  #    user = user_or_user_symbol.kind_of?(User) ? user_or_user_symbol : users(user_or_user_symbol) 
+  #    assert_equal(user.id, session[:user], "#{user} should have been logged in.")
+  #  end
+  #  
+  #  def assert_not_logged_in
+  #    assert_nil(session[:user], "No user should be logged in.")
+  #  end
   
-    def assert_has_login_form 
+  def assert_has_login_form 
     assert_select 'form#loginForm'
   end
   def assert_doesnt_have_login_form 
     assert_select 'form#loginForm', :count=>0
   end
   
-
+  
   def get_with_basic_authentication(path, user_symbol)
     get path, {}, { :authorization => "Basic #{Base64.encode64("#{users(user_symbol).api_authentication_token}:X")}" }
     end
