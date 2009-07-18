@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
   
   def show
     @unvalidated_contributor = UnvalidatedContributor.new(:project_id => @project.id)
+    @show_admin = logged_in? && current_user.contributor_to?(@project)
   end
   
   def new

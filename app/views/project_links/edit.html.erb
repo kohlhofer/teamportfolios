@@ -3,7 +3,7 @@
 <% form_for([@project, @project_link]) do |f| %>
   <%= f.error_messages %>
 
-  <%= render :partial => 'shared/link_fields', :object=>f %>
+  <%= render :partial => 'links/fields', :object=>f %>
 
   <p>
     <%= f.submit 'Update' %> or

@@ -12,13 +12,14 @@
 		  <% form.fields_for :links do |link_form| %>
       <% #will always be only one %>
 	      <div class="link">
-				     <%= render :partial => 'shared/link_fields', :object=>link_form %>
+				     <%= render :partial => 'links/fields', :object=>link_form %>
 	      </div>
 		  <% end %> 
 	  </div>
 
     <p>
-      <%= form.submit 'Create' %> <%= link_to 'Cancel', root_path %>
+      <%= form.submit 'Create' %> 
+			<%= link_to 'Cancel', root_path %>
     </p>
   <% end %>
 </div>

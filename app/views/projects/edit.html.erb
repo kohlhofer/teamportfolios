@@ -8,7 +8,8 @@
     <%= render :partial=>'form', :object=>form%>
     
     <p>
-      <%= form.submit 'Update' %> <%= link_to 'Cancel', root_path %>
+      <%= form.submit 'Update' %> 
+			<%= link_to 'Cancel', @project %>
     </p>
   <% end %>
 

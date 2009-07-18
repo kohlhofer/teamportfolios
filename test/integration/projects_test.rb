@@ -211,6 +211,7 @@ class ProjectsTest < ActionController::IntegrationTest
     should "should not be able to add contributor" do
       assert_not_able_to_add_contributor_to_project
     end
+    
     should "should not be able to leave project" do
       assert_not_able_to_leave_project :treesforcities
     end

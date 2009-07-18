@@ -1,0 +1,31 @@
+<% linkable = @project %>
+<% id_field = :project_id %>
+
+<ul class="linkList">
+<% linkable.links.each do |link|%>
+ <li><%= link_to link.label, link.url, :class => "ext-link" %> 
+  <% if @show_admin %>
+    <%= link_to 'Edit', edit_polymorphic_path([linkable, link]) , :class=>'admin edit-link'%> 
+    <%=link_to 'Delete', polymorphic_path([linkable, link]) , :method=>:delete, :class=>'admin delete-link', :confirm=>"Are you sure you want to delete this link to #{link.url}?"%>
+ <% end %>
+ </li>
+<% end %>
+</ul>
+
+<% if @show_admin %>
+  <div id="manage-links">
+    <p class="option"><a id="add-link" class="admin" href="javascript:$('add-link-form').show()">Add a link...</a></p>
+
+	  <% form_for [ linkable, linkable.links.new ], :html=> {:id => 'add-link-form', :style=>'display:none;', :class=>'admin'} do | f | %>
+	    <%= f.error_messages %>
+	      <%= f.hidden_field id_field %>
+	
+	      <%= render :partial => 'links/fields', :object=>f %>
+	
+	    <p>
+	        <%= submit_tag "Add link", :id=>'add-link-submit' %> <a href="javascript:$('add-link-form').hide();">Cancel</a>
+	    </p>
+	  <% end %>
+
+  </div>
+<% end %>
