@@ -40,6 +40,7 @@ module Technoweenie # :nodoc:
               self.height = img.height if respond_to?(:height)
               img.save self.temp_path
               self.size = File.size(self.temp_path)
+
               callback_with_args :after_resize, img
             end
 
@@ -47,8 +48,15 @@ module Technoweenie # :nodoc:
             if size.is_a?(Fixnum) || (size.is_a?(Array) && size.first.is_a?(Fixnum))
               if size.is_a?(Fixnum)
                 img.thumbnail(size, &grab_dimensions)
+                #trqd: tim hack start!
+                #thanks to http://blog.patrickcrosby.com/posts/28-How-to-make-non-stretched-square-thumbnails-with-attachment-fu-and-ImageScience-
+              elsif size[0] == size[1]
+                img.cropped_thumbnail(size[0], &grab_dimensions)
               else
-                img.resize(size[0], size[1], &grab_dimensions)
+                #trqd: tim hack continues
+                # see http://blog.new-bamboo.co.uk/2008/2/19/irregularscience  
+                img.resize_exact(size[0], size[1], &grab_dimensions)
+                #trqd: end tim 
               end
             else
               new_size = [img.width, img.height] / size.to_s

@@ -1,12 +1,22 @@
 <h1>Editing image</h1>
 
-<% form_for(@image) do |f| %>
+<% form_for([@image.project, @image]) do |f| %>
   <%= f.error_messages %>
+
+  <p>small:
+  <%=project_image_for(@image, :small) %></p>
+  <p>
+    <%= f.label :caption %>
+    <%= f.text_field :caption %>
+  </p>
+
+  <p>medium: <%=project_image_for(@image, :medium) %></p>
+  <p>original: <%=link_to("(link)", @image.public_filename(nil)) %></p>
+
 
   <p>
     <%= f.submit 'Update' %>
+    <%= link_to 'Cancel', project_path(@image.project) %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @image %> |
-<%= link_to 'Back', images_path %>

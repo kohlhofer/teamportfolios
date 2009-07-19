@@ -1,6 +1,6 @@
 module ProjectsHelper
   def main_project_image_for(project, size=:small)
-    if project.image
+  if project.image
       project_image_for(project.image, size, project.to_s)
     else
       image_tag("project_preview_#{size}.png",       :class => "project_image_#{size}", :alt=>project)

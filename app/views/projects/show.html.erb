@@ -25,7 +25,8 @@
             <%=project_image_for(image, :medium) %>
             <% if @show_admin %>
             <p class="delete-image">
-                <%=link_to "Delete image", project_image_path(@project, image), :method=>:delete, :confirm=>"Delete this image?",  :class=>'admin' %>
+                <%=link_to "Edit", edit_project_image_path(@project, image), :class=>'admin' %>
+                <%=link_to "Delete", project_image_path(@project, image), :method=>:delete, :confirm=>"Delete this image?",  :class=>'admin' %>
             </p>
             <% end %>
             <% unless image.caption.nil? && image.caption.blank? %>
