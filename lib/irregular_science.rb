@@ -12,7 +12,7 @@ module IrregularScience
     end
   end
  
-  def resize_exact(w, h)
+  def resize_exact(w, h, fromtop=true)
     r_old = width.to_f / height
     r_new = w.to_f / h
   
@@ -20,9 +20,13 @@ module IrregularScience
     h_crop = r_new > r_old ? (width / r_new).to_i : height
   
     trim_w = (width - w_crop) / 2
-    trim_h = (height - h_crop) / 2
-  
     l, r = trim_w, trim_w + w_crop
+    
+    if fromtop
+      trim_h = 0
+    else
+      trim_h = (height - h_crop) / 2
+    end
     t, b = trim_h, trim_h + h_crop
     
     self.with_crop(l, t, r, b) do |img|
