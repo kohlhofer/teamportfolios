@@ -29,7 +29,7 @@ class SettingsTest < ActionController::IntegrationTest
       
       
       
-      get_ok '/settings'
+      get_ok '/settings/account'
       
       new_settings.each {|key,value| fill_in "user[%s]" % key, :with=>value}
       click_button
@@ -64,7 +64,6 @@ class SettingsTest < ActionController::IntegrationTest
       click_button
       follow_redirect!
       assert_response_ok
-      view
       assert_select 'div#header p', :text => /.*my lovely strapline.*/
       assert_select '#user-description', :text => /.*new bio.*/
       

@@ -18,13 +18,14 @@ class UsersTest < ActionController::IntegrationTest
       login('alex')
     end
     
-    should "be able to see user page without links" do
+    should "be able to see other user page without links" do
       get("users/tim")
       assert_response :success
       assert_doesnt_have_login_form
       assert_select 'h1', :text => /Tim Diggins/
       assert_have_new_project_link false
     end
+    
     should "be able to see self with links" do
       get("users/alex")
       assert_response :success

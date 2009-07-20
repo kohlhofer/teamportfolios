@@ -12,7 +12,8 @@ ActionController::Routing::Routes.draw do |map|
     project.resources :project_links
   end
   map.resource :session
-  map.resource :settings, :collection => { :save_new_avatar => :put, :edit_avatar => :get, :profile => :get}
+  map.dashboard '/dashboard', :controller => 'settings', :action => 'show'
+  map.resource :settings, :collection => { :account => :get, :save_new_avatar => :put, :edit_avatar => :get, :profile => :get}
 
   # The priority is based upon order of creation: first created -> highest priority.
 

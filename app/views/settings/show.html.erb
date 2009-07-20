@@ -1,0 +1,23 @@
+<div class="container_16">
+
+  <h1><%= @page_title = "Dashboard" %></h1>
+
+  <h2>Profile</h2>
+	<p>Edit profile and links on <%= link_to "Your profile page ('#@user')", @user %></p>
+  
+	<h2>Projects</h2>
+	<p><%= link_to "Add a new project", new_project_path, :id=>'new-project-link' %></p>
+
+  <h2>Your Account</h2>
+  <p><%= link_to "Edit your account", settings_path, { :title => "Edit you account" } %> (email addresses, password...)</p>
+
+  <h2>Collaborators</h2>
+  <p>Collaborators go here?</p>
+
+  <h2>Unvalidated collaborators</h2>
+  <p>Unvalidaed collaborators x Projects go here</p>
+
+  <h2>Your unvalidated contributions</h2>
+  <p>Projects on which you have an unvalidated contribution go here</p>
+              
+</div>
