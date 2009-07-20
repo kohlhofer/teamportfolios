@@ -3,7 +3,11 @@ class SettingsController < ApplicationController
   before_filter :set_user
   
   def show
-    render :edit
+    
+  end
+  
+  def account
+    render :account
   end
   
   def profile

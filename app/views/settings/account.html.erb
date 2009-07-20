@@ -8,13 +8,13 @@
     
     <%= render :partial=>'users/account_fields', :object=>form %>
 
-	  <p class="submitBlock">
-	    <%= submit_tag   "Save", :disable_with => "Saving..." %> 
-			<%= link_to "Cancel", @user %>
-	  </p> 
+    <p class="submitBlock">
+      <%= submit_tag   "Save", :disable_with => "Saving..." %> 
+      <%= link_to "Cancel", @user %>
+    </p> 
 
   <% end %>
-	
-	<p>You can edit your profile and links on <%= link_to "Your profile page ('#@user')", @user %></p>
+  
+  <p>You can edit your profile and links on <%= link_to "Your profile page ('#@user')", @user %></p>
 
 </div>
