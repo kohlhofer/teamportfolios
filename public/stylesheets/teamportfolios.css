@@ -2,6 +2,12 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1246371452
 	http://localhost:3000/stylesheets/teamportfolios.css?1247897361
 	http://localhost:3000/stylesheets/teamportfolios.css?1247910443
+	http://localhost:3000/stylesheets/teamportfolios.css?1248124193
+	http://localhost:3000/stylesheets/teamportfolios.css?1248126185
+	http://localhost:3000/stylesheets/teamportfolios.css?1248126320
+	http://localhost:3000/stylesheets/teamportfolios.css?1248126370
+	http://localhost:3000/stylesheets/teamportfolios.css?1248126415
+	http://localhost:3000/stylesheets/teamportfolios.css?1248126500
 */
 
 /* v1.0 | 20080212 */
@@ -92,10 +98,10 @@ h1 {
 
 
 #logo {
-	font-size:1.5em;
+	font-size:1.3em;
 	font-weight:normal;
 	text-decoration:none;
-
+	margin-bottom: 1em;
 }
 
 #navigation {
@@ -186,8 +192,7 @@ input[type="submit"], button {
 
 
 #header {
-  	padding: 5em 0 1em 0;
-  	margin-bottom: 0.5em;
+  	margin-top: 4em;
 }
 
 #flash p {
@@ -206,7 +211,7 @@ input[type="submit"], button {
 #header.project {
 }
 
-#header h1 {
+h1 {
   	margin: 0;
   	font-size: 1.8em;
   	font-weight: normal;
@@ -214,8 +219,8 @@ input[type="submit"], button {
   	color: #000;
 }
 
-#header p {
-  	margin: 0.5em 0;
+p.strapline {
+  	margin: 0 0 1.5em 0;
 }
 
 h1 span.edit {
@@ -312,12 +317,23 @@ p.option {
   padding: 0px;
 }
 
-
-
 #contributors {
+  		background-color: #EEE;
+	padding: 0.5em 0.8em;
+	border:1px solid #DDD;
+		margin-bottom: 1.5em;
+}
+
+#contributors h2 {
+  	font-size: 0.8em;
+	line-height: 1.4em;
+	color: #666;
+}
+
+#contributors ul {
 	line-height: 1.3em;
 	font-size: 0.9em;
-	margin-bottom: 1.5em;
+
 }
 
 li.not-validated {
@@ -359,11 +375,7 @@ li .strapline {
 }
 
 
-h2.small-headline {
-  	font-size: 0.9em;
-	line-height: 1.4em;
-	color: #000;
-}
+
 
 
 #project-links {
@@ -488,7 +500,7 @@ border: 0px;
 
 
 .avatar {
-  	margin-bottom: 1em;
+  	margin: 0.5em 0 1em 0;
 }
 
 

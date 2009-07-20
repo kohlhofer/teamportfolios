@@ -1,4 +1,4 @@
-<div class="container_16">
+<div id="header" class="container_16">
 
 
 
@@ -15,7 +15,7 @@
       <p>If you have an account, <%= link_to "sign in here...",  login_path,  { :title => "Log in" }  %></p>
 		<% else %>
 			
-			<h2 class="small-headline">You and your collaborators</h2>
+			<h2>You and your collaborators</h2>
       <ul id="contributors">
         <%= render :partial => 'users/collabli', :object => current_user%>
 				<% current_user.collaborators.each do |user|%>
