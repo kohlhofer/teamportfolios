@@ -9,21 +9,10 @@
   <div id="teaser" class="grid_6 alpha">
     <p>Portfolios and profiles for you and your collaborators.</p>
     
-    <% if !logged_in? -%>
       <p>You can join Team Portfolios, if an existing member wants to show you as a collaborator on a project.</p>
 			
       <p>If you have an account, <%= link_to "sign in here...",  login_path,  { :title => "Log in" }  %></p>
-		<% else %>
-			
-			<h2>You and your collaborators</h2>
-      <ul id="contributors">
-        <%= render :partial => 'users/collabli', :object => current_user%>
-				<% current_user.collaborators.each do |user|%>
-        <%= render :partial => 'users/collabli', :object => user%>
-      <%end%>
-			</ul>
-
-     <% end %>
+		
     
   </div>
   

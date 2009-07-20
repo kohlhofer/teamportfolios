@@ -11,8 +11,15 @@
   <h2>Your Account</h2>
   <p><%= link_to "Edit your account", settings_path, { :title => "Edit you account" } %> (email addresses, password...)</p>
 
-  <h2>Collaborators</h2>
-  <p>Collaborators go here?</p>
+	
+    <ul id="contributors">
+      	<h2>You and your collaborators</h2>
+      <%= render :partial => 'users/collabli', :object => current_user%>
+			<% current_user.collaborators.each do |user|%>
+      <%= render :partial => 'users/collabli', :object => user%>
+    <%end%>
+		</ul>
+
 
   <h2>Unvalidated collaborators</h2>
   <p>Unvalidaed collaborators x Projects go here</p>
