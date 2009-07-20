@@ -8,6 +8,7 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1248126370
 	http://localhost:3000/stylesheets/teamportfolios.css?1248126415
 	http://localhost:3000/stylesheets/teamportfolios.css?1248126500
+	http://localhost:3000/stylesheets/teamportfolios.css?1248126548
 */
 
 /* v1.0 | 20080212 */
@@ -402,7 +403,7 @@ form span.note {
  right: 0;
  top: 0;
  width: 400px;
-   	border: 1px solid #a5b4c4;
+   	border: 1px solid #666;
 
 }
 
@@ -473,6 +474,10 @@ border: 0px;
   	margin-bottom: 1em;
 }
 
+.linkList {
+  	margin-bottom: 0.5em;
+}
+
 .linkList li {
   	margin: 0.3em 0;
   	font-size: 0.9em;
@@ -523,12 +528,18 @@ border: 0px;
 
 form .link {
   	padding: 0.3em 0;
-  	border-bottom: 1px solid #96a3b1;
+  	border-bottom: 1px solid #DDD;
 }
 
 a.admin {
-	color: #a48d7d;
+	color: #999;
 }
+
+a.admin:hover {
+	color: #0753af;
+}
+
+
 form.admin {
-	background-color: #d6c5b8;
+	background-color: #DDD;
 }
