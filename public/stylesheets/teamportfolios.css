@@ -319,10 +319,9 @@ p.option {
 }
 
 #contributors {
-  		background-color: #EEE;
-	padding: 0.5em 0.8em;
-	border:1px solid #DDD;
-		margin-bottom: 1.5em;
+	padding: 0 0.8em;
+	border-left:1px solid #DDD;
+	margin-bottom: 1.5em;
 }
 
 #contributors h2 {
