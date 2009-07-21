@@ -66,7 +66,6 @@ class UsersTest < ActionController::IntegrationTest
     
     should "be able to remove link" do
       assert_select 'a.delete-link', :count=>1
-      p "delete #{link_path}"
       delete link_path
       assert_response_ok
       get "projects/alex"
@@ -87,7 +86,6 @@ class UsersTest < ActionController::IntegrationTest
     should "not be able to add link" do
       assert_select "form#add-link-form", :count=>0
       put link_path, :user_link=>{:url=>'somewhere', :label=>'something'}
-      view
       assert_response :forbidden
     end
     

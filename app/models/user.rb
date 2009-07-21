@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   has_many :contributions, :dependent=>:destroy
   has_many :projects, :through=>:contributions, :uniq=>true
   has_many :links, :class_name => 'UserLink'
-  
+  has_many :unvalidated_contributions, :class_name => "UnvalidatedContributor", :foreign_key => :email, :primary_key => :email, :include=> :project
   has_one :avatar
   
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.

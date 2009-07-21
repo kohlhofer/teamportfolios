@@ -1,6 +1,5 @@
 class UnvalidatedContributor < ActiveRecord::Base
   belongs_to :project
-
   alias_attribute :to_s, :name
 
   def validate  

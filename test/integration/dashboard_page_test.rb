@@ -17,6 +17,8 @@ class DashboardPageTest < ActionController::IntegrationTest
     should "be able to see dashboard page" do
       get_ok("dashboard")
       assert_have_new_project_link true
+      assert_select "#unvalidated-projects a[href=/projects/cleverplugs]", :count=>1
+      assert_select "#unvalidated-projects a[href=/projects/treesforcities]", :count=>1
     end
     
   end

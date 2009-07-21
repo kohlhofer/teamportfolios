@@ -109,7 +109,6 @@ class UserTest < ActiveSupport::TestCase
   should "know fellow collaborators" do
     alex = users(:alex)
     collabs = alex.collaborators 
-    puts collabs
     assert_equal 3, collabs.length
     assert collabs.include?(users(:bert))
     assert collabs.include?(users(:duff))
@@ -127,6 +126,13 @@ class UserTest < ActiveSupport::TestCase
     alex = users(:alex)
     collabs = alex.unvalidated_collaborator_names
     assert_equal 0, collabs.length
+  end
+
+  should "know projects where contributions match unvalidated contribution" do
+    alex = users(:alex)
+    uvcs = alex.unvalidated_contributions
+    assert_equal 2, uvcs.size
+    uvcs.each {|uvc| puts " * #{uvc.email}, #{uvc.project}"}
   end
   
   protected
