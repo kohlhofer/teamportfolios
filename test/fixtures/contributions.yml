@@ -30,3 +30,7 @@ tim_works_on_treesforcities:
 duff_works_on_tcr:
   project: tcr
   user: duff
+
+tim_works_on_cleverplugs:
+  project: cleverplugs
+  user: tim

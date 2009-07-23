@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090720221408) do
+ActiveRecord::Schema.define(:version => 20090722220856) do
 
   create_table "avatars", :force => true do |t|
     t.integer  "user_id"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(:version => 20090720221408) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "email_addresses", :force => true do |t|
+    t.string  "email"
+    t.integer "user_id"
   end
 
   create_table "images", :force => true do |t|
@@ -65,9 +70,9 @@ ActiveRecord::Schema.define(:version => 20090720221408) do
   create_table "unvalidated_contributors", :force => true do |t|
     t.integer  "project_id"
     t.string   "name"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "email_address_id"
   end
 
   create_table "user_links", :force => true do |t|
@@ -81,7 +86,6 @@ ActiveRecord::Schema.define(:version => 20090720221408) do
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
     t.string   "name",                      :limit => 100, :default => ""
-    t.string   "email",                     :limit => 100
     t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
     t.datetime "created_at"

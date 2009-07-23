@@ -3,8 +3,23 @@
   <h1><%= @page_title = "Dashboard" %></h1>
 
 
-  <h2>Edit:</h2>
-  <p><%= link_to "Edit your account", settings_path, { :title => "Edit you account" } %> (email addresses, password...)</p>
+  <h2>Account:</h2>
+  <p>Login: <%= @user.login%></p>
+  <p>Name: <%= @user.name%></p>
+	<p><%= link_to "Edit your account", account_settings_path, { :title => "Edit you account" } %> (login, name, password)</p>
+  <h2> Email addresses</h2>
+	<ul>
+  	<% @user.email_addresses.each do |eml| %>
+			<li><%= eml.email %>
+			if unvalidated:
+			 Edit
+			 Resend validation email
+			Remove
+			</li>
+		<% end %>
+		<li>Add another email address linked to this account</li>	
+  </ul>
+  <h2>Profile:</h2>
 	<p>Edit profile and links on <%= link_to "Your profile page ('#@user')", @user %></p>
 
   <% if @user.unvalidated_contributions.size > 0 %>
@@ -29,11 +44,11 @@
 
 	
     <ul id="contributors">
-      	<h2>You and your collaborators</h2>
+      <h2>You and your collaborators</h2>
       <%= render :partial => 'users/collabli', :object => current_user%>
 			<% current_user.collaborators.each do |user|%>
-      <%= render :partial => 'users/collabli', :object => user%>
-    <%end%>
+	      <%= render :partial => 'users/collabli', :object => user%>
+	    <%end%>
 		</ul>
 
 </div>

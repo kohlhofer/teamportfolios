@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
   has_many :images, :dependent => :destroy
   has_many :links, :class_name => "ProjectLink"
   
-  accepts_nested_attributes_for :links, :allow_destroy => true, :reject_if => proc { |attrs| attrs.all? { |k, v| k!='url' || v.blank? } }
+  accepts_nested_attributes_for :links, :reject_if => proc { |attrs| attrs.all? { |k, v| k!='url' || v.blank? } }
 
 
   before_create do |project|

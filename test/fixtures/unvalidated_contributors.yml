@@ -3,20 +3,30 @@
 alex_is_unvalidated_contributor_of_treesforcities:
   project: treesforcities
   name: Alexxx Khlhofer
-  email: alex@teamportfolios.com
+  email_address: alex_primary 
 
 alex_is_unvalidated_contributor_of_cleverplugs:
   project: cleverplugs
   name: Alex K
-  email: alex@teamportfolios.com
+  email_address: alex_primary
 
 tim_is_unvalidated_contributor_of_weewar:
   project: weewar
   name: Tim Diggins
-  email: tim@teamportfolios.com
+  email_address: tim_primary
 
 duff_is_unvalidated_contributor_of_cleverplugs:
   project: cleverplugs
   name: Duff
-  email: duff@teamportfolios.com
+  email_address: duff
+
+someonenew_is_unvalidated_contributor_of_weewar:
+  project: weewar
+  name: Someone new
+  email_address: someone_new
+
+someoneelsenew_is_unvalidated_contributor_of_cleverplugs:
+  project: cleverplugs
+  name: Someone ElseWhoIsNew
+  email_address: someone_else_new
 

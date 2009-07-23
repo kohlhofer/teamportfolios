@@ -4,14 +4,16 @@
     
     <p>
       <%= f.label :name, "Full name of additional contributor" %>
-      <%= f.text_field :name, :class => :largeInput %>
+      <%= f.text_field :name,  :class => :largeInput %>
     </p>
-    <p>
-      <%= f.label :email, "Email for this contributor (optional)" %>
-      <%= f.text_field :email, :class => :largeInput %>
-      <span class="note">If you supply an email we will invite the user to add a profile page for themselves or link to it if they are already a member.
-      </span>
-    </p>
+
+      <p>
+	      <%= label_tag 'email', "Email for this contributor (optional)" %>
+	      <%= text_field_tag 'email', '', :class => :largeInput %>
+	      <span class="note">If you supply an email we will invite the user to add a profile page for themselves or link to it if they are already a member.
+	      </span>
+	    </p>
+    
     <p>
         <%= submit_tag "Add as contributor", :id=>'submit-add-contributor'%> 
 				<a href="javascript:$('add-contributor').hide();">Cancel</a>

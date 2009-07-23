@@ -22,7 +22,6 @@ class SettingsTest < ActionController::IntegrationTest
       new_settings = {
         #        :login => "manglewurzler",
         :name => "Mangle Wurzler",
-        :email => 'mw@implements.com',
         :password => 'neupasswort',
         :password_confirmation => 'neupasswort'
       }

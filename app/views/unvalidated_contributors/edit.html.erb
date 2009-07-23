@@ -7,11 +7,12 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </p>
-  <p>
-    <%= form.label :email %>
-    <%= form.text_field :email, :class => :largeInput %>
-  </p>
 
+  <p>
+    <%= label_tag 'email', "Email for this contributor (optional)" %>
+    <%= text_field_tag 'email', @unvalidated_contributor.email_address.nil? ? '' : @unvalidated_contributor.email_address.email, :class => :largeInput %>
+  </p>
+	
   <p>
     <%= form.submit 'Update' %>
     <%= link_to 'Cancel', @project %>

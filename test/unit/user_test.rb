@@ -33,14 +33,7 @@ class UserTest < ActiveSupport::TestCase
       assert u.errors.on(:password_confirmation)
     end
   end
-  
-  def test_should_require_email
-    assert_no_difference 'User.count' do
-      u = create_user(:email => nil)
-      assert u.errors.on(:email)
-    end
-  end
-  
+    
   def test_should_reset_password
     users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
     assert_equal users(:quentin), User.authenticate('quentin', 'new password')
@@ -119,22 +112,21 @@ class UserTest < ActiveSupport::TestCase
     tim = users(:tim)
     collabs = tim.unvalidated_collaborator_names
     assert_equal 1, collabs.length
-    assert collabs.include?("Alexxx Khlhofer")
+    assert collabs.include?("Someone ElseWhoIsNew")
   end
   
   should "know fellow unvalidated_collaborator_names to not include identical to validated" do
     alex = users(:alex)
     collabs = alex.unvalidated_collaborator_names
-    assert_equal 0, collabs.length
+    assert_equal 1, collabs.length
   end
 
   should "know projects where contributions match unvalidated contribution" do
     alex = users(:alex)
     uvcs = alex.unvalidated_contributions
     assert_equal 2, uvcs.size
-    uvcs.each {|uvc| puts " * #{uvc.email}, #{uvc.project}"}
   end
-  
+    
   protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))

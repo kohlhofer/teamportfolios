@@ -1,42 +1,31 @@
 class UnvalidatedContributorsController < ApplicationController
   include ProjectDescendantController
-
+  
   before_filter :find_project, :except => [:index, :show]
   before_filter :require_contributor, :except => [:index, :show, :validate_self, :refuse_self]
   before_filter :require_unvalidated_contributor, :only => [:validate_self, :refuse_self]
   
-#  # GET /unvalidated_contributors
-#  # GET /unvalidated_contributors.xml
-#  def index
-#    @unvalidated_contributors = UnvalidatedContributor.all
-#    
-#    respond_to do |format|
-#      format.html # index.html.erb
-#      format.xml  { render :xml => @unvalidated_contributors }
-#    end
-#  end
-#  
-#  # GET /unvalidated_contributors/1
-#  # GET /unvalidated_contributors/1.xml
-#  def show
-#    @unvalidated_contributor = UnvalidatedContributor.find(params[:id])
-#    
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.xml  { render :xml => @unvalidated_contributor }
-#    end
-#  end
-  
-  # GET /unvalidated_contributors/new
-  # GET /unvalidated_contributors/new.xml
-  def new
-    @unvalidated_contributor = UnvalidatedContributor.new
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @unvalidated_contributor }
-    end
-  end
+  #  # GET /unvalidated_contributors
+  #  # GET /unvalidated_contributors.xml
+  #  def index
+  #    @unvalidated_contributors = UnvalidatedContributor.all
+  #    
+  #    respond_to do |format|
+  #      format.html # index.html.erb
+  #      format.xml  { render :xml => @unvalidated_contributors }
+  #    end
+  #  end
+  #  
+  #  # GET /unvalidated_contributors/1
+  #  # GET /unvalidated_contributors/1.xml
+  #  def show
+  #    @unvalidated_contributor = UnvalidatedContributor.find(params[:id])
+  #    
+  #    respond_to do |format|
+  #      format.html # show.html.erb
+  #      format.xml  { render :xml => @unvalidated_contributor }
+  #    end
+  #  end
   
   # GET /unvalidated_contributors/1/edit
   def edit
@@ -49,8 +38,9 @@ class UnvalidatedContributorsController < ApplicationController
     @unvalidated_contributor = UnvalidatedContributor.new(params[:unvalidated_contributor])
     
     respond_to do |format|
-      if @unvalidated_contributor.save
-        if (@unvalidated_contributor.email.nil?)
+      email_addr_ok = set_email
+      if (email_addr_ok) && @unvalidated_contributor.save
+        if (@unvalidated_contributor.email_address.nil?)
           flash[:notice] = "Added #@unvalidated_contributor to list."
         else
           flash[:notice] = "Added #@unvalidated_contributor to list. Waiting for response for profile linking."
@@ -69,8 +59,14 @@ class UnvalidatedContributorsController < ApplicationController
   def update
     @unvalidated_contributor = UnvalidatedContributor.find(params[:id])
     
+    if (
+     (@unvalidated_contributor.email_address.nil? && params[:email].blank?) || 
+     (!@unvalidated_contributor.email_address.nil? && @unvalidated_contributor.email_address.email != params[:email])
+      )
+      email_addr_ok = set_email
+    end
     respond_to do |format|
-      if @unvalidated_contributor.update_attributes(params[:unvalidated_contributor])
+      if email_addr_ok &&@unvalidated_contributor.update_attributes(params[:unvalidated_contributor])
         flash[:notice] = 'UnvalidatedContributor was successfully updated.'
         format.html { redirect_to(@project) }
         format.xml  { head :ok }
@@ -99,22 +95,37 @@ class UnvalidatedContributorsController < ApplicationController
     @unvalidated_contributor.destroy
     redirect_to @project
   end
-
+  
   def refuse_self
-    @unvalidated_contributor.email = nil
+    @unvalidated_contributor.email_address = nil
     @unvalidated_contributor.save!
     redirect_to @project
   end
   
   protected
   
-def find_project
+  def find_project
     @project = Project.find_by_name(params[:project_id])
-end
+  end
   def require_unvalidated_contributor
     return access_denied unless authorized? 
     @unvalidated_contributor = UnvalidatedContributor.find(params[:id])
-    return forbidden unless @unvalidated_contributor.email == current_user.email
+    return forbidden if @unvalidated_contributor.email_address.nil?
+    return forbidden unless current_user.email_addresses.include?(@unvalidated_contributor.email_address)
   end
   
+  def set_email
+    email_addr_ok = true    
+    if params[:email].blank?
+      email_addr =  nil
+    else
+      email_addr = EmailAddress.find_by_email(params[:email])
+      if email_addr.nil?
+        email_addr = EmailAddress.new(:email=>params[:email])
+        email_addr_ok = email_addr.save
+      end
+    end
+    @unvalidated_contributor.email_address = email_addr
+    return email_addr_ok
+  end
 end

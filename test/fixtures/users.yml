@@ -1,7 +1,6 @@
 quentin:
   id:                        1
   login:                     quentin
-  email:                     quentin@example.com
   salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
   crypted_password:          0bdf2f705899260fc43e5bc3c3cf41b5fdefc4ca # 'monkey'
   created_at:                <%= 5.days.ago.to_s :db  %>
@@ -11,7 +10,6 @@ quentin:
 aaron:
   id:                        2
   login:                     aaron
-  email:                     aaron@example.com
   salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
   crypted_password:          7c629fe527bd6ff6edb4e696223b80bea25167af # 'monkey'
   created_at:                <%= 1.days.ago.to_s :db %>
@@ -22,7 +20,6 @@ aaron:
 old_password_holder:
   id:                        3
   login:                     old_password_holder
-  email:                     salty_dog@example.com
   salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   created_at:                <%= 1.days.ago.to_s :db %>
@@ -31,7 +28,6 @@ old_password_holder:
 duff:
   login:                     duff
   name:                      Duff O'Melia
-  email:                     duff@teamportfolios.com
   salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
   crypted_password:          7c629fe527bd6ff6edb4e696223b80bea25167af # 'monkey'
   created_at:                <%= 1.day.ago.to_s :db %>
@@ -39,7 +35,6 @@ duff:
 alex:
   login:                     alex
   name:                      Alexander Kohlhofer
-  email:                     alex@teamportfolios.com
   salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
   crypted_password:          7c629fe527bd6ff6edb4e696223b80bea25167af # 'monkey'
   created_at:                <%= 2.days.ago.to_s :db %>
@@ -47,7 +42,6 @@ alex:
 tim:
   login:                     tim
   name:                      Tim Diggins
-  email:                     tim@teamportfolios.com
   salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
   crypted_password:          7c629fe527bd6ff6edb4e696223b80bea25167af # 'monkey'
   created_at:                <%= 3.days.ago.to_s :db %>
@@ -55,7 +49,6 @@ tim:
 bert:
   login:                     bert
   name:                      Bert oBert
-  email:                     bert@teamportfolios.com
   salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
   crypted_password:          7c629fe527bd6ff6edb4e696223b80bea25167af # 'monkey'
   created_at:                <%= 3.days.ago.to_s :db %>

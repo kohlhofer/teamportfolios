@@ -1,0 +1,35 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+quentin:
+  user:                     quentin
+  email:                    quentin@example.com
+      
+aaron:
+  user:                     aaron
+  email:                    aaron@example.com
+
+old_password_holder:
+  user:                     old_password_holder
+  email:                    salty_dog@example.com
+
+duff:
+  user:                     duff
+  email:                    duff@teamportfolios.com
+  
+bert:
+  user:                     bert
+  email:                    bert@teamportfolios.com
+
+alex_primary:
+  email: alex@teamportfolios.com
+  user: alex
+
+tim_primary:
+  email: tim@teamportfolios.com
+  user: tim
+
+someone_new:
+    email: someone_new@elsewhere.com
+
+someone_else_new:
+  email: someone_else_new@elsewhere.com

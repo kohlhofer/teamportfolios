@@ -42,6 +42,7 @@ class ProjectsTest < ActionController::IntegrationTest
       click_button
       assert_redirected_to 'http://teamportfolios.dev/projects/my_lovely_new_project'
       follow_redirect!
+      view
       assert_select 'h1', :text=>/.*My Lovely New Project.*/
       assert_select "a[href='http://somehomepage.com']", 'homepage'
       assert_am_contributor_to_this_project
@@ -73,27 +74,50 @@ class ProjectsTest < ActionController::IntegrationTest
     
     should "be able to add other contributor by name only" do
       assert_select 'form#add-contributor', :count=>1
-      fill_in 'unvalidated_contributor[name]', :with => 'Some Random Name' 
+      fill_in 'unvalidated_contributor[name]', :with => 'Some Random Name'
       submit_form "add-contributor" 
       follow_redirect!
+      assert_response_ok
+      assert_select 'li.not-validated', /.*Some Random Name.*/
+    end
+
+    should "be able to add other contributor by name and new email" do
+      assert_select 'form#add-contributor', :count=>1
+      fill_in 'unvalidated_contributor[name]', :with => 'Some Random Name'
+      fill_in 'email', :with => 'newemail@addr.com'
+      submit_form "add-contributor" 
+      follow_redirect!
+      assert_response_ok
       assert_select 'li.not-validated', /.*Some Random Name.*/
     end
     
+    should "be able to add other contributor by name and  email of existing user" do
+      assert_select 'form#add-contributor', :count=>1
+      fill_in 'unvalidated_contributor[name]', :with => 'tim@teamportfolios.com'
+      submit_form "add-contributor" 
+      follow_redirect!
+      assert_response_ok
+      assert_select 'li.not-validated', /.*Tim Diggins.*/
+    end
+    
     should "be able to remove unvalidated contributor" do
+      assert_select 'li.not-validated',  :count=>2
       assert_select 'li.not-validated', /.*Tim Diggins.*/ do |elem|
         assert_select 'a.delete-unvalidated'
       end
       delete_via_redirect project_unvalidated_contributor_path(projects(:weewar), unvalidated_contributors(:tim_is_unvalidated_contributor_of_weewar))
-      assert_select 'li.not-validated',  :count=>0
+      assert_select 'li.not-validated',  :count=>1
     end
     
-    should "be able to edit unvalidated contributor" do
+    should "be able to edit unvalidated contributors email" do
+      view
       assert_select 'li.not-validated', /.*Tim Diggins.*/ do |elem|
         assert_select 'a.edit-unvalidated'
       end
       get edit_project_unvalidated_contributor_path(projects(:weewar), unvalidated_contributors(:tim_is_unvalidated_contributor_of_weewar))
       assert_response_ok
-      fill_in 'unvalidated_contributor[name]', :with=> "Shnoggle"
+      fill_in 'email', :with=> "someoneelse@mail.com"
+      fill_in 'name', :with=> "Shnoggle"
       click_button
       follow_redirect!
       assert_select 'li.not-validated', /.*Shnoggle.*/ 
