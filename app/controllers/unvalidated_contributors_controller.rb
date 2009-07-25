@@ -90,7 +90,7 @@ class UnvalidatedContributorsController < ApplicationController
   end
   
   def validate_self
-    raise Exception.new("you are already a contributor to this project") if current_user.contributor_to? @project    
+    raise Exception.new("You are already a contributor to this project") if current_user.contributor_to? @project    
     Contribution.new(:project_id=>@project.id, :user_id=>current_user.id).save!
     @unvalidated_contributor.destroy
     redirect_to @project

@@ -15,7 +15,12 @@ tcr_homepage:
   label: homepage
   url: http://theconnectedrepublic.org
 
-cleverplugs_homepage:
+tcr_homepage:
+  project: treesforcities
+  label: homepage
+  url: http://treesforcities.org
+
+treesforcities_homepage:
   project: cleverplugs
   label: homepage
   url: http://www.cleverplugs.com

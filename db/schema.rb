@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090722220856) do
+ActiveRecord::Schema.define(:version => 20090724064947) do
 
   create_table "avatars", :force => true do |t|
     t.integer  "user_id"
@@ -32,9 +32,15 @@ ActiveRecord::Schema.define(:version => 20090722220856) do
   end
 
   create_table "email_addresses", :force => true do |t|
-    t.string  "email"
-    t.integer "user_id"
+    t.string   "email"
+    t.integer  "user_id"
+    t.datetime "activation_at"
+    t.string   "activation_code"
+    t.datetime "activated_at"
+    t.datetime "created_at"
   end
+
+  add_index "email_addresses", ["email"], :name => "index_email_addresses_on_email", :unique => true
 
   create_table "images", :force => true do |t|
     t.integer  "project_id"

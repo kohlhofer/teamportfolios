@@ -2,37 +2,57 @@
 
   <h1><%= @page_title = "Dashboard" %></h1>
 
+  <% if @user.unactivated_email_addresses.size>0 %>
+    <div id="unactivated-emails" class="unvalidated"> 
+			<h2>Unactivated emails</h2>  
+		  <ul><% @user.unactivated_email_addresses.each do |eml| %>
+		      <li><%= eml.email %>
+		       Resend validation email
+		       Remove
+		      </li>
+		    <% end %>
+		    <li>Add another email address linked to this account</li> 
+		  </ul>
+		</div>
+      <p class="note">Email addresses you have added to your account, but you haven't yet activated them 
+			(Look in your Inbox (or spam box?) for an activation email, 
+			should arrive with you within 5 minutes, unless something has gone wrong).
+			</p>
+	<% end %>
 
-  <h2>Account:</h2>
+  <% if @user.unvalidated_contributions.size > 0 %>
+    <div id="unvalidated-projects" class="unvalidated"> 
+      <h2>Unvalidated projects</h2>
+      <ul>
+        <% @user.unvalidated_contributions.each do |uvc|%>
+          <%= render :partial=>'projects/minili', :object => uvc.project, :locals => {:text => '(Visit to validate or reject)'} %>
+        <% end %>
+      </ul>
+      <p class="note">You (one of your email addresses) have been added to these projects as a contributor, 
+			but you haven't yet validated your participation in these projects.</p>
+    </div>
+  <% end %>          
+	
+	<h2>Account Details:</h2>
   <p>Login: <%= @user.login%></p>
   <p>Name: <%= @user.name%></p>
 	<p><%= link_to "Edit your account", account_settings_path, { :title => "Edit you account" } %> (login, name, password)</p>
-  <h2> Email addresses</h2>
-	<ul>
+	
+  <ul>
   	<% @user.email_addresses.each do |eml| %>
 			<li><%= eml.email %>
-			if unvalidated:
-			 Edit
-			 Resend validation email
-			Remove
+			<% if eml == @user.primary_email%>
+			   (Primary email - notifications will be sent to this address)
+			 <% else %>
+         Remove
+			 <% end %>
 			</li>
 		<% end %>
-		<li>Add another email address linked to this account</li>	
+  	<li>Add another email address linked to this account (not yet possible).</li>	
   </ul>
+	
   <h2>Profile:</h2>
 	<p>Edit profile and links on <%= link_to "Your profile page ('#@user')", @user %></p>
-
-  <% if @user.unvalidated_contributions.size > 0 %>
-    <div id="unvalidated-projects"> 
-			<h2>Unvalidated projects!</h2>
-	    <p>Projects which someone has added you as a contributor, and you yet need to validate your participation in these projects:</p>
-	    <ul>
-	      <% @user.unvalidated_contributions.each do |uvc|%>
-	        <%= render :partial=>'projects/minili', :object => uvc.project, :locals => {:text => '(Visit to validate or reject)'} %>
-	      <% end %>
-	    </ul>
-		</div>
-  <% end %>          
   
 	<div id="projects">
 		<h2>Projects</h2>

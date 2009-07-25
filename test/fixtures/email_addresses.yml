@@ -19,17 +19,33 @@ duff:
 bert:
   user:                     bert
   email:                    bert@teamportfolios.com
-
+  
+bert_other_unactivated:
+  user:                     bert
+  email:                    bert@somewhere.com
+  activation_code:          bertsrandomhashola
+  
 alex_primary:
   email: alex@teamportfolios.com
+  user: alex
+
+alex_other:
+  email: alex@somewhereelse.com
   user: alex
 
 tim_primary:
   email: tim@teamportfolios.com
   user: tim
 
+tim_other_unactivated:
+  email: tim@somewhereelse.com
+  user: tim
+  activation_code: timsrandomhash
+
 someone_new:
-    email: someone_new@elsewhere.com
+  email: someone_new@elsewhere.com
+  activation_code: somenewrandomhash
 
 someone_else_new:
   email: someone_else_new@elsewhere.com
+  activation_code: someelsenewrandomhash

@@ -33,7 +33,7 @@ class UserTest < ActiveSupport::TestCase
       assert u.errors.on(:password_confirmation)
     end
   end
-    
+  
   def test_should_reset_password
     users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
     assert_equal users(:quentin), User.authenticate('quentin', 'new password')
@@ -111,8 +111,9 @@ class UserTest < ActiveSupport::TestCase
   should "know fellow unvalidated_collaborator_names" do
     tim = users(:tim)
     collabs = tim.unvalidated_collaborator_names
-    assert_equal 1, collabs.length
+    assert_equal 2, collabs.length
     assert collabs.include?("Someone ElseWhoIsNew")
+    assert collabs.include?("Bert oBert")
   end
   
   should "know fellow unvalidated_collaborator_names to not include identical to validated" do
@@ -120,13 +121,22 @@ class UserTest < ActiveSupport::TestCase
     collabs = alex.unvalidated_collaborator_names
     assert_equal 1, collabs.length
   end
-
+  
   should "know projects where contributions match unvalidated contribution" do
     alex = users(:alex)
     uvcs = alex.unvalidated_contributions
     assert_equal 2, uvcs.size
   end
-    
+  
+  should "know email addresses and unactivated email addresses" do
+    alex = users(:alex)
+    assert_equal 2, alex.email_addresses.size
+    assert_equal 0, alex.unactivated_email_addresses.size
+    tim = users(:tim)
+    assert_equal 1, tim.email_addresses.size
+    assert_equal 1, tim.unactivated_email_addresses.size
+  end
+  
   protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))

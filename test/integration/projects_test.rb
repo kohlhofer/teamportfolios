@@ -42,7 +42,6 @@ class ProjectsTest < ActionController::IntegrationTest
       click_button
       assert_redirected_to 'http://teamportfolios.dev/projects/my_lovely_new_project'
       follow_redirect!
-      view
       assert_select 'h1', :text=>/.*My Lovely New Project.*/
       assert_select "a[href='http://somehomepage.com']", 'homepage'
       assert_am_contributor_to_this_project
@@ -56,20 +55,21 @@ class ProjectsTest < ActionController::IntegrationTest
     setup do
       login 'alex'
       get 'projects/weewar'
+      @project = projects(:weewar)
     end
     
     should "be able to edit it" do
       click_link "edit-project-link"
-      put_via_redirect "/projects/weewar", :project => { :title => "Fandango" }
+      put_via_redirect "/projects/#{@project.name}", :project => { :title => "Fandango" }
       assert_response :success
       assert_doesnt_have_login_form
       assert_select 'h1', :text => /Fandango/
     end
     
     should "be able to see it hidden" do
-      assert_select 'a[href=/projects/weewar/edit]', :count=>1
-      get 'projects/weewar?hide_admin=true'
-      assert_select 'a[href=/projects/weewar/edit]', :count=>0
+      assert_select "a[href=/projects/#{@project.name}/edit]", :count=>1
+      get "projects/#{@project.name}?hide_admin=true"
+      assert_select "a[href=/projects/#{@project.name}/edit]", :count=>0
     end
     
     should "be able to add other contributor by name only" do
@@ -80,7 +80,7 @@ class ProjectsTest < ActionController::IntegrationTest
       assert_response_ok
       assert_select 'li.not-validated', /.*Some Random Name.*/
     end
-
+    
     should "be able to add other contributor by name and new email" do
       assert_select 'form#add-contributor', :count=>1
       fill_in 'unvalidated_contributor[name]', :with => 'Some Random Name'
@@ -105,16 +105,15 @@ class ProjectsTest < ActionController::IntegrationTest
       assert_select 'li.not-validated', /.*Tim Diggins.*/ do |elem|
         assert_select 'a.delete-unvalidated'
       end
-      delete_via_redirect project_unvalidated_contributor_path(projects(:weewar), unvalidated_contributors(:tim_is_unvalidated_contributor_of_weewar))
+      delete_via_redirect project_unvalidated_contributor_path(@project, example_unvalidated_contributor)
       assert_select 'li.not-validated',  :count=>1
     end
     
     should "be able to edit unvalidated contributors email" do
-      view
-      assert_select 'li.not-validated', /.*Tim Diggins.*/ do |elem|
+      assert_select 'li.not-validated', /.*#{example_unvalidated_contributor_name}.*/ do |elem|
         assert_select 'a.edit-unvalidated'
       end
-      get edit_project_unvalidated_contributor_path(projects(:weewar), unvalidated_contributors(:tim_is_unvalidated_contributor_of_weewar))
+      get edit_project_unvalidated_contributor_path(@project, example_unvalidated_contributor)
       assert_response_ok
       fill_in 'email', :with=> "someoneelse@mail.com"
       fill_in 'name', :with=> "Shnoggle"
@@ -126,22 +125,22 @@ class ProjectsTest < ActionController::IntegrationTest
     should "be able to leave project" do
       logout
       login(:bert)
-      get('projects/weewar')
+      get("projects/#{@project.name}")
       assert_select 'a#leave-project'
       assert_select 'a#delete-project', :count=>0
-      put leave_project_path(projects(:weewar))
+      put leave_project_path(@project)
       assert_response_ok
-      get "projects/weewar"
+      get "projects/#{@project.name}"
       assert_select 'a#leave-project', :count=>0
       
       logout
       login(:alex)
-      get('projects/weewar')
+      get("projects/#{@project.name}")
       assert_select 'a#leave-project', :count=>0
       assert_select 'a#delete-project'
-      delete project_path(projects(:weewar))
+      delete project_path(@project)
       assert_response_ok
-      get "projects/weewar"
+      get "projects/#{@project.name}"
       assert_response 404
     end
     
@@ -169,19 +168,35 @@ class ProjectsTest < ActionController::IntegrationTest
       assert_select 'a.delete-link', :count=>1
       delete link_path
       assert_response_ok
-      get "projects/weewar"
+      get "projects/#{@project.name}"
       assert_select 'a.delete-link', :count=>0
     end
   end
   
+  def example_unvalidated_contributor    
+    return unvalidated_contributors(:tim_is_unvalidated_contributor_of_weewar) if @project ==projects(:weewar)
+    return unvalidated_contributors(:duff_is_unvalidated_contributor_of_cleverplugs) if @project ==projects(:cleverplugs)
+    raise "unexpected project #@project"
+  end
+  def example_unvalidated_contributor_name    
+    return "Tim Diggins" if @project ==projects(:weewar)
+    return "Duff O'Melia" if @project ==projects(:cleverplugs)
+    raise "unexpected project #@project"
+  end
+  def example_project_link    
+    return project_links(:weewar_homepage) if @project ==projects(:weewar)
+    return project_links(:cleverplugs_homepage) if @project==projects(:cleverplugs)
+    return project_links(:treesforcities_homepage) if @project==projects(:treesforcities)
+    raise "unexpected project #@project"
+  end
   def link_path
-    polymorphic_path([projects(:weewar), project_links(:weewar_homepage)])
+    polymorphic_path([@project, example_project_link])
   end
   def edit_link_path
-    edit_polymorphic_path([projects(:weewar), project_links(:weewar_homepage)])
+    edit_polymorphic_path([@project, example_project_link])
   end
   def new_link_path
-    new_project_project_link_path(projects(:weewar))
+    new_project_project_link_path(@project)
   end
   
   def assert_not_able_to_edit_project
@@ -190,33 +205,34 @@ class ProjectsTest < ActionController::IntegrationTest
     assert_response :forbidden
   end
   
-  def assert_not_able_to_edit_or_remove_unvalidated_contributor(project, unvalidated_contributor)
+  def assert_not_able_to_edit_or_remove_unvalidated_contributor
     assert_select 'a.edit-unvalidated', :count=>0
-    get edit_project_unvalidated_contributor_path(projects(project), unvalidated_contributors(unvalidated_contributor))
+    get edit_project_unvalidated_contributor_path(@project, example_unvalidated_contributor)
     assert_response :forbidden
     assert_select 'a.remove-unvalidated', :count=>0
-    delete_via_redirect project_unvalidated_contributor_path(projects(project), unvalidated_contributors(unvalidated_contributor))
+    delete_via_redirect project_unvalidated_contributor_path(@project, example_unvalidated_contributor)
     assert_response :forbidden
   end
   
-  def assert_not_able_to_leave_project(project)
+  def assert_not_able_to_leave_project
     assert_select 'a#leave-project', :count=>0
-    put leave_project_path(projects(project))
+    put leave_project_path(@project)
     assert_response :forbidden
     assert_select 'a#delete-project', :count=>0
-    delete project_path(projects(project))
+    delete project_path(@project)
     assert_response :forbidden
   end
   
   def assert_not_able_to_add_contributor_to_project
     assert_select 'form#add-contributor', :count=>0
-    post "projects/cleverplugs/unvalidated_contributors", :params=>{:unvalidated_contributor=>{:name=>'Some Random Name or Other'}}
+    post "projects/#{@project.name}/unvalidated_contributors", :params=>{:unvalidated_contributor=>{:name=>'Some Random Name or Other'}}
     assert_response :forbidden
   end
-  def assert_no_validation_link
+  
+  def assert_not_able_to_validate_self_as_contributor 
     assert_select 'form#validate-self-as-contributor', :count=>0
-    post "projects/cleverplugs/unvalidated_contributors", :params=>{:unvalidated_contributor=>{:name=>'Some Random Name or Other'}}
-    assert_response 405
+    put "projects/#{@project.name}/unvalidated_contributors/validate_self"
+    assert_response_forbidden 
   end
   
   context "User who is unvalidated contributor to project" do
@@ -224,6 +240,7 @@ class ProjectsTest < ActionController::IntegrationTest
     setup do
       login 'alex'
       get 'projects/treesforcities'
+      @project = projects(:treesforcities)
     end
     
     should "be able to validate self as contributor" do
@@ -242,7 +259,7 @@ class ProjectsTest < ActionController::IntegrationTest
     end
     
     should "should not be able to leave project" do
-      assert_not_able_to_leave_project :treesforcities
+      assert_not_able_to_leave_project 
     end
     
   end
@@ -252,6 +269,7 @@ class ProjectsTest < ActionController::IntegrationTest
     setup do
       login 'alex'
       get 'projects/cleverplugs'
+      @project = projects(:cleverplugs)
     end
     
     should "not be able to edit it" do
@@ -263,22 +281,22 @@ class ProjectsTest < ActionController::IntegrationTest
     end
     
     should "not be able to edit or remove unvalidated contributor" do
-      assert_not_able_to_edit_or_remove_unvalidated_contributor(:cleverplugs, :duff_is_unvalidated_contributor_of_cleverplugs)
+      assert_not_able_to_edit_or_remove_unvalidated_contributor
     end
     
     should "should not be able to leave project" do
-      assert_not_able_to_leave_project :cleverplugs
+      assert_not_able_to_leave_project 
     end
     
     should "not be able to add link" do
       assert_select "form#add-link-form", :count=>0
-      put polymorphic_path([projects(:cleverplugs), project_links(:cleverplugs_homepage)]), :project_link=>{:url=>'somewhere', :label=>'something'}
+      put polymorphic_path([@project, example_project_link]), :project_link=>{:url=>'somewhere', :label=>'something'}
       assert_response :forbidden
     end
     
     should "not be able to edit link" do
       assert_select "a.edit-link[href=#{edit_link_path}]", :count=>0
-      get edit_polymorphic_path([projects(:cleverplugs), project_links(:cleverplugs_homepage)])
+      get edit_polymorphic_path([@project, example_project_link])
       assert_response :forbidden
     end
     
@@ -290,9 +308,40 @@ class ProjectsTest < ActionController::IntegrationTest
     
   end
   
+  context "User who is unvalidated contributor to project via unactivated email" do
+    
+    setup do
+      login 'bert'
+      get 'projects/treesforcities'
+      @project = projects(:treesforcities)
+    end
+    
+    should "not be able to validate self as contributor" do
+      assert_not_able_to_validate_self_as_contributor
+    end
+    
+    should "not be able to edit it" do
+      assert_not_able_to_edit_project
+    end
+    
+    should "should not be able to add contributor" do
+      assert_not_able_to_add_contributor_to_project
+    end
+    
+    should "should not be able to leave project" do
+      assert_not_able_to_leave_project 
+    end
+    
+  end
+  
+  
   def assert_am_contributor_to_this_project
     assert_select "#contributors" do 
       assert_select"a[href='/users/alex']"
     end
+  end
+  
+  def assert_response_forbidden
+    assert [403,405].include?(response.response_code), "expected a response code of 403 or 405, not %s" % response.response_code
   end
 end

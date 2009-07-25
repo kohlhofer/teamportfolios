@@ -1,5 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+bert_is_unvalidated_contributor_of_treesforcities_via_unactive_email:
+  project: treesforcities
+  name: Bert oBert2
+  email_address: bert_other_unactivated 
+
 alex_is_unvalidated_contributor_of_treesforcities:
   project: treesforcities
   name: Alexxx Khlhofer

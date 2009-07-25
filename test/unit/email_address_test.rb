@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class EmailAddressTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  should "know activated emails" do
+    assert email_addresses(:alex_primary).active?
+    assert email_addresses(:alex_other).active?
+    assert email_addresses(:tim_primary).active?
+    assert !email_addresses(:tim_other_unactivated).active?
   end
 end
