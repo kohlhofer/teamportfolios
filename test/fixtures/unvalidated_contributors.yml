@@ -27,7 +27,7 @@ duff_is_unvalidated_contributor_of_cleverplugs:
 
 someonenew_is_unvalidated_contributor_of_weewar:
   project: weewar
-  name: Someone new
+  name: Someone New
   email_address: someone_new
 
 someoneelsenew_is_unvalidated_contributor_of_cleverplugs:
