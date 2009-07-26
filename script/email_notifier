@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+root = File.expand_path(File.dirname(__FILE__) + '/../')
+require 'rubygems'
+require 'daemons'
+require root + '/lib/daemons_patch'
+
+Daemons.run_proc(
+  "email_notifier", 
+  :dir_mode => :normal, 
+  :dir => (root + '/tmp/pids'), 
+  :log_output => true, 
+  :log_dir => File.join(root, 'log'),
+  :backtrace => true) do
+
+  require root + '/config/environment'
+
+  loop do
+    Notification.process_queue
+    puts '.'
+    sleep(5)
+  end
+
+end

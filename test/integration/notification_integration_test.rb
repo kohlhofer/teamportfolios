@@ -44,7 +44,7 @@ class NotificationIntegrationTest < ActionController::IntegrationTest
   end
   
   def view_mail email
-      filename = File.dirname(__FILE__) + "/../../public/.integration_test_email.text"
+    filename = File.dirname(__FILE__) + "/../../public/.integration_test_email.text"
     flunk("There was no response to view") unless email
     File.open(filename, "w+") { | file | file.write(email) }
     `open #{filename}`
