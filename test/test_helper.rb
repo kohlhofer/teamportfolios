@@ -14,22 +14,22 @@ end
 
 class ActiveSupport::TestCase
   self.use_transactional_fixtures = true
-
+  
   self.use_instantiated_fixtures  = false
-
+  
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
-
+  
   # Add more helper methods to be used by all tests here...
-    include AuthenticatedTestHelper
-
+  include AuthenticatedTestHelper
+  
 end
 
 class ActionController::IntegrationTest
-
+  
   def new_session(&block) 
     open_session do | session | 
       session.extend(BasicsDsl)
@@ -50,7 +50,7 @@ class ActionController::IntegrationTest
   def logger
     Rails.logger
   end
-    
+  
 end
 
 
@@ -65,3 +65,13 @@ module ActionController
 end
 
 
+module ProjectTestHelper
+  def add_contributor name, email=nil
+    assert_select 'form#add-contributor', :count=>1
+    fill_in 'unvalidated_contributor[name]', :with => name
+    fill_in 'email', :with => email unless email.nil?
+    submit_form "add-contributor" 
+    follow_redirect!
+    assert_response_ok
+  end
+end

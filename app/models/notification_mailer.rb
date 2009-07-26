@@ -4,7 +4,7 @@ class NotificationMailer < ActionMailer::Base
   def invitation(email_address)
     fromto email_address
     
-    subject    'An invitation to join Team Portfolios'
+    subject 'An invitation to join Team Portfolios'
     body ({:email=> email_address})
   end
   

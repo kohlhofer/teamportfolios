@@ -2,6 +2,8 @@ require "#{File.dirname(__FILE__)}/../test_helper"
 
 class ProjectsTest < ActionController::IntegrationTest
   fixtures :projects, :users
+  include ProjectTestHelper
+  
   context "Unlogged in user" do
     
     should "be able to see  individual project page" do
@@ -73,31 +75,24 @@ class ProjectsTest < ActionController::IntegrationTest
     end
     
     should "be able to add other contributor by name only" do
-      assert_select 'form#add-contributor', :count=>1
-      fill_in 'unvalidated_contributor[name]', :with => 'Some Random Name'
-      submit_form "add-contributor" 
-      follow_redirect!
-      assert_response_ok
+      assert_select 'li.not-validated', :count=>2
+      add_contributor "Some Random Name"
+      assert_select 'li.not-validated', :count=>3
       assert_select 'li.not-validated', /.*Some Random Name.*/
     end
     
     should "be able to add other contributor by name and new email" do
-      assert_select 'form#add-contributor', :count=>1
-      fill_in 'unvalidated_contributor[name]', :with => 'Some Random Name'
-      fill_in 'email', :with => 'newemail@addr.com'
-      submit_form "add-contributor" 
-      follow_redirect!
-      assert_response_ok
-      assert_select 'li.not-validated', /.*Some Random Name.*/
+      assert_select 'li.not-validated', :count=>2
+      add_contributor 'Some Other Random Name', 'othernew@addr.com' 
+      assert_select 'li.not-validated', :count=>3
+      assert_select 'li.not-validated', /.*Some Other Random Name.*/
     end
     
     should "be able to add other contributor by name and  email of existing user" do
-      assert_select 'form#add-contributor', :count=>1
-      fill_in 'unvalidated_contributor[name]', :with => 'tim@teamportfolios.com'
-      submit_form "add-contributor" 
-      follow_redirect!
-      assert_response_ok
-      assert_select 'li.not-validated', /.*Tim Diggins.*/
+      assert_select 'li.not-validated', :count=>2
+      add_contributor "DuffOM", "duff@teamportfolios.com"
+      assert_select 'li.not-validated', :count=>3
+      assert_select 'li.not-validated', /.*Duff O'Melia.*/, :count=>1
     end
     
     should "be able to remove unvalidated contributor" do
@@ -344,4 +339,6 @@ class ProjectsTest < ActionController::IntegrationTest
   def assert_response_forbidden
     assert [403,405].include?(response.response_code), "expected a response code of 403 or 405, not %s" % response.response_code
   end
+  
+
 end

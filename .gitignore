@@ -7,7 +7,7 @@ vendor/rails
 .tm_last_run_ruby*
 .DS_Store
 .local_configuration
-public/.integration_test_*.html
+public/.integration_test_*.*
 config/cookie_secret
 deploy_history.txt
 public/avatars
