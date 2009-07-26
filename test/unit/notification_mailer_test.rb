@@ -2,7 +2,7 @@ require 'test_helper'
 
 class NotificationMailerTest < ActionMailer::TestCase
   should "be able to create new email address email" do
-    response = NotificationMailer.create_new_email_address(email_addresses(:tim_other_unactivated))
+    response = NotificationMailer.create_added_email_address(email_addresses(:tim_other_unactivated))
     assert_match /Tim Diggins/, response.body
   end
 

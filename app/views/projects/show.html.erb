@@ -72,14 +72,17 @@
             <li class="not-validated">
                 <img src="/images/no-avatar-small.png" width="40px" height="40px" />
                 <div class="user-details">
-                  <% if uvc.email_address.nil? || uvc.email_address.user.nil? %>
+                  <% if uvc.email_address.nil?  %>
 										<%= uvc.name %>
-                    <span class="strapline">(unclaimed profile)</span>
-								  <% else %>
-									 <%= uvc.email_address.user %>
-                    <span class="strapline">(unvalidated)</span>
-									<% end %>
-									 
+                    <span class="strapline">(Unverifiable)</span>
+                  <% else %>
+										<%= uvc.email_address.name %>
+                    <%if uvc.email_address.user.nil? %>
+	                    <span class="strapline">(Unclaimed profile)</span>
+	                  <% else %>
+	                    <span class="strapline">(Unvalidated)</span>
+										<% end %>
+								  <% end %>
 									<% if @show_admin %>
                     <%= link_to "Edit", edit_project_unvalidated_contributor_path(@project, uvc), :class=>'admin edit-unvalidated' %>
                     <%= link_to "Delete", project_unvalidated_contributor_path(@project, uvc), :method=> :delete,:confirm=>"Delete this contributor?", :class=>'admin delete-unvalidated' %>

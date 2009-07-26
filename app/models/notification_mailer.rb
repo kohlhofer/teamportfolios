@@ -8,7 +8,21 @@ class NotificationMailer < ActionMailer::Base
     body ({:email=> email_address})
   end
   
-  def new_email_address(email_address)
+  def added_to_project(email_address)
+    fromto email_address
+    
+    uvcs = email_address.unvalidated_contributors
+    if uvcs.size>1
+      subject "Team Portfolios: You have been added to #{uvcs.size} projects"
+    elsif uvcs.size==1
+      subject "Team Portfolios: You have been added to #{uvcs[0].project.title}"
+    else
+      raise Exception.new('Expecting at least 1 unvalidated contribution')
+    end
+    body ({:email=> email_address})
+  end
+  
+  def added_email_address(email_address)
     fromto email_address
     
     subject 'Team Portfolios: Please confirm your email address'

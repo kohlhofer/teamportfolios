@@ -48,23 +48,13 @@ class EmailAddressTest < ActiveSupport::TestCase
     assert !alex_new_email.activation_code.blank?
   end
   
-  should "create email address with notification" do
-    floating_new_email = EmailAddress.new(:email=>'some@somewhere.com')
-    floating_new_email.save!
-    assert_equal 1, floating_new_email.notifications.size
-    assert_notification_action_equals 'invitation', floating_new_email.notifications[0].action
-    
+  should "create email address for user with notification" do    
     alex_new_email = users(:alex).email_addresses.build(:email=>'somewhereelse@somewhere.com')
     alex_new_email.save!
     assert_equal 1, alex_new_email.notifications.size
-    assert_notification_action_equals 'new_email_address', alex_new_email.notifications[0].action 
+    assert_notification_action_equals 'added_email_address', alex_new_email.notifications[0].action 
   end
 
   
-  def assert_notification_action_equals expected_action, action
-    assert_equal expected_action, action  
-    assert (NotificationMailer.respond_to? "create_#{expected_action}".to_sym)   
-    assert (NotificationMailer.respond_to? "deliver_#{expected_action}".to_sym)   
-  end
   
 end

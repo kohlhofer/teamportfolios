@@ -1,0 +1,61 @@
+<div id="header" class="large-form container_16">
+    <div class="grid_5 prefix_8 alpha">
+        <h1><%= @page_title = "Join Team Portfolios" %></h1>
+    </div>
+    <div class="clear-this">
+    </div>
+    <div class="grid_5 prefix_3 alpha disclaimer">
+        <p>
+            Team Portfolio is currently available by invitation only.
+        </p>
+        <p>
+            You can only join, if an existing member wants to show you as a collaborator on a project.
+        </p>
+    </div>
+    <div class="grid_6 omega">
+    <% if !@has_activation %>
+        <% form_tag join_path do -%>
+        <p>
+            <%= label_tag :email %>
+            <%= text_field_tag :email, @email %>
+        </p>
+        <p>
+            <%= label_tag :activation_code %>
+            <%= text_field_tag :activation_code, @activation_code %>
+        </p>
+        <p>
+            <button type="submit" value="submit">
+                Join...
+            </button>
+        </p>
+        <% end -%>
+    <% else %>
+        <% form_for :user, :url=>users_path do |f| -%>
+        <p>
+            <%= f.label :login %>
+            <%= f.text_field :login %>
+        </p>
+        <p>
+            <%= f.label :name, 'Full name' %>
+            <%= f.text_field :name %>
+        </p>
+        <p>
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+        </p>
+        <p>
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+        </p>
+        <p>
+            <% #will always be only one %>
+            <%= hidden_field_tag 'email', @email %>
+            <%= hidden_field_tag 'activation_code', @activation_code %>
+            <button type="submit" value="submit">
+                Join...
+            </button>
+        </p>
+        <% end -%>
+    <% end %>
+    </div>
+</div>

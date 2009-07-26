@@ -31,15 +31,25 @@ class EmailAddress < ActiveRecord::Base
     self.activation_code.nil?
   end
   
+  def activate
+    self.activation_code = nil
+    self.activated_at = Time.now
+  end
+  
   def queue_notification
     return if self.activation_code.nil?
-    if active?
-      self.notifications.create!(:action=>'forgot_password') 
-    elsif
-      self.user.nil?
+    if active? 
+      self.notifications.create!(:action=>'forgot_password')
+    elsif self.user
+      self.notifications.create!(:action=>'added_email_address')
+    end
+  end
+  
+  def queue_unvalidated_contributor_notification
+    if self.user.nil?
       self.notifications.create!(:action=>'invitation')
     else
-      self.notifications.create!(:action=>'new_email_address')
+      self.notifications.create!(:action=>'added_to_project')      
     end
   end
 end

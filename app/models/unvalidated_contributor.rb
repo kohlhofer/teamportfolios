@@ -1,7 +1,6 @@
 class UnvalidatedContributor < ActiveRecord::Base
   belongs_to :project
   belongs_to :email_address
-  belongs_to :user
   
   alias_attribute :to_s, :name
   accepts_nested_attributes_for :email_address
@@ -10,6 +9,11 @@ class UnvalidatedContributor < ActiveRecord::Base
     if project_id.nil?
       errors.add(:project_id, "is missing")
     end
+  end
+
+  after_create do |uvc|
+    email_address = uvc.email_address
+    email_address.queue_unvalidated_contributor_notification unless email_address.nil?
   end
   
 #  def name

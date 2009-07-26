@@ -1,0 +1,19 @@
+Dear <%= @email.name %>,
+
+<% if @email.unvalidated_contributors.size < 2 %>
+You have been added to '<%=@email.unvalidated_contributors[0].project.title %>' as an unvalidated contributor.
+<% else %>
+You have been added to <%=@email.unvalidated_contributors.size %> projects as an unvalidated contributor.
+<% @email.unvalidated_contributors.each do |uvc|%>
+  * <%= uvc.project.title %>
+    http://teamportfolios.com/projects/<%= uvc.project %> 
+<% end %>
+<% end %>
+
+Please visit your dashboard to validate or deny this addition.
+  http://teamportfolios.com/dashboard
+	
+kind regards
+
+The Team Portfolios Team
+http://teamportfolios.com/projects/teamportfolios

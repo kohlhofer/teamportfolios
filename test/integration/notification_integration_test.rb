@@ -36,9 +36,9 @@ class NotificationIntegrationTest < ActionController::IntegrationTest
       assert_equal(1, @emails.size)
       email = @emails.first
       assert_equal 'duff@teamportfolios.com', email.to[0]
-      view_mail email
+#      view_mail email
       assert_match /Duff O'Melia/, email.body
-      assert_match /confirm/, email.subject
+      assert_match /added/, email.subject
       assert_match /WeeWar/, email.body
     end
   end

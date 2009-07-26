@@ -11,6 +11,19 @@ class UsersTest < ActionController::IntegrationTest
       assert_select 'a[href=http://tim.homepage.com]', :text=>'homepage', :count => 1
       assert_have_new_project_link false
     end
+    
+    should "be able to see join page and sign up" do
+      get_ok('join')
+      fill_in :email, :with=>'someone_new@elsewhere.com'
+      fill_in :activation_code, :with=>'somenewrandomhash'
+      click_button
+      assert_response_ok
+      fill_in :password, :with=>'somepass'
+      fill_in 'user[password_confirmation]', :with=>'somepass'
+      click_button
+      assert_response_ok
+      assert !User.find_by_login('someone_new').nil?
+    end
   end
   
   context "Logged in user" do

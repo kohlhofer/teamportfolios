@@ -5,7 +5,7 @@ $: << File.expand_path(File.dirname(__FILE__) + "/integration/dsl")
 require 'basics_dsl'
 require 'teamportfolios_dsl'
 require 'test_help'
-
+require 'teamportfolio_test_helper'
 require "webrat"
 
 Webrat.configure do |config|
@@ -25,7 +25,7 @@ class ActiveSupport::TestCase
   
   # Add more helper methods to be used by all tests here...
   include AuthenticatedTestHelper
-  
+  include TeamportfolioTestHelper
 end
 
 class ActionController::IntegrationTest
