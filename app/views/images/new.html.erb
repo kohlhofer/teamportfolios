@@ -1,13 +1,11 @@
 <div class=" large-form container_16">
-  <div class="grid_6 prefix_3 alpha">
+  <div class="grid_6 prefix_3">
     <h1><%= @page_title = "Add an image to #{@image.project}" %></h1>
   </div>
 
-  <div class="clear-this"> </div>
-
 
   
-  <div class="grid_6 prefix_3 alpha">
+  <div class="grid_6 prefix_3">
     <% form_for @image, :url=>project_images_path(@image.project), :html => { :multipart => true } do | f | %>
       <%= f.error_messages %>
 
@@ -29,7 +27,7 @@
 
   </div>
   
-  <div class="grid_5 omega disclaimer ">
+  <div class="grid_5 disclaimer ">
     <p>Maximum size file size: 5MB</p>
     <p>Images that are 16x9 and are more than xxx (?) pixels wide work best.</p>
   </div>

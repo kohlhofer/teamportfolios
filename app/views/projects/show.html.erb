@@ -1,5 +1,5 @@
 <div id="header" class="container_16">
-    <div class="grid_11 prefix_5 alpha">
+    <div class="grid_11 prefix_5">
         <h1><%= @page_title = h(@project.title) %>
             <% if @show_admin %>
             <span class="edit">(<%= link_to "Edit project", edit_project_path(@project), :id=>'edit-project-link', :class=>'admin' %>
@@ -19,7 +19,7 @@
 
 
 
-    <div class="grid_5 alpha">
+    <div class="grid_5">
         <% @project.images.each do |image| %>
         <div class="project-image">
             <%=project_image_for(image, :medium) %>
@@ -51,7 +51,7 @@
         <%= render :partial=>'links/list' %>
         <%= render :partial=>'links/add' if @show_admin %>
     </div>
-    <div class="grid_4 omega">
+    <div class="grid_4">
        <div id="contributors">
         <h2>Created by </h2>
         <ul>

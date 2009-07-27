@@ -2,11 +2,10 @@
 
 
 
-  <h1 id="logo"><%= @page_title = "Share your work..." %></h1>
+  <h1 id="logo" class="grid_16"><%= @page_title = "Share your work..." %></h1>
 
-  <div class="clear-this"> </div>
   
-  <div id="teaser" class="grid_6 alpha">
+  <div id="teaser" class="grid_6">
     <p>Portfolios and profiles for you and your collaborators.</p>
     
       <p>You can join Team Portfolios, if an existing member wants to show you as a collaborator on a project.</p>
@@ -19,7 +18,7 @@
   
 
   
-  <div class="grid_9 prefix_1 omega">
+  <div class="grid_9 prefix_1">
     <% @projects.each do |project|%>
       <%= render 'projects/preview', :project => project %>
     <% end %>

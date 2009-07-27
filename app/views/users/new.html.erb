@@ -1,10 +1,10 @@
 <div id="header" class="large-form container_16">
-    <div class="grid_5 prefix_8 alpha">
+    <div class="grid_5 prefix_8">
         <h1><%= @page_title = "Join Team Portfolios" %></h1>
     </div>
     <div class="clear-this">
     </div>
-    <div class="grid_5 prefix_3 alpha disclaimer">
+    <div class="grid_5 prefix_3 disclaimer">
         <p>
             Team Portfolio is currently available by invitation only.
         </p>
@@ -12,7 +12,7 @@
             You can only join, if an existing member wants to show you as a collaborator on a project.
         </p>
     </div>
-    <div class="grid_6 omega">
+    <div class="grid_6">
     <% if !@has_activation %>
         <% form_tag join_path do -%>
         <p>

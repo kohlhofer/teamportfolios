@@ -1,16 +1,14 @@
 <div id="header" class="large-form container_16">
-  <div class="grid_5 prefix_8 alpha">
+  <div class="grid_5 prefix_8">
     <h1><%= @page_title = "Sign in" %></h1>
   </div>
 
-  <div class="clear-this"> </div>
-
-  <div class="grid_5 prefix_3 alpha disclaimer">
+  <div class="grid_5 prefix_3 disclaimer">
     <p>Only Team Portfolio members can create new projects.</p>
     <p>You can only join, if an existing member wants to show you as a collaborator on a project.</p>
   </div>
   
-  <div class="grid_6 omega">
+  <div class="grid_6">
     <%= render :partial=> "sessions/login_form" %>
   </div>
   

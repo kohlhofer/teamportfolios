@@ -10,10 +10,10 @@
 <body>
     <div id="navigation">
       <div class="container_16">
-        <div class="grid_5 alpha">
+        <div class="grid_5">
           <%= link_to "Team Portfolios", root_url, { :title => "Go to the home page", :id => "small-logo" } %>
         </div>
-        <div class="grid_11 omega">  
+        <div class="grid_11">  
           <ul>
              <% if logged_in? -%>
               <li><%= link_to "Dashboard", dashboard_path, { :title => "Edit profile, accounts, see collaborators" } %></li>
