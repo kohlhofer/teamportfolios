@@ -1,13 +1,20 @@
+class User < ActiveRecord::Base 
+  has_many :email_addresses, :dependent=>:destroy
+end
 class CreateEmailAddresses < ActiveRecord::Migration
   def self.up
-    create_table :email_addresses do |t|
-      t.string :email
-      t.belongs_to :user
+    begin
+      create_table :email_addresses do |t|
+        t.string :email
+        t.belongs_to :user
+      end
+    rescue Exception => e
+      puts "warning: couldn't create email addresses: #{e}"
     end
-    
     User.all.each do |user|
-      addr = user.email_addresses.create(:email=>user.email)
-      user.save!
+      puts "User: #{user.login}, email:'#{user.email}'"
+      puts "email size: #{user.email_addresses.size}"
+      EmailAddress.create(:user_id=>user.id, :email=>user.email)
     end
     remove_column :users, :email    
   end

@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20090725170355) do
   create_table "email_addresses", :force => true do |t|
     t.string   "email"
     t.integer  "user_id"
-    t.datetime "activation_at"
     t.string   "activation_code"
     t.datetime "activated_at"
     t.datetime "created_at"
