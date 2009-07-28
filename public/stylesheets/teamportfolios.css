@@ -1,3 +1,5 @@
+/* @override http://localhost:3000/stylesheets/teamportfolios.css?1248821229 */
+
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
 
@@ -18,6 +20,11 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	vertical-align: baseline;
 	background: transparent;
 }
+
+#contributors ul li.not-validated img {
+	opacity: 0.5;
+}
+
 body {
 	line-height: 1;
 }
