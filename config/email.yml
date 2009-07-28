@@ -7,7 +7,7 @@ development:
   :enable_starttls_auto: false
   
 production:
-  :address: smtp.server.com
+  :address: localhost
   :port: 25
   #:authentication: plain
   #:user_name: user
