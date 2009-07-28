@@ -2,6 +2,8 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1248809502
 	http://localhost:3000/stylesheets/teamportfolios.css?1248810523
 	http://localhost:3000/stylesheets/teamportfolios.css?1248812454
+	http://localhost:3000/stylesheets/teamportfolios.css?1248812601
+	http://localhost:3000/stylesheets/teamportfolios.css?1248813159
 */
 
 /* v1.0 | 20080212 */
@@ -242,6 +244,12 @@ h1 span.edit {
 .project-preview  {
 	margin-bottom: 20px;
 	}
+
+img.project_image_small {
+	padding: 1px;
+	margin-left: -1px;
+  	background-color: #999;
+}
 
 
 
@@ -486,7 +494,6 @@ border: 0px;
   	background-color: #999;
   	height:90px;
   	width: 160px;
-  	overflow: hidden;
 }
 
 #user-lefthand ul {
