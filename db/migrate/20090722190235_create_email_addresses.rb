@@ -12,8 +12,6 @@ class CreateEmailAddresses < ActiveRecord::Migration
       puts "warning: couldn't create email addresses: #{e}"
     end
     User.all.each do |user|
-      puts "User: #{user.login}, email:'#{user.email}'"
-      puts "email size: #{user.email_addresses.size}"
       EmailAddress.create(:user_id=>user.id, :email=>user.email)
     end
     remove_column :users, :email    
