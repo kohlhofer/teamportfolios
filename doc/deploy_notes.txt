@@ -1,0 +1,2 @@
+cap invoke COMMAND="RAILS_ENV=production /var/rails/teamportfolios/current/script/email_notifier stop"
+cap invoke COMMAND="RAILS_ENV=production /var/rails/teamportfolios/current/script/email_notifier start"

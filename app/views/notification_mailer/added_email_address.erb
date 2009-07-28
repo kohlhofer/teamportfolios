@@ -1,7 +1,7 @@
 Dear <%= @user.name %>,
 
 You (we hope) have added a new email address on Team Portfolios. To confirm your email address please visit the following url and follow the instructions:
-<http://teamportfolios.com/settings/confirm_email?code=<%=@activation_code%>&user_id=<%=@user.id%>>
+http://teamportfolios.com/settings/confirm_email?activation_code=<%=@activation_code%>&user_id=<%=@user.id%>
 
 If the above url is not working for you (too long or whatever), you can also use the details below:
 Your activation code: <%= @activation_code%>
