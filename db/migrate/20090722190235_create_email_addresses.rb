@@ -1,6 +1,3 @@
-class User < ActiveRecord::Base 
-  has_many :email_addresses, :dependent=>:destroy
-end
 class CreateEmailAddresses < ActiveRecord::Migration
   def self.up
     begin
