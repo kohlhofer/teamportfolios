@@ -60,9 +60,8 @@
 	<div class="grid_4">
 	
     <div id="contributors">
-      <h2>You and your collaborators</h2>
+      <h2>Your collaborators</h2>
       <ul>
-      <%= render :partial => 'users/collabli', :object => current_user%>
 			<% current_user.collaborators.each do |user|%>
 	      <%= render :partial => 'users/collabli', :object => user%>
 	    <%end%>
