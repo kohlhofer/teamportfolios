@@ -75,7 +75,11 @@
         <%end %>
         <%@project.unvalidated_contributors.each do |uvc| %>
         <li class="not-validated">
-            <img src="/images/no-avatar-small.png" width="40px" height="40px" />
+        	  <% if uvc.email_address.nil? || uvc.email_address.user.nil?%>
+              <img src="/images/no-avatar-small.png" width="40px" height="40px" />
+						<% else %>
+	            <%= avatar_for(uvc.email_address.user) %>
+						<% end %>
             <div class="user-details">
               <% if @show_admin %>
                 <%= link_to image_tag("page_white_edit.png"), edit_project_unvalidated_contributor_path(@project, uvc), :class=>'admin edit-unvalidated', :title => "Edit this collaborator..." %>
