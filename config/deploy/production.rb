@@ -37,7 +37,7 @@ task :link_shared_stuff do
   run "ln -nfs #{shared_path}/config/cookie_secret #{release_path}/config/cookie_secret"
   run "ln -nfs #{shared_path}/avatars #{release_path}/public/avatars"
   run "ln -nfs #{shared_path}/project_images #{release_path}/public/project_images"
-#  run "ln -nfs #{shared_path}/config/amazon_s3.yml #{current_path}/config/amazon_s3.yml"
+  #  run "ln -nfs #{shared_path}/config/amazon_s3.yml #{current_path}/config/amazon_s3.yml"
   
   run "mkdir -p #{release_path}/tmp"
   run "mkdir -p #{release_path}/db"
@@ -64,8 +64,25 @@ end
 #  end
 #end
 
+
 after "deploy:symlink", "link_shared_stuff"
 #after "deploy:symlink", "install_gem_dependencies"
 before "deploy:update_code", "deploy:git:pending"
 #before "deploy:migrate", "backup_to_s3"
 #before "backup_to_s3", "link_s3_yml"
+
+# temp stuff until daemons stuff working
+namespace :email_notifier do
+  desc 'stop the email notifier'
+  task :stop do
+    run "RAILS_ENV=#{rails_env} #{release_path}/script/email_notifier stop"
+  end
+  
+  desc 'start the email notifier'
+  task :start do
+    run "RAILS_ENV=#{rails_env} #{release_path}/script/email_notifier start"    
+  end
+end
+
+before "deploy:web:disable", "email_notifier:stop"
+before "deploy:web:enable", "email_notifier:start"
