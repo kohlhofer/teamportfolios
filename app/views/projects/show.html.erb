@@ -78,8 +78,8 @@
             <img src="/images/no-avatar-small.png" width="40px" height="40px" />
             <div class="user-details">
               <% if @show_admin %>
-                <%= link_to image_tag("page_white_edit.png"), edit_project_unvalidated_contributor_path(@project, uvc), :class=>'admin edit-unvalidated' %>
-                <%= link_to image_tag("user_delete.png"), project_unvalidated_contributor_path(@project, uvc), :method=> :delete,:confirm=>"Delete this contributor?", :class=>'admin delete-unvalidated' %>
+                <%= link_to image_tag("page_white_edit.png"), edit_project_unvalidated_contributor_path(@project, uvc), :class=>'admin edit-unvalidated', :title => "Edit this collaborator..." %>
+                <%= link_to image_tag("user_delete.png"), project_unvalidated_contributor_path(@project, uvc), :method=> :delete,:confirm=>"Delete this contributor?", :class=>'admin delete-unvalidated', :title => "Remove this collaborator?" %>
               <% end %>
               <% if uvc.email_address.nil?  %>
 								<%= uvc.name %>

@@ -13,7 +13,7 @@
   <% end %>
   <h1><%= @page_title = h(@user.name) %>  
     <% if @show_admin %>
-      <span class="edit"><%= link_to image_tag("vcard_edit.png"), profile_settings_path, :id=>'edit-settings-link', :class=>'admin', :title => "Edit your profile text..." %></span>
+      <span class="edit"><%= link_to image_tag("vcard_edit.png"), profile_settings_path, :id=>'edit-settings-link', :class=>'admin', :title => "Edit your profile texts..." %></span>
     <% end %>
   </h1>
   <p class="strapline"><%= h(@user.strapline)%></p>

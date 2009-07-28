@@ -1,13 +1,16 @@
-<h1>Editing Link</h1>
+<div class="grid_10 prefix_3 suffix_3">
 
-<% form_for([@linkable, @link]) do |f| %>
-  <%= f.error_messages %>
+  <h1>Editing Link</h1>
 
-  <%= render :partial => 'links/fields', :object=>f %>
+  <% form_for([@linkable, @link]) do |f| %>
+    <%= f.error_messages %>
 
-  <p>
-    <%= f.submit 'Update' %> or
-<%= link_to 'Cancel', @linkable %>
-  </p>
-<% end %>
+    <%= render :partial => 'links/fields', :object=>f %>
 
+    <p>
+      <%= f.submit 'Update' %> or
+  <%= link_to 'Cancel', @linkable %>
+    </p>
+  <% end %>
+
+</div>
