@@ -1,14 +1,12 @@
 Dear <%= @user.name %>,
 
-You (we hope) have added a new email address on Team Portfolios. To confirm that this really is your email address you need to visit url and follow the instructions.
-  <http://teamportfolios.com/settings/confirm_email?code=<%=@activation_code%>&user_id=<%=@user.id%>>
+You (we hope) have added a new email address on Team Portfolios. To confirm your email address please visit the following url and follow the instructions:
+<http://teamportfolios.com/settings/confirm_email?code=<%=@activation_code%>&user_id=<%=@user.id%>>
 
-If you have a problem with that url (too long or whatever), then you need to copy and paste your code into the following url:
-  Code: <%= @activation_code%>
-	UserId: <%=@user.id%>
-  Url: http://teamportfolios.com/settings/confirm_email?user=<%=@user.id%>&
-
-If there was an error, you (or the person with the login) can delete or edit this email address at http://teamportfolios.com/dashboard. 
+If the above url is not working for you (too long or whatever), you can also use the details below:
+Your activation code: <%= @activation_code%>
+Your UserId: <%=@user.id%>
+Activation url: http://teamportfolios.com/settings/confirm_email?user=<%=@user.id%>&
 
 kind regards
 

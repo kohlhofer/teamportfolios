@@ -1,23 +1,21 @@
 Dear <%= @email.name %>,
 
-Some colleagues of yours have created profiles and projects on Team Portfolios and have named you as a contributor on some projects:
+Colleagues of yours have created profiles and projects on Team Portfolios and have named you as a contributor on some projects:
 <% @email.unvalidated_contributors.each do |uvc|%>
   * <%= uvc.project.title %>
     http://teamportfolios.com/projects/<%= uvc.project %> 
 <% end %>
-You too can create a profile on Team Portfolios site and then confirm (or deny) your participation in these projects.
+You are invited to create your own profile and then confirm (or deny) your participation in these projects.
  
-To join Team Portfolios and create a profile, please: 
-  <http://teamportfolios.com/join?code=<%=@email.activation_code%>&email=<%= @email.email %>>
+To join Team Portfolios and create a profile, please visit: 
+<http://teamportfolios.com/join?code=<%=@email.activation_code%>&email=<%= @email.email %>>
 
-If you have a problem with that url (too long or whatever), then you need to copy and paste your code and email into the following url:
-  Email: <%=@email.email %>
-  Code: <%= @email.activation_code%>
-  Url: http://teamportfolios.com/join
+If the above url is not working for you (too long or whatever), you can sign up directly, using your personal invitation code:
+Your email: <%=@email.email %>
+Your invitation code: <%= @email.activation_code%>
+Sign up here: http://teamportfolios.com/join
 
-Most people can't join Team Portfolios, but because your colleagues have invited you, you can join and have a profile on Team Portfolios for free. 
-
-kind regards
+Kind regards
 
 The Team Portfolios Team
 http://teamportfolios.com/projects/teamportfolios
