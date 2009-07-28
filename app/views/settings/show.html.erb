@@ -3,40 +3,31 @@
   
 	<div class="grid_6">
 
-	<ul>
+	<ul id="main-options">
 	  <li><%= link_to "View/edit account details", account_settings_path, { :title => "Edit you account" } %></li>
 	  <li><%= link_to "View/edit your profile page", @user %></li>
 	  <li><%= link_to "Add a new project", new_project_path, :id=>'new-project-link' %></li>
 	</ul>  
   
   
-  <ul>
+  <ul class="email-list">
   	<% @user.email_addresses.each do |eml| %>
-			<li><%= eml.email %>
-			<% if eml == @user.primary_email%>
-			   (Primary email - notifications will be sent to this address)
-			 <% else %>
-         Remove
-			 <% end %>
+			<li>
+			  <%= eml.email %>
+			  <% if eml == @user.primary_email%>
+  			   <span>(Primary email)</span>
+  			 <% end %>
 			</li>
 		<% end %>
 		<% if @user.unactivated_email_addresses.size>0 %>
-  		  <% @user.unactivated_email_addresses.each do |eml| %>
-  		      <li><%= eml.email %>
-  		       Resend validation email
-  		       Remove
+  		    <% @user.unactivated_email_addresses.each do |eml| %>
+  		      <li>
+  		        <%= eml.email %> <span>(unverified)</span>
   		      </li>
   		    <% end %>
   	 <% end %>
   </ul>
 
-	
-
-  
-  
-  
-  
-	
   </div>
 	
 	<div class="grid_4">
