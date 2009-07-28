@@ -1,3 +1,9 @@
+/* @override 
+	http://localhost:3000/stylesheets/teamportfolios.css?1248768560
+	http://localhost:3000/stylesheets/teamportfolios.css?1248769589
+	http://localhost:3000/stylesheets/teamportfolios.css?1248770768
+*/
+
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
 
@@ -65,8 +71,8 @@ body {
 
 
 form {
-	padding: 0.5em 1em;
-	background-color: #c8daed;}
+	padding: 0;
+	}
 
 a {
   	color: #0753af;
@@ -153,6 +159,7 @@ input[type="text"], input[type="password"] {
 textarea {
   	font-size: 1.2em;
   	width: 90%;
+  	height: 10em;
 }
 
 input[type="submit"], button {
@@ -187,10 +194,15 @@ input[type="submit"], button {
 h1 {
   	margin: 0;
   	padding: 0;
-  	font-size: 1.8em;
+  	font-size: 1.6em;
   	font-weight: normal;
   	line-height: 1.4em;
   	color: #000;
+}
+
+h1.padded {
+  	margin: 0;
+  	margin-bottom: 0.5em;
 }
 
 p.strapline {
@@ -208,7 +220,7 @@ h1 span.edit {
 
 
 .disclaimer {
-  	font-size: 0.9em;
+  	font-size: 0.8em;
 }
 
 #large-form {
@@ -295,36 +307,32 @@ p.option {
   padding: 0px;
 }
 
-#contributors, #projects {
+#contributors, #small-project-list {
 	padding: 0.5em;
 	border:1px solid #DDD;
 	margin-bottom: 1.5em;
 }
 
-#contributors h2, #projects h2 {
+#contributors h2, #small-project-list h2 {
   	font-size: 0.8em;
 	line-height: 1.4em;
 	color: #666;
 }
 
-#contributors ul, #projects ul {
+#contributors ul, #small-project-list ul {
 	line-height: 1.3em;
 	font-size: 0.8em;
 }
 
-#projects li {
+#small-project-list li {
 	margin: 0.8em 0;
 }
 
-#projects li a {
+#small-project-list li a {
 	font-weight: bold;
 	text-decoration: none;
 }
 
-#projects li a#new-project-link {
-	font-weight: normal;
-	text-decoration: underline;
-}
 
 li.not-validated {
   	margin: 0.8em 0;
@@ -520,12 +528,6 @@ border: 0px;
 
 #links a {
 	font-size: 0.9em;
-}
-
-
-form .link {
-  	padding: 0.3em 0;
-  	border-bottom: 1px solid #DDD;
 }
 
 a.admin {

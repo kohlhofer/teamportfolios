@@ -1,7 +1,5 @@
-<div class="">
-
-   <h1><%= @page_title = "Edit Project" %></h1>
-
+<div class="grid_12 prefix_3 suffix_3">
+  <h1><%= @page_title = "Edit Project" %></h1>
   <% form_for @project do |form| %>
     <%= form.error_messages %>
 
@@ -12,7 +10,4 @@
 			<%= link_to 'Cancel', @project %>
     </p>
   <% end %>
-
-  
-
 </div>

@@ -1,36 +1,33 @@
-<div class=" large-form">
-  <div class="grid_6 prefix_3">
-    <h1><%= @page_title = "Add an image to #{@image.project}" %></h1>
-  </div>
 
+  <div class="grid_10 prefix_3 suffix_3">
+    <h1 class="padded"><%= @page_title = "Add an image to #{@image.project}" %></h1>
 
-  
-  <div class="grid_6 prefix_3">
-    <% form_for @image, :url=>project_images_path(@image.project), :html => { :multipart => true } do | f | %>
-      <%= f.error_messages %>
+    <div class="grid_5 disclaimer alpha">
+      <p>Maximum size file size: 5MB</p>
+      <p>Images that are 16x9 and are more than xxx (?) pixels wide work best.</p>
+    </div>
+    
+    <div class="grid_5 omega">
+      <% form_for @image, :url=>project_images_path(@image.project), :html => { :multipart => true } do | f | %>
+        <%= f.error_messages %>
 
-      <p>
-        <%= f.label :uploaded_data  , "Select a File" %>
-        <%= f.file_field :uploaded_data %> 
-      </p>
+        <p>
+          <%= f.label :uploaded_data  , "Select a File" %>
+          <%= f.file_field :uploaded_data %> 
+        </p>
       
-			<p>
-        <%= f.label :caption, "Caption (optional)" %>
-        <%= f.text_field :caption %> 
-      </p>
+  			<p>
+          <%= f.label :caption, "Caption (optional)" %>
+          <%= f.text_field :caption %> 
+        </p>
 
-      <p class="submitBlock">
-        <%= submit_tag "Upload new image" %>
-      </p>
-    <% end %>
-    <p><%= link_to "Go back to #{@image.project}", @image.project %></p>
+        <p class="submitBlock">
+          <%= submit_tag "Upload new image" %> <%= link_to "Cancel", @image.project %>
+        </p>
+      <% end %>
+    </div>
 
-  </div>
-  
-  <div class="grid_5 disclaimer ">
-    <p>Maximum size file size: 5MB</p>
-    <p>Images that are 16x9 and are more than xxx (?) pixels wide work best.</p>
-  </div>
+
   
 </div>
   

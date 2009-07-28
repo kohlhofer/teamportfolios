@@ -1,35 +1,35 @@
-<div class=" large-form">
-  <div class="grid_6 prefix_3 alpha">
-    <h1><%= @page_title = "Edit your avatar" %></h1>
-  </div>
 
-  <div class="clear-this"> </div>
+  <div class="grid_12 prefix_3 suffix_3">
+    <h1 class="padded"><%= @page_title = "Edit your avatar" %></h1>
 
 
-  
-  <div class="grid_6 prefix_3 alpha">
     <% form_for @user, :url => save_new_avatar_settings_url, :html => { :method => :put, :multipart => true } do | f | %>
   
 	  <%= f.error_messages %>
-
+    
+    
+    <div class="grid_6 alpha disclaimer">
+      <p>Maximum size file size: 5MB</p>
+      <p>Images that are more than 160 pixels wide work best.</p>
+    </div>
+    
+    <div class="grid_6 omega">
       <p>
         <%= f.label :uploaded_data  , "Select a File" %>
         <%= f.file_field :uploaded_data %> 
       </p>
-
+      
       <p>
-        <%= submit_tag "Upload new picture" %>
+        <%= submit_tag "Upload new picture" %> <%= link_to "Cancel", current_user, { :title => "View you public profile" } %>
       </p>
+    </div>
+    
+      
     <% end %>
-    <p><%= link_to "Go back to your profile", current_user, { :title => "View you public profile" } %></p>
 
   </div>
   
-  <div class="grid_5 omega disclaimer">
-    <p>Maximum size file size: 5MB</p>
-    <p>Images that are more than 160 pixels wide work best.</p>
-  </div>
   
-</div>
+
   
   
