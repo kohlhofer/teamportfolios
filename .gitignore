@@ -19,3 +19,5 @@ db/*.sqlite3
 .project
 doc/coverage
 coverage
+public/javascripts/all.js
+public/stylesheets/all.css
