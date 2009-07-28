@@ -4,7 +4,7 @@ development:
   #:authentication: plain
   #:user_name: user
   #:password: pass
-  :enable_starttls_auto: false
+  :domain: localhost
   
 production:
   :address: localhost
@@ -12,4 +12,5 @@ production:
   #:authentication: plain
   #:user_name: user
   #:password: pass
-  :enable_starttls_auto: false
+  :domain: teamportfolios.com
+  #:enable_starttls_auto: false
