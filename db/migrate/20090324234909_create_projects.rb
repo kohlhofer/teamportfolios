@@ -8,6 +8,12 @@ class CreateProjects < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    Project.create(
+      :name=>'sample_project', 
+      :title=>'Sample Project', 
+      :description=>'some project or other',
+      :homepage=>'http://somewhereelse.com')
   end
 
   def self.down

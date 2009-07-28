@@ -6,6 +6,11 @@ class CreateContributions < ActiveRecord::Migration
 
       t.timestamps
     end
+    Project.all.each do |project|
+      User.all.each do |user|
+        Contribution.create(:project_id=>project.id, :user_id=>user.id)
+      end
+    end
   end
 
   def self.down
