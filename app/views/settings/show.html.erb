@@ -1,7 +1,7 @@
 
 	<h1 class="grid_16"><%= @page_title = "Dashboard" %></h1>
   
-	<div class="grid_6">
+	<div class="grid_4">
 
 	<ul id="main-options">
 	  <li><%= link_to "View/edit account details", account_settings_path, { :title => "Edit you account" } %></li>
@@ -30,40 +30,46 @@
 
   </div>
 	
-	<div class="grid_4">
-	
-    <div id="contributors">
-      <h2>Your collaborators</h2>
-      <ul>
-			<% current_user.collaborators.each do |user|%>
-	      <%= render :partial => 'users/collabli', :object => user%>
-	    <%end%>
-	    </ul>
-		</div>
-</div>
+
 
 	<div class="grid_4">
 	  
-	  <% if @user.unvalidated_contributions.size > 0 %>
-      <div id="unvalidated-projects" class="small-project-list unvalidated"> 
-        <h2>Unvalidated projects</h2>
-        <ul>
-          <% @user.unvalidated_contributions.each do |uvc|%>
-            <%= render :partial=>'projects/minili', :object => uvc.project, :locals => {:text => '(Visit to validate or reject)'} %>
-          <% end %>
-        </ul>
-        <p class="note">You (one of your email addresses) have been added to these projects as a contributor, 
-  			but you haven't yet validated your participation in these projects.</p>
-      </div>
-    <% end %>
+	    <% if @user.unvalidated_contributions.size > 0 %>
+      <div id="unvalidated-projects" class="small-project-list unvalidated">
+         
+          <h2><%= @user.unvalidated_contributions.size %> unvalidated project(s)</h2>
+          <p class="note">You can validate these projects and link them with your profile:</p>
+          <ul>
+            <% @user.unvalidated_contributions.each do |uvc|%>
+              <%= render :partial=>'projects/minili', :object => uvc.project, :locals => {:text => '<span>(not validated)</span>'} %>
+            <% end %>
+          </ul>
+      </div>    
+      <% end %>
     
-    
-    
-		<div class="small-project-list">
+  </div>
+  
+  <div class="grid_4">
+	  
+      
+      <div id="validated-projects" class="small-project-list">
 		  <h2>Your projects</h2>
       <ul>
     	  <%= render :partial=>'projects/minili', :collection => @user.projects %>
 		  </ul>
     </div>
     <p class="option"><%= link_to "Add a new project", new_project_path, :id=>'new-project-link', :class => "admin" %></p>
+  </div>
+
+
+  	<div class="grid_4">
+
+      <div id="contributors">
+        <h2>Your collaborators</h2>
+        <ul>
+  			<% current_user.collaborators.each do |user|%>
+  	      <%= render :partial => 'users/collabli', :object => user%>
+  	    <%end%>
+  	    </ul>
+  		</div>
   </div>

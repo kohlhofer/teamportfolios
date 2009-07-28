@@ -1,3 +1,5 @@
+/* @override http://localhost:3000/stylesheets/teamportfolios.css?1248809502 */
+
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
 
@@ -301,8 +303,14 @@ p.option {
 }
 
 #contributors, .small-project-list {
-	padding: 0.5em;
+	padding: 0.5em 0.5em 0 0.5em;
 	border:1px solid #DDD;
+	margin-bottom: 0.5em;
+}
+
+.small-project-list.unvalidated {
+	padding: 0.5em 0.5em 0 0.5em;
+	border:1px dashed #CCC;
 	margin-bottom: 0.5em;
 }
 
@@ -319,6 +327,16 @@ p.option {
 
 .small-project-list li {
 	margin: 0.8em 0;
+}
+
+.small-project-list span {
+	color: #999;
+	display: block;
+}
+
+.small-project-list .note {
+	color: #000;
+	font-size: 0.8em;
 }
 
 #small-project-list li a {
@@ -447,9 +465,9 @@ form span.note {
 
 #self-validation {
   	clear: both;
-  	padding: 0.5em 0;
-  	margin-left: 50px;
+  	padding: 0;
 }
+
 #self-validation form {
 padding: 0;
 margin: 0;
