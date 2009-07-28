@@ -6,7 +6,7 @@ You have been added to '<%=@email.unvalidated_contributors[0].project.title %>' 
 You have been added to <%=@email.unvalidated_contributors.size %> projects as an unvalidated contributor.
 <% @email.unvalidated_contributors.each do |uvc|%>
   * <%= uvc.project.title %>
-    http://teamportfolios.com/projects/<%= uvc.project %> 
+    http://teamportfolios.com/projects/<%= uvc.project.name %> 
 <% end %>
 <% end %>
 
