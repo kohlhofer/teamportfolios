@@ -8,9 +8,8 @@
 </div>
 
 <div class="grid_13">
-  <% if @show_admin %>
-    <span class="admin-toggle"><%= link_to "Hide controls", :hide_admin=>'true' %></span>
-  <% end %>
+  <%= render :partial => 'shared/admin_toggle' %>
+
   <h1><%= @page_title = h(@user.name) %>  
     <% if @show_admin %>
       <span class="edit"><%= link_to image_tag("vcard_edit.png"), profile_settings_path, :id=>'edit-settings-link', :class=>'admin', :title => "Edit your profile texts..." %></span>

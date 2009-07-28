@@ -1,17 +1,17 @@
 <div class="grid_16">
-    <% if @show_admin %>
-      <span class="admin-toggle"><%= link_to "Hide controls", :hide_admin=>'true' %></span>
-    <% end %>
-    <h1><%= @page_title = h(@project.title) %>
-        <% if @show_admin %>
-        <span class="edit"><%= link_to image_tag("pencil.png"), edit_project_path(@project), :id=>'edit-project-link', :class=>'admin', :title => "Edit this project..." %>
-            <% if current_user.sole_contributor_to?(@project) %>
-            <%= link_to image_tag("delete.png"), project_path(@project), :method=>:delete, :id=>'delete-project', :confirm=> "Do you really want to delete it?", :class=>'admin', :title => "Delete this project?" %>
-            <% else %>
-            <%= link_to image_tag("delete.png"), leave_project_path(@project), :method=>:put, :id=>'leave-project', :confirm=> "Do you really want to leave this project?", :class=>'admin', :title => "Remove this project from your projects?" %>
-            <% end %>
-        </span><% end %>
-    </h1>
+	
+	<%= render :partial => 'shared/admin_toggle' %>
+	
+  <h1><%= @page_title = h(@project.title) %>
+      <% if @show_admin %>
+      <span class="edit"><%= link_to image_tag("pencil.png"), edit_project_path(@project), :id=>'edit-project-link', :class=>'admin', :title => "Edit this project..." %>
+          <% if current_user.sole_contributor_to?(@project) %>
+          <%= link_to image_tag("delete.png"), project_path(@project), :method=>:delete, :id=>'delete-project', :confirm=> "Do you really want to delete it?", :class=>'admin', :title => "Delete this project?" %>
+          <% else %>
+          <%= link_to image_tag("delete.png"), leave_project_path(@project), :method=>:put, :id=>'leave-project', :confirm=> "Do you really want to leave this project?", :class=>'admin', :title => "Remove this project from your projects?" %>
+          <% end %>
+      </span><% end %>
+  </h1>
     <p class="strapline">
         <%=h(@project.strapline || "Another brilliant project") %>
     </p>

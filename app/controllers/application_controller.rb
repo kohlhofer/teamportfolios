@@ -25,7 +25,8 @@ class ApplicationController < ActionController::Base
   end
   
   def check_for_hide_admin
-      @show_admin = false if params[:hide_admin]=='true'
+      @hiding_admin = true if params[:hide_admin]=='true'
+      @show_admin = false if @hiding_admin
   end
   
 end

@@ -1,0 +1,5 @@
+  <% if @show_admin %>
+    <span class="admin-toggle"><%= link_to "Hide controls", :hide_admin=>'true' %></span>
+  <% elsif @hiding_admin %>
+    <span class="admin-toggle"><%= link_to "Show controls", nil %></span>
+  <% end %>
