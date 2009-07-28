@@ -1,5 +1,5 @@
 class NotificationMailer < ActionMailer::Base
-  
+  include Exceptions  
   
   def invitation(email_address)
     fromto email_address
@@ -17,7 +17,7 @@ class NotificationMailer < ActionMailer::Base
     elsif uvcs.size==1
       subject "Team Portfolios: You have been added to #{uvcs[0].project.title}"
     else
-      raise Exception.new('Expecting at least 1 unvalidated contribution')
+      raise MailNoLongerNeeded.new('Expecting at least 1 unvalidated contribution')
     end
     body ({:email=> email_address})
   end
