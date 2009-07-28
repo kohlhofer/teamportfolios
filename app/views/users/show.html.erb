@@ -1,76 +1,76 @@
-<div id="header" class="container_16">
-  
-  <div class="grid_3" id="user-lefthand">
-      <div class="avatar">
-      	<%=avatar_for(@user, :large) %>
-  			<% if @show_admin %>
-  			 <p class="option"><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path, :class=>'admin') %></p>
-  			 <% end %>
-  		</div>
-			
-			<%= render :partial=>'links/list' %>
-      <%= render :partial=>'links/add' if @show_admin %>
-  </div>
-  
-  <div class="grid_13 ">
-    <h1><%= @page_title = h(@user.name) %>  
-      <% if @show_admin %>
-        <span class="edit">(<%= link_to "Edit profile", profile_settings_path, :id=>'edit-settings-link', :class=>'admin' %>)
-				<%= link_to "Hide admin", :hide_admin=>'true' %>
-				</span>
-      <% end %>
-    </h1>
-    <p class="strapline"><%= h(@user.strapline)%></p>
-    
-    
-    
 
-    <div class="grid_9 alpha">
-      <% unless @user.bio.blank? %>
-  			<div id="user-description">
-  	      <%= htmltext(@user.bio) %>
-  	    </div>
-      <% end %>
-
-      <div id="projects">
-      	<% @user.projects.each do |project| %>
-      	  	<%= render 'projects/preview', :project => project %>
-        <% end %>    
-      	<div class="clear-this"> </div>
-
-  	    <% if @show_admin %>
-          <p class="option"><%= link_to "Add another project...", new_project_path, {:id=>"new-project-link", :class=>'admin'} %></p>
-        <% end%>  	
-      </div>
-
-    </div>
-
-    <div class="grid_4 omega">
-      <div id="contributors">
-        <h2>Collaborators</h2>
-        <ul>
-          <% @user.collaborators.each do |user|%>
-    			         <%= render :partial => 'users/collabli', :object => user%>
-          <%end%>
-    		  <%@user.unvalidated_collaborator_names.each do |name|%>
-            <li class="not-validated">
-              <img src="/images/no-avatar-small.png" width="40px" height="40px" />
-              <div class="user-details">
-                <%= name %>
-                <span class="strapline">(unclaimed profile)</span>
-              </div>
-            </li>
-          <%end%> 
-    		</ul>
-  		</div>
-  	</div>
-  	
-  
-  </div>
-
-
-  <div id="footer" class="prefix_3">
-      <p>Portfolios and profiles powered by <%= link_to "Team Portfolios", "http://teamportfolios.com/projects/team_portfolios", { :title => "Find out more..." } %>.</p>
-  </div>
+<div class="grid_3" id="user-lefthand">
+  <div class="avatar">
+  	<%=avatar_for(@user, :large) %>
+		<% if @show_admin %>
+		 <p class="option"><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path, :class=>'admin') %></p>
+		 <% end %>
+	</div>
 </div>
 
+<div class="grid_13">
+  <h1><%= @page_title = h(@user.name) %>  
+    <% if @show_admin %>
+      <span class="edit">(<%= link_to "Edit profile", profile_settings_path, :id=>'edit-settings-link', :class=>'admin' %>)
+  		<%= link_to "Hide admin", :hide_admin=>'true' %>
+  		</span>
+    <% end %>
+  </h1>
+  <p class="strapline"><%= h(@user.strapline)%></p>
+  
+  <% unless @user.bio.blank? %>
+		<div id="user-description">
+      <%= htmltext(@user.bio) %>
+    </div>
+  <% end %>
+</div>
+
+
+<div class="grid_16">
+  <div class="grid_3 alpha">
+    <%= render :partial=>'links/list' %>
+    <%= render :partial=>'links/add' if @show_admin %>
+  </div>
+  
+  <div class="grid_9">
+
+    <div id="projects">
+    	<% @user.projects.each do |project| %>
+    	  	<%= render 'projects/preview', :project => project %>
+      <% end %>    
+    	<div class="clear-this"> </div>
+
+      <% if @show_admin %>
+        <p class="option"><%= link_to "Add another project...", new_project_path, {:id=>"new-project-link", :class=>'admin'} %></p>
+      <% end%>  	
+    </div>
+
+  </div>
+
+  <div class="grid_4 omega">
+    <div id="contributors">
+      <h2>Collaborators</h2>
+      <ul>
+        <% @user.collaborators.each do |user|%>
+  			         <%= render :partial => 'users/collabli', :object => user%>
+        <%end%>
+  		  <%@user.unvalidated_collaborator_names.each do |name|%>
+          <li class="not-validated">
+            <img src="/images/no-avatar-small.png" width="40px" height="40px" />
+            <div class="user-details">
+              <%= name %>
+              <span class="strapline">(unclaimed profile)</span>
+            </div>
+          </li>
+        <%end%> 
+  		</ul>
+  	</div>
+  </div>
+
+
+</div>
+
+
+<div id="footer" class="prefix_3">
+  <p>Portfolios and profiles powered by <%= link_to "Team Portfolios", "http://teamportfolios.com/projects/team_portfolios", { :title => "Find out more..." } %>.</p>
+</div>

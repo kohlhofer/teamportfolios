@@ -1,22 +1,4 @@
-/* @override 
-	http://localhost:3000/stylesheets/teamportfolios.css?1246371452
-	http://localhost:3000/stylesheets/teamportfolios.css?1247897361
-	http://localhost:3000/stylesheets/teamportfolios.css?1247910443
-	http://localhost:3000/stylesheets/teamportfolios.css?1248124193
-	http://localhost:3000/stylesheets/teamportfolios.css?1248126185
-	http://localhost:3000/stylesheets/teamportfolios.css?1248126320
-	http://localhost:3000/stylesheets/teamportfolios.css?1248126370
-	http://localhost:3000/stylesheets/teamportfolios.css?1248126415
-	http://localhost:3000/stylesheets/teamportfolios.css?1248126500
-	http://localhost:3000/stylesheets/teamportfolios.css?1248126548
-	http://localhost:3000/stylesheets/teamportfolios.css?1248710903
-	http://localhost:3000/stylesheets/teamportfolios.css?1248762765
-	http://localhost:3000/stylesheets/teamportfolios.css?1248762939
-	http://localhost:3000/stylesheets/teamportfolios.css?1248763098
-	http://localhost:3000/stylesheets/teamportfolios.css?1248763361
-	http://localhost:3000/stylesheets/teamportfolios.css?1248763442
-	http://localhost:3000/stylesheets/teamportfolios.css?1248763702
-*/
+/* @override http://localhost:3000/stylesheets/teamportfolios.css?1248765147 */
 
 /* v1.0 | 20080212 */
 /* from http://meyerweb.com/eric/tools/css/reset/ */
@@ -110,6 +92,7 @@ p {
 	line-height: 2.5em;
 	background-color:#333;
 	text-shadow: #000 -1px -1px 0;
+	margin-bottom: 60px;
 	}
 
 #navigation ul {
@@ -187,13 +170,6 @@ input[type="submit"], button {
   	margin-top: -1em;
 }
 
-
-
-
-
-#header {
-  	margin-top: 4em;
-}
 
 #flash p {
   	text-align: center;
@@ -483,6 +459,14 @@ border: 0px;
 .linkList li {
   	margin: 0.3em 0;
   	font-size: 0.9em;
+}
+
+.linkList li .admin {
+	display: none;
+}
+
+.linkList li:hover .admin {
+	display: inline;
 }
 
 .linkList a.ext-link {

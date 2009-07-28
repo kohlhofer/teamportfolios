@@ -1,111 +1,113 @@
-<div id="header" class="container_16">
-    <div class="grid_11 prefix_5">
-        <h1><%= @page_title = h(@project.title) %>
-            <% if @show_admin %>
-            <span class="edit">(<%= link_to "Edit project", edit_project_path(@project), :id=>'edit-project-link', :class=>'admin' %>
-                |<% if current_user.sole_contributor_to?(@project) %>
-                <%= link_to "Delete project", project_path(@project), :method=>:delete, :id=>'delete-project', :confirm=> "Do you really want to leave this project and delete it?", :class=>'admin' %>
-                <% else %>
-                <%= link_to "Leave project", leave_project_path(@project), :method=>:put, :id=>'leave-project', :confirm=> "Do you really want to leave this project?", :class=>'admin' %>
-                <% end %>
-                ) <%= link_to "Hide admin", :hide_admin=>'true' %>
-            </span><% end %>
-        </h1>
-        <p class="strapline">
-            <%=h(@project.strapline || "Another brilliant project") %>
-        </p>
-    </div>
- 
-
-
-
-    <div class="grid_5">
-        <% @project.images.each do |image| %>
-        <div class="project-image">
-            <%=project_image_for(image, :medium) %>
-            <% if @show_admin %>
-            <p class="delete-image">
-                <%=link_to "Edit", edit_project_image_path(@project, image), :class=>'admin' %>
-                <%=link_to "Delete", project_image_path(@project, image), :method=>:delete, :confirm=>"Delete this image?",  :class=>'admin' %>
-            </p>
+<div class="grid_16">
+    <h1><%= @page_title = h(@project.title) %>
+        <% if @show_admin %>
+        <span class="edit">(<%= link_to "Edit project", edit_project_path(@project), :id=>'edit-project-link', :class=>'admin' %>
+            |<% if current_user.sole_contributor_to?(@project) %>
+            <%= link_to "Delete project", project_path(@project), :method=>:delete, :id=>'delete-project', :confirm=> "Do you really want to leave this project and delete it?", :class=>'admin' %>
+            <% else %>
+            <%= link_to "Leave project", leave_project_path(@project), :method=>:put, :id=>'leave-project', :confirm=> "Do you really want to leave this project?", :class=>'admin' %>
             <% end %>
-            <% unless image.caption.nil? && image.caption.blank? %>
-            <p class="caption">
-                <%=image.caption %>
-            </p>
-            <%end %>
-        </div>
-        <% end %>
+            ) <%= link_to "Hide admin", :hide_admin=>'true' %>
+        </span><% end %>
+    </h1>
+    <p class="strapline">
+        <%=h(@project.strapline || "Another brilliant project") %>
+    </p>
+</div>
+
+
+
+
+
+<div class="grid_7">
+    <div id="project-description">
+        <%= htmltext(@project.description) %>
+    </div>
+    <%= render :partial=>'links/list' %>
+    <%= render :partial=>'links/add' if @show_admin %>
+</div>
+
+<div class="grid_5">
+    <% @project.images.each do |image| %>
+    <div class="project-image">
+        <%=project_image_for(image, :medium) %>
         <% if @show_admin %>
+        <p class="delete-image">
+            <%=link_to "Edit", edit_project_image_path(@project, image), :class=>'admin' %>
+            <%=link_to "Delete", project_image_path(@project, image), :method=>:delete, :confirm=>"Delete this image?",  :class=>'admin' %>
+        </p>
+        <% end %>
+        <% unless image.caption.nil? && image.caption.blank? %>
+        <p class="caption">
+            <%=image.caption %>
+        </p>
+        <%end %>
+    </div>
+    <% end %>
+    <% if @show_admin %>
+    <p class="option">
+        <%=link_to "Add an image...", new_project_image_path(@project), :class=>'admin' %>
+    </p>
+    <% end %>
+    <p>
+    </p>
+</div>
+
+
+<div class="grid_4">
+   <div id="contributors">
+    <h2>Created by </h2>
+    <ul>
+        <% @project.contributors.each do |user| %>
+        <li class="validated">
+            <% link_to user do %>
+            <%= avatar_for(user) %>
+            <div class="user-details">
+                <strong><%= user %></strong>
+                <span class="strapline"><%= user.strapline %></span>
+            </div>
+            <div class="clear-this">
+            </div>
+            <% end %>
+        </li>
+        <%end %>
+        <%@project.unvalidated_contributors.each do |uvc| %>
+        <li class="not-validated">
+            <img src="/images/no-avatar-small.png" width="40px" height="40px" />
+            <div class="user-details">
+              <% if uvc.email_address.nil?  %>
+								<%= uvc.name %>
+                <span class="strapline">(Unverifiable)</span>
+              <% else %>
+								<%= uvc.email_address.name %>
+                <%if uvc.email_address.user.nil? %>
+                  <span class="strapline">(Unclaimed profile)</span>
+                <% else %>
+                  <span class="strapline">(Unvalidated)</span>
+								<% end %>
+						  <% end %>
+							<% if @show_admin %>
+                <%= link_to "Edit", edit_project_unvalidated_contributor_path(@project, uvc), :class=>'admin edit-unvalidated' %>
+                <%= link_to "Delete", project_unvalidated_contributor_path(@project, uvc), :method=> :delete,:confirm=>"Delete this contributor?", :class=>'admin delete-unvalidated' %>
+              <% elsif logged_in? && current_user.email_addresses.include?(uvc.email_address) %>
+                <%= render :partial=>'validate_self_as_contributor', :object=>uvc %>
+              <% end %>
+            </div>
+        </li>
+        <%end %>
+    </ul>
+    <% if @show_admin %>
+    <div id="manage-contributors">
         <p class="option">
-            <%=link_to "Add an image...", new_project_image_path(@project), :class=>'admin' %>
+            <a id="show-form-link" class='admin' href="javascript:$('add-contributor').show()">Add another contributor...</a>
         </p>
-        <% end %>
-        <p>
-        </p>
+        <%= render 'unvalidated_contributor_form' %>
     </div>
-    <div class="grid_7">
-        <div id="project-description">
-            <%= htmltext(@project.description) %>
-        </div>
-        <%= render :partial=>'links/list' %>
-        <%= render :partial=>'links/add' if @show_admin %>
-    </div>
-    <div class="grid_4">
-       <div id="contributors">
-        <h2>Created by </h2>
-        <ul>
-            <% @project.contributors.each do |user| %>
-            <li class="validated">
-                <% link_to user do %>
-                <%= avatar_for(user) %>
-                <div class="user-details">
-                    <strong><%= user %></strong>
-                    <span class="strapline"><%= user.strapline %></span>
-                </div>
-                <div class="clear-this">
-                </div>
-                <% end %>
-            </li>
-            <%end %>
-            <%@project.unvalidated_contributors.each do |uvc| %>
-            <li class="not-validated">
-                <img src="/images/no-avatar-small.png" width="40px" height="40px" />
-                <div class="user-details">
-                  <% if uvc.email_address.nil?  %>
-										<%= uvc.name %>
-                    <span class="strapline">(Unverifiable)</span>
-                  <% else %>
-										<%= uvc.email_address.name %>
-                    <%if uvc.email_address.user.nil? %>
-	                    <span class="strapline">(Unclaimed profile)</span>
-	                  <% else %>
-	                    <span class="strapline">(Unvalidated)</span>
-										<% end %>
-								  <% end %>
-									<% if @show_admin %>
-                    <%= link_to "Edit", edit_project_unvalidated_contributor_path(@project, uvc), :class=>'admin edit-unvalidated' %>
-                    <%= link_to "Delete", project_unvalidated_contributor_path(@project, uvc), :method=> :delete,:confirm=>"Delete this contributor?", :class=>'admin delete-unvalidated' %>
-                  <% elsif logged_in? && current_user.email_addresses.include?(uvc.email_address) %>
-                    <%= render :partial=>'validate_self_as_contributor', :object=>uvc %>
-                  <% end %>
-                </div>
-            </li>
-            <%end %>
-        </ul>
-        <% if @show_admin %>
-        <div id="manage-contributors">
-            <p class="option">
-                <a id="show-form-link" class='admin' href="javascript:$('add-contributor').show()">Add another contributor...</a>
-            </p>
-            <%= render 'unvalidated_contributor_form' %>
-        </div>
-        <% end %>
-      </div>
-    </div>
-    <div id="footer" class="prefix_5">
-        <p>
-            Portfolios and profiles powered by <%= link_to "Team Portfolios", "http://teamportfolios.com/projects/team_portfolios", { :title => "Find out more..." } %>.
-        </p>
-    </div>
+    <% end %>
+  </div>
+</div>
+<div id="footer" class="prefix_5">
+    <p>
+        Portfolios and profiles powered by <%= link_to "Team Portfolios", "http://teamportfolios.com/projects/team_portfolios", { :title => "Find out more..." } %>.
+    </p>
 </div>
