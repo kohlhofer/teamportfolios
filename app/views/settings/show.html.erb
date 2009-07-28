@@ -1,26 +1,35 @@
-<div id="header" class="">
-  
+
 	<h1 class="grid_16"><%= @page_title = "Dashboard" %></h1>
   
 	<div class="grid_6">
 
-  <% if @user.unactivated_email_addresses.size>0 %>
-    <div id="unactivated-emails" class="unvalidated"> 
-			<h2>Unactivated emails</h2>  
-		  <ul><% @user.unactivated_email_addresses.each do |eml| %>
-		      <li><%= eml.email %>
-		       Resend validation email
-		       Remove
-		      </li>
-		    <% end %>
-		    <li>Add another email address linked to this account</li> 
-		  </ul>
-		</div>
-      <p class="note">Email addresses you have added to your account, but you haven't yet activated them 
-			(Look in your Inbox (or spam box?) for an activation email, 
-			should arrive with you within 5 minutes, unless something has gone wrong).
-			</p>
-	<% end %>
+	<ul>
+	  <li><%= link_to "Your account details", account_settings_path, { :title => "Edit you account" } %></li>
+	  <li><%= link_to "Your profile page (view/edit)", @user %></li>
+	</ul>  
+  
+  
+  <ul>
+  	<% @user.email_addresses.each do |eml| %>
+			<li><%= eml.email %>
+			<% if eml == @user.primary_email%>
+			   (Primary email - notifications will be sent to this address)
+			 <% else %>
+         Remove
+			 <% end %>
+			</li>
+		<% end %>
+		<% if @user.unactivated_email_addresses.size>0 %>
+  		  <% @user.unactivated_email_addresses.each do |eml| %>
+  		      <li><%= eml.email %>
+  		       Resend validation email
+  		       Remove
+  		      </li>
+  		    <% end %>
+  	 <% end %>
+  </ul>
+
+	
 
   <% if @user.unvalidated_contributions.size > 0 %>
     <div id="unvalidated-projects" class="unvalidated"> 
@@ -33,28 +42,11 @@
       <p class="note">You (one of your email addresses) have been added to these projects as a contributor, 
 			but you haven't yet validated your participation in these projects.</p>
     </div>
-  <% end %>          
+  <% end %>
+  
+  
+  
 	
-	<h2>Account Details:</h2>
-  <p>Login: <%= @user.login%></p>
-  <p>Name: <%= @user.name%></p>
-	<p><%= link_to "Edit your account", account_settings_path, { :title => "Edit you account" } %> (login, name, password)</p>
-	
-  <ul>
-  	<% @user.email_addresses.each do |eml| %>
-			<li><%= eml.email %>
-			<% if eml == @user.primary_email%>
-			   (Primary email - notifications will be sent to this address)
-			 <% else %>
-         Remove
-			 <% end %>
-			</li>
-		<% end %>
-  	<li>Add another email address linked to this account (not yet possible).</li>	
-  </ul>
-	
-  <h2>Profile:</h2>
-	<p>Edit profile and links on <%= link_to "Your profile page ('#@user')", @user %></p>
   </div>
 	
 	<div class="grid_4">
@@ -78,4 +70,3 @@
     </div>
     <p class="option"><%= link_to "Add a new project", new_project_path, :id=>'new-project-link', :class => "admin" %></p>
   </div>
-</div>
