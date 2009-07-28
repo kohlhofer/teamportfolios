@@ -9,6 +9,13 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1248126415
 	http://localhost:3000/stylesheets/teamportfolios.css?1248126500
 	http://localhost:3000/stylesheets/teamportfolios.css?1248126548
+	http://localhost:3000/stylesheets/teamportfolios.css?1248710903
+	http://localhost:3000/stylesheets/teamportfolios.css?1248762765
+	http://localhost:3000/stylesheets/teamportfolios.css?1248762939
+	http://localhost:3000/stylesheets/teamportfolios.css?1248763098
+	http://localhost:3000/stylesheets/teamportfolios.css?1248763361
+	http://localhost:3000/stylesheets/teamportfolios.css?1248763442
+	http://localhost:3000/stylesheets/teamportfolios.css?1248763702
 */
 
 /* v1.0 | 20080212 */
@@ -89,14 +96,6 @@ p {
 	margin:0.7em 0;
 	line-height:1.4em;
 }
-
-h1 {
-	font-size:1.3em;
-	margin:3em 0 1em 0;
-	font-weight: normal;
-	color: #000;
-}
-
 
 #logo {
 	font-size:1.3em;
@@ -214,6 +213,7 @@ input[type="submit"], button {
 
 h1 {
   	margin: 0;
+  	padding: 0;
   	font-size: 1.8em;
   	font-weight: normal;
   	line-height: 1.4em;
@@ -222,6 +222,7 @@ h1 {
 
 p.strapline {
   	margin: 0 0 1.5em 0;
+  	font-size: 1.1em;
 }
 
 h1 span.edit {
@@ -261,7 +262,7 @@ h1 span.edit {
 
 
 .project-preview h3 { 
-	margin: 0.8em 1em 0.5em 1em;
+	margin: 0.8em 0 0.3em 0;
 	font-size: 0.8em;
 	line-height: 1.4em;
 }
@@ -277,9 +278,8 @@ h1 span.edit {
 
 .project-preview .description {
 	overflow: hidden;
-	height: 150px;
+	height: 120px;
 	position: relative;
-	background:transparent url(../images/description.gif) no-repeat bottom left;
 }
 
 .fade {
@@ -288,13 +288,17 @@ h1 span.edit {
   	text-align: right;
   	background:transparent url(../images/fade.png) repeat-x left bottom;
   	width: 100%;
-  	height: 35px;
+  	height: 30px;
+}
+
+#add-link-form.admin {
+	font-size: 0.8em;  	
 }
 
 .project-preview p { 
 	color: #666;
 	font-size: 0.8em;
-	margin: 0.5em 1em;
+	margin: 0.3em 0;
 }
 
 
@@ -319,8 +323,8 @@ p.option {
 }
 
 #contributors {
-	padding: 0 0.8em;
-	border-left:1px solid #DDD;
+	padding: 0.5em;
+	border:1px solid #DDD;
 	margin-bottom: 1.5em;
 }
 
@@ -332,8 +336,7 @@ p.option {
 
 #contributors ul {
 	line-height: 1.3em;
-	font-size: 0.9em;
-
+	font-size: 0.8em;
 }
 
 li.not-validated {
@@ -342,7 +345,6 @@ li.not-validated {
 }
 
 li.not-validated a {
-  	font-size: 0.8em;
   	margin-right: 0.5em;
 }
 
@@ -386,15 +388,15 @@ li .strapline {
 
 
 #manage-contributors {
- position: relative; 	
+ position: relative;
 }
 
 form span.note {
 	display: block;
-  	font-size: 0.8em;
-  	color: #666;
+  	font-size: 0.9em;
+  	color: #a9a47d;
   	line-height: 1.5em;
-  	margin-top: 0.3em;
+  	margin-top: 0.5em;
 }
 
 #manage-contributors form {
@@ -402,7 +404,8 @@ form span.note {
  right: 0;
  top: 0;
  width: 400px;
-   	border: 1px solid #666;
+   	border: 1px solid #ddd9bc;
+   	 font-size: 0.8em;	
 
 }
 
@@ -540,5 +543,7 @@ a.admin:hover {
 
 
 form.admin {
-	background-color: #DDD;
+	background-color: rgba(255,242,144,0.9);
+	border: 1px solid #ddd9bc;
+	padding: 0.5em 1em;
 }
