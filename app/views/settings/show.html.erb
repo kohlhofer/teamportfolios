@@ -4,8 +4,9 @@
 	<div class="grid_6">
 
 	<ul>
-	  <li><%= link_to "Your account details", account_settings_path, { :title => "Edit you account" } %></li>
-	  <li><%= link_to "Your profile page (view/edit)", @user %></li>
+	  <li><%= link_to "View/edit account details", account_settings_path, { :title => "Edit you account" } %></li>
+	  <li><%= link_to "View/edit your profile page", @user %></li>
+	  <li><%= link_to "Add a new project", new_project_path, :id=>'new-project-link' %></li>
 	</ul>  
   
   
@@ -31,18 +32,7 @@
 
 	
 
-  <% if @user.unvalidated_contributions.size > 0 %>
-    <div id="unvalidated-projects" class="unvalidated"> 
-      <h2>Unvalidated projects</h2>
-      <ul>
-        <% @user.unvalidated_contributions.each do |uvc|%>
-          <%= render :partial=>'projects/minili', :object => uvc.project, :locals => {:text => '(Visit to validate or reject)'} %>
-        <% end %>
-      </ul>
-      <p class="note">You (one of your email addresses) have been added to these projects as a contributor, 
-			but you haven't yet validated your participation in these projects.</p>
-    </div>
-  <% end %>
+  
   
   
   
@@ -62,7 +52,23 @@
 </div>
 
 	<div class="grid_4">
-		<div id="small-project-list">
+	  
+	  <% if @user.unvalidated_contributions.size > 0 %>
+      <div id="unvalidated-projects" class="small-project-list unvalidated"> 
+        <h2>Unvalidated projects</h2>
+        <ul>
+          <% @user.unvalidated_contributions.each do |uvc|%>
+            <%= render :partial=>'projects/minili', :object => uvc.project, :locals => {:text => '(Visit to validate or reject)'} %>
+          <% end %>
+        </ul>
+        <p class="note">You (one of your email addresses) have been added to these projects as a contributor, 
+  			but you haven't yet validated your participation in these projects.</p>
+      </div>
+    <% end %>
+    
+    
+    
+		<div class="small-project-list">
 		  <h2>Your projects</h2>
       <ul>
     	  <%= render :partial=>'projects/minili', :collection => @user.projects %>

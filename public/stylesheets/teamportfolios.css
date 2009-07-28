@@ -300,28 +300,28 @@ p.option {
   padding: 0px;
 }
 
-#contributors, #small-project-list {
+#contributors, .small-project-list {
 	padding: 0.5em;
 	border:1px solid #DDD;
 	margin-bottom: 0.5em;
 }
 
-#contributors h2, #small-project-list h2 {
+#contributors h2, .small-project-list h2 {
   	font-size: 0.8em;
 	line-height: 1.4em;
 	color: #666;
 }
 
-#contributors ul, #small-project-list ul {
+#contributors ul, .small-project-list ul {
 	line-height: 1.3em;
 	font-size: 0.8em;
 }
 
-#small-project-list li {
+.small-project-list li {
 	margin: 0.8em 0;
 }
 
-#small-project-list li a {
+.small-project-list li a {
 	font-weight: bold;
 	text-decoration: none;
 }
