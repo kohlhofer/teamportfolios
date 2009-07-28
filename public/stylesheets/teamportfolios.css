@@ -2,6 +2,12 @@
 	http://localhost:3000/stylesheets/teamportfolios.css?1248768560
 	http://localhost:3000/stylesheets/teamportfolios.css?1248769589
 	http://localhost:3000/stylesheets/teamportfolios.css?1248770768
+	http://localhost:3000/stylesheets/teamportfolios.css?1248771006
+	http://localhost:3000/stylesheets/teamportfolios.css?1248771152
+	http://localhost:3000/stylesheets/teamportfolios.css?1248771356
+	http://localhost:3000/stylesheets/teamportfolios.css?1248772414
+	http://localhost:3000/stylesheets/teamportfolios.css?1248772775
+	http://localhost:3000/stylesheets/teamportfolios.css?1248773673
 */
 
 /* v1.0 | 20080212 */
@@ -288,7 +294,6 @@ h1 span.edit {
 
 
 #show-form-link {
-  	margin-top: 1.5em;
 }
 
 
@@ -310,7 +315,7 @@ p.option {
 #contributors, #small-project-list {
 	padding: 0.5em;
 	border:1px solid #DDD;
-	margin-bottom: 1.5em;
+	margin-bottom: 0.5em;
 }
 
 #contributors h2, #small-project-list h2 {
@@ -333,6 +338,9 @@ p.option {
 	text-decoration: none;
 }
 
+#contributors li {
+  	clear: left;
+}
 
 li.not-validated {
   	margin: 0.8em 0;
@@ -340,7 +348,13 @@ li.not-validated {
 }
 
 li.not-validated a {
-  	margin-right: 0.5em;
+  	display: none;
+  	float:right;
+  	margin-left: 5px;
+}
+
+li.not-validated:hover a {
+  	display: block;
 }
 
 li.validated {
@@ -476,8 +490,9 @@ border: 0px;
 }
 
 .linkList li {
-  	margin: 0.3em 0 0.3em -5px;
+  	margin: 0 0 0 -5px;
   	font-size: 0.9em;
+  	line-height: 25px;
 }
 
 .linkList li .admin {
@@ -496,10 +511,6 @@ border: 0px;
 	  margin-right: 0.5em;
 }
 
-.linkList a {
-	color: #999;
-	font-size: 0.9em;
-}
 
 
 .linkList a.ext-link:hover {
@@ -507,13 +518,23 @@ border: 0px;
 }
 
 
+.linkList a img {
+  	vertical-align:middle;
+}
+
 
 
 .avatar {
   	margin: 0.5em 0 2em 0;
 }
 
+.avatar img {
+  	margin-bottom: 0.5em;
+}
 
+.admin-toggle {
+  	float: right;
+}
 
 #links {
    margin: 1.5em 0 2em 0;
@@ -529,6 +550,8 @@ border: 0px;
 #links a {
 	font-size: 0.9em;
 }
+
+
 
 a.admin {
 	color: #999;

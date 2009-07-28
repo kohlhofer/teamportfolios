@@ -1,4 +1,3 @@
-
 <div class="grid_3" id="user-lefthand">
   <div class="avatar">
   	<%=avatar_for(@user, :large) %>
@@ -9,11 +8,12 @@
 </div>
 
 <div class="grid_13">
+  <% if @show_admin %>
+    <span class="admin-toggle"><%= link_to "Hide controls", :hide_admin=>'true' %></span>
+  <% end %>
   <h1><%= @page_title = h(@user.name) %>  
     <% if @show_admin %>
-      <span class="edit">(<%= link_to "Edit profile", profile_settings_path, :id=>'edit-settings-link', :class=>'admin' %>)
-  		<%= link_to "Hide admin", :hide_admin=>'true' %>
-  		</span>
+      <span class="edit"><%= link_to image_tag("vcard_edit.png"), profile_settings_path, :id=>'edit-settings-link', :class=>'admin', :title => "Edit your profile text..." %></span>
     <% end %>
   </h1>
   <p class="strapline"><%= h(@user.strapline)%></p>
@@ -61,6 +61,7 @@
               <%= name %>
               <span class="strapline">(unclaimed profile)</span>
             </div>
+            <div class="clear-this"> </div>
           </li>
         <%end%> 
   		</ul>

@@ -71,13 +71,11 @@
 
 	<div class="grid_4">
 		<div id="small-project-list">
-		<h2>Your projects</h2>
-    <ul>
-    	<%= render :partial=>'projects/minili', :collection => @user.projects %>
-		</ul>
-		<p class="option"><%= link_to "Add a new project", new_project_path, :id=>'new-project-link', :class => "admin" %></p>
+		  <h2>Your projects</h2>
+      <ul>
+    	  <%= render :partial=>'projects/minili', :collection => @user.projects %>
+		  </ul>
+    </div>
+    <p class="option"><%= link_to "Add a new project", new_project_path, :id=>'new-project-link', :class => "admin" %></p>
   </div>
-
-
-</div>
 </div>

@@ -1,4 +1,7 @@
-<h1>Edit Unvalidated Contributor to <%=@project%></h1>
+
+<div class="gird_10 prefix_3 suffix_3">
+  
+<h1 class="padded">Edit contributor to <%=@project%></h1>
 
 <% form_for([@project, @unvalidated_contributor]) do |form| %>
   <%= form.error_messages %>
@@ -9,7 +12,7 @@
   </p>
 
   <p>
-    <%= label_tag 'email', "Email for this contributor (optional)" %>
+    <%= label_tag 'email', "Email (optional)" %>
     <%= text_field_tag 'email', @unvalidated_contributor.email_address.nil? ? '' : @unvalidated_contributor.email_address.email, :class => :largeInput %>
   </p>
 	
@@ -19,3 +22,4 @@
   </p>
 <% end %>
 
+</div>
