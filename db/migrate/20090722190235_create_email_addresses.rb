@@ -1,3 +1,6 @@
+class EmailAddress < ActiveRecord::Base
+  belongs_to :user
+end
 class CreateEmailAddresses < ActiveRecord::Migration
   def self.up
     begin
