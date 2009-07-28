@@ -321,7 +321,7 @@ p.option {
 	margin: 0.8em 0;
 }
 
-.small-project-list li a {
+#small-project-list li a {
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -554,4 +554,21 @@ form.admin {
 	background-color: rgba(255,242,144,0.9);
 	border: 1px solid #ddd9bc;
 	padding: 0.5em 1em;
+}
+
+
+
+
+#main-options {
+  	line-height: 1.5em;
+  	margin: 1em 0 2em 0;
+  	font-size: 0.9em;
+}
+
+.email-list {
+  	font-size: 0.8em;
+}
+
+.email-list span {
+  	color: #999;
 }
