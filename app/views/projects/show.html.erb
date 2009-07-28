@@ -89,10 +89,11 @@
 								<%= uvc.name %>
                 <span class="strapline">(Unverifiable)</span>
               <% else %>
-								<%= uvc.email_address.name %>
                 <%if uvc.email_address.user.nil? %>
+                  <%= uvc.email_address.name %>
                   <span class="strapline">(Unclaimed profile)</span>
                 <% else %>
+  								<%= uvc.email_address.user.name %>
                   <span class="strapline">(Unvalidated)</span>
 								<% end %>
 						  <% end %>

@@ -7,8 +7,7 @@ class ProjectsTest < ActionController::IntegrationTest
   context "Unlogged in user" do
     
     should "be able to see  individual project page" do
-      get("projects/weewar")
-      assert_response :success
+      get_ok("projects/weewar")
       assert_doesnt_have_login_form
       assert_select 'a[href=http://weewar.com]', :text=>'homepage', :count => 1
     end
