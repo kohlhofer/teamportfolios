@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.join '/join', :controller => 'users', :action => 'new'
   map.exception '/exception', :controller => 'root', :action => 'exception'
+map.contact '/contact', :controller => 'root', :action => 'contact'
   map.resources :users do |user|
     user.resources :user_links
   end

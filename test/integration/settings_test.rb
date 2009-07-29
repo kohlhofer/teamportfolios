@@ -63,7 +63,7 @@ class SettingsTest < ActionController::IntegrationTest
       click_button
       follow_redirect!
       assert_response_ok
-      assert_select 'div#header p', :text => /.*my lovely strapline.*/
+      assert_select 'p.strapline', :text => /.*my lovely strapline.*/
       assert_select '#user-description', :text => /.*new bio.*/
       
       user = User.find_by_id(@logged_in_user_id)

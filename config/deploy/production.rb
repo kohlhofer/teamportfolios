@@ -90,7 +90,7 @@ before "deploy:web:enable", "email_notifier:start"
 
 desc "execute the purge task (purging orhpaned email addresses etc)"
 task :purge do
-  rails "#{release_path}/script/purge.rb"
+  run "RAILS_ENV=#{rails_env} #{current_path}/script/purge.rb"
 end
 
 namespace :deploy do

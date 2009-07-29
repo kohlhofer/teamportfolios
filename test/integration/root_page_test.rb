@@ -9,4 +9,8 @@ class RootPageTest < ActionController::IntegrationTest
     get '/exception'
     assert_response 500
   end
+  
+  should "be able to contact us" do
+    get_ok "/contact"
+  end
 end
