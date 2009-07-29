@@ -5,7 +5,7 @@ $: << File.expand_path(File.dirname(__FILE__) + "/integration/dsl")
 require 'basics_dsl'
 require 'teamportfolios_dsl'
 require 'test_help'
-require 'teamportfolio_test_helper'
+require File.dirname(__FILE__) + '/teamportfolio_test_helper'
 require "webrat"
 
 Webrat.configure do |config|
