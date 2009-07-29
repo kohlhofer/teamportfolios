@@ -7,6 +7,7 @@ module BasicsDsl
     `open #{filename}`
   end
   
+  
   def login(login, password = "monkey")
     post session_url, { :login => login, :password => password }
     result = response.redirect_url == root_url

@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
           other_ids << c.user_id if c.user_id != id
         end
       end
+      return [] if other_ids.empty?
       @_collaborators = User.find(:all, :conditions => "id in (#{other_ids.join(',')})")
     end
     @_collaborators
