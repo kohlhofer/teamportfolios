@@ -8,6 +8,8 @@ class EmailAddress < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
   
+  alias_attribute :to_s, :email
+  
   before_create do |eml|
     eml.activation_code = User.make_token 
   end
@@ -25,6 +27,24 @@ class EmailAddress < ActiveRecord::Base
     uvcs = self.unvalidated_contributors
     raise Exception.new('Expect user or unvalidated contribution!') if uvcs.size==0
     uvcs[0].name
+  end
+  
+  def orphaned? 
+    user.nil? && unvalidated_contributors.empty?
+  end
+  
+  # purges all the orphaned email addresses
+  # returns the purged addresses
+  def self.purge_orphaned!
+    orphaned = self.all(:include=>[:user, :unvalidated_contributors]).collect do |email|
+      if email.orphaned?
+        email.destroy
+        email.email
+      else
+        nil
+      end
+    end
+    orphaned.compact
   end
   
   def active?
@@ -52,4 +72,5 @@ class EmailAddress < ActiveRecord::Base
       self.notifications.create!(:action=>'added_to_project')      
     end
   end
+  
 end
