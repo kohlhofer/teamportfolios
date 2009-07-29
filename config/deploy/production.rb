@@ -75,14 +75,28 @@ before "deploy:update_code", "deploy:git:pending"
 namespace :email_notifier do
   desc 'stop the email notifier'
   task :stop do
-    run "RAILS_ENV=#{rails_env} #{release_path}/script/email_notifier stop"
+    run "RAILS_ENV=#{rails_env} #{current_path}/script/email_notifier stop"
   end
   
   desc 'start the email notifier'
   task :start do
-    run "RAILS_ENV=#{rails_env} #{release_path}/script/email_notifier start"    
+    run "RAILS_ENV=#{rails_env} #{current_path}/script/email_notifier start"    
   end
 end
 
 before "deploy:web:disable", "email_notifier:stop"
 before "deploy:web:enable", "email_notifier:start"
+
+
+desc "execute the purge task (purging orhpaned email addresses etc)"
+task :purge do
+  rails "#{release_path}/script/purge.rb"
+end
+
+namespace :deploy do
+  task :prepare_static_cache do
+    # SASS -> CSS -> all.css; all.js
+    run "cd #{release_path}; rake RAILS_ENV=#{rails_env} build_cache"
+  end
+end
+after "deploy:update_code", "deploy:prepare_static_cache"
