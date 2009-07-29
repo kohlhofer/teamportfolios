@@ -96,7 +96,7 @@ end
 namespace :deploy do
   task :prepare_static_cache do
     # SASS -> CSS -> all.css; all.js
-    run "cd #{release_path}; rake RAILS_ENV=#{rails_env} build_cache"
+    run "cd #{release_path}; rake RAILS_ENV=#{rails_env} build_tag_caches"
   end
 end
-after "deploy:update_code", "deploy:prepare_static_cache"
+after "link_shared_stuff", "deploy:prepare_static_cache"
