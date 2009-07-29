@@ -4,10 +4,7 @@ Dear <%= @email.name %>,
 You have been added to '<%=@email.unvalidated_contributors[0].project.title %>' as an unvalidated contributor.
 <% else %>
 You have been added to <%=@email.unvalidated_contributors.size %> projects as an unvalidated contributor.
-<% @email.unvalidated_contributors.each do |uvc|%>
-  * <%= uvc.project.title %>
-    http://teamportfolios.com/projects/<%= uvc.project.name %> 
-<% end %>
+<%= render :partial=>'project', :collection=>@email.unvalidated_contributors.collect{|uvc| uvc.project} %>
 <% end %>
 
 Please visit your dashboard to validate or deny this addition.
@@ -15,5 +12,4 @@ http://teamportfolios.com/dashboard
 	
 kind regards
 
-The Team Portfolios Team
-http://teamportfolios.com/projects/teamportfolios
+<%= render :partial => 'signature' %>

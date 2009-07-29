@@ -1,10 +1,8 @@
 Dear <%= @email.name %>,
 
 Colleagues of yours have created profiles and projects on Team Portfolios and have named you as a contributor on some projects:
-<% @email.unvalidated_contributors.each do |uvc|%>
-  * <%= uvc.project.title %>
-    http://teamportfolios.com/projects/<%= uvc.project.name %> 
-<% end %>
+<%= render :partial=>'project', :collection=>@email.unvalidated_contributors.collect{|uvc| uvc.project} %>
+
 You are invited to create your own profile and then confirm (or deny) your participation in these projects.
  
 To join Team Portfolios and create a profile, please visit: 
@@ -17,5 +15,4 @@ Sign up here: http://teamportfolios.com/join
 
 Kind regards
 
-The Team Portfolios Team
-http://teamportfolios.com/projects/teamportfolios
+<%= render :partial => 'signature' %>
