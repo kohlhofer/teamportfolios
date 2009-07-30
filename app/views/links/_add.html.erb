@@ -1,7 +1,7 @@
 <div id="manage-links">
   <p class="option"><a id="add-link" class="admin" href="javascript:$('add-link-form').show();$('add-link').hide();">Add a link...</a></p>
 
-  <% form_for [ linkable, linkable.links.new ], :html=> {:id => 'add-link-form', :style=>'display:none;', :class=>'admin'} do | f | %>
+  <% form_for [ linkable, linkable.links.build(:url=>'http://') ], :html=> {:id => 'add-link-form', :style=>'display:none;', :class=>'admin'} do | f | %>
     <%= f.error_messages %>
       <%= f.hidden_field id_field %>
 
