@@ -21,8 +21,12 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	background: transparent;
 }
 
-#contributors ul li.not-validated img {
+li.not-validated img {
 	opacity: 0.5;
+}
+
+li.not-validated a.admin img {
+	opacity: 1;
 }
 
 body {
@@ -363,6 +367,12 @@ li.not-validated {
   	margin: 0.8em 0;
   	color: #666;
 }
+
+li.validated a.admin {
+  	float:right;
+  	margin: 0 0 0 5px;
+}
+
 
 li.not-validated a {
   	display: none;
