@@ -1,3 +1,7 @@
+<div id="manage-contributors">
+    <p class="option">
+        <a id="show-form-link" class='admin' href="javascript:$('add-contributor').show();void(0)">Add another contributor...</a>
+    </p>
   <% form_for [ @project, @unvalidated_contributor ], :html=> {:id => 'add-contributor', :style=>'display:none;', :class=>'admin'} do | f | %>
     <%= f.error_messages %>
       <%= f.hidden_field :project_id %>
@@ -16,7 +20,8 @@
     
     <p>
         <%= submit_tag "Add as contributor", :id=>'submit-add-contributor'%> 
-				<a href="javascript:$('add-contributor').hide();">Cancel</a>
+				<a href="javascript:$('add-contributor').hide();void(0)">Cancel</a>
     </p>
   <% end %>
+</div>
 

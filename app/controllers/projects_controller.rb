@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
   
   def new
     @project = Project.new()
-    @project.links.build(:label=>'homepage')
+    @project.links.build(:label=>'homepage', :url=>'http://')
   end
   
   def create

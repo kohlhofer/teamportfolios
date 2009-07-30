@@ -108,11 +108,6 @@
     
   </div>
   <% if @show_admin %>
-  <div id="manage-contributors">
-      <p class="option">
-          <a id="show-form-link" class='admin' href="javascript:$('add-contributor').show()">Add another contributor...</a>
-      </p>
-      <%= render 'unvalidated_contributor_form' %>
-  </div>
+      <%= render 'unvalidated_contributors/add' %>
   <% end %>
 </div>
