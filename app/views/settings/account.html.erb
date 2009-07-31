@@ -1,20 +1,18 @@
-<div class="">
+<%= render :partial=>'shared/getsatisfaction' %>
 
-  <h1><%= @page_title = "Your Account" %></h1>
+<h1><%= @page_title = "Your Account" %></h1>
 
-  <% form_for @user, :url => settings_path do | form | %>
+<% form_for @user, :url => settings_path do | form | %>
 
-    <%= error_messages_for(:user, :object => @user ) %>
-    
-    <%= render :partial=>'users/account_fields', :object=>form %>
-
-    <p class="submitBlock">
-      <%= submit_tag   "Save", :disable_with => "Saving..." %> 
-      <%= link_to "Cancel", @user %>
-    </p> 
-
-  <% end %>
+  <%= error_messages_for(:user, :object => @user ) %>
   
-  <p>You can edit your profile and links on <%= link_to "Your profile page ('#@user')", @user %></p>
+  <%= render :partial=>'users/account_fields', :object=>form %>
 
-</div>
+  <p class="submitBlock">
+    <%= submit_tag   "Save", :disable_with => "Saving..." %> 
+    <%= link_to "Cancel", @user %>
+  </p> 
+
+<% end %>
+
+<p>You can edit your profile and links on <%= link_to "Your profile page ('#@user')", @user %></p>

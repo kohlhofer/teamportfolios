@@ -62,9 +62,17 @@
     <ul>
         <% @project.contributors.each do |user| %>
         <li class="validated">
+            <% if user == current_user %>
+              <% if current_user.sole_contributor_to?(@project) %>
+              <%= link_to image_tag("user_delete.png"), project_path(@project), :method=>:delete, :id=>'delete-project', :confirm=> "Do you really want to delete it?", :class=>'admin', :title => "Delete this project?" %>
+              <% else %>
+              <%= link_to image_tag("user_delete.png"), leave_project_path(@project), :method=>:put, :id=>'leave-project', :confirm=> "Do you really want to leave this project?", :class=>'admin', :title => "Remove this project from your projects?" %>
+              <% end %>
+            <% end %>
             <% link_to user do %>
             <%= avatar_for(user) %>
             <div class="user-details">
+                  
                 <strong><%= user %></strong>
                 <span class="strapline"><%= user.strapline %></span>
             </div>
