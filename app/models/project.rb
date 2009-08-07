@@ -8,9 +8,14 @@ class Project < ActiveRecord::Base
   has_many :unvalidated_contributors, :dependent => :destroy
   has_many :contributors, :through => :contributions, :source => :user, :uniq => true
   has_many :images, :dependent => :destroy
+  has_one :image
   has_many :links, :class_name => "ProjectLink"
   
   accepts_nested_attributes_for :links, :reject_if => proc { |attrs| attrs.all? { |k, v| k!='url' || v.blank? || v=='http://' } }
+
+  named_scope :random12, :limit => 11, :order => "RAND()" 
+  named_scope :having_image, :include => :image, :conditions => [ "description <> '' AND images.filename <> ''"]
+
 
 
   before_create do |project|

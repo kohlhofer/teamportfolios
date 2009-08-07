@@ -16,7 +16,6 @@
        <% else -%>
         <p>To invite other users simply add them as collaborators to your projects.</p>
        <% end -%>
-
     
   </div>
   
@@ -28,6 +27,7 @@
       <%= render 'projects/preview', :project => project %>
     <% end %>
 
+    <p class="note">A few randomly selected projects (with images and description) are shown above. <%= link_to "See all projects", projects_path %>.</p>
     
   </div>
   
