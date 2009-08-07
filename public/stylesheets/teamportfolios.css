@@ -1,6 +1,10 @@
-/* @override http://localhost:3000/stylesheets/teamportfolios.css?1248821229 */
+/* @override 
+	http://localhost:3000/stylesheets/teamportfolios.css?1248821229
+	http://localhost:3000/stylesheets/teamportfolios.css?1249662184
+*/
 
 /* v1.0 | 20080212 */
+
 /* from http://meyerweb.com/eric/tools/css/reset/ */
 
 html, body, div, span, applet, object, iframe,
@@ -86,6 +90,10 @@ a {
 p {
 	margin:0.7em 0;
 	line-height:1.4em;
+}
+p.note {
+	font-size: 0.8em;
+	margin: 0.3em 0;
 }
 
 #logo {

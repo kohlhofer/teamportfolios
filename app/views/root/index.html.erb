@@ -26,9 +26,10 @@
     <% @projects.each do |project|%>
       <%= render 'projects/preview', :project => project %>
     <% end %>
-
+    <div class="clear-this"></div>
     <p class="note">A few randomly selected projects (with images and description) are shown above. <%= link_to "See all projects", projects_path %>.</p>
-    
+        
   </div>
+  
   
   
