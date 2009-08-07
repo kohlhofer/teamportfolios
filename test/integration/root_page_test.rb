@@ -13,4 +13,10 @@ class RootPageTest < ActionController::IntegrationTest
   should "be able to contact us" do
     get_ok "/contact"
   end
+  
+  should "be able to get 404 fer unknown page" do
+    get "/someunknownurl"
+    assert_response_404
+  end
+  
 end

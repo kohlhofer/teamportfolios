@@ -58,4 +58,5 @@ map.contact '/contact', :controller => 'root', :action => 'contact'
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
   map.root :controller => 'root'
+  map.connect "*path", :controller => "root", :action => "render_404"
 end

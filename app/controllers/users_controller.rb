@@ -40,6 +40,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by_login(params[:id])
+    return render_404('unknown_user') if @user.nil?
     @show_admin = logged_in? && current_user == @user unless !@show_admin.nil?
   end
   
@@ -51,5 +52,6 @@ class UsersController < ApplicationController
     return if @email_address.nil?
     @has_activation = ( @activation_code == @email_address.activation_code)
   end
-  
+
+
 end

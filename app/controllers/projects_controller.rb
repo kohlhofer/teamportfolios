@@ -52,7 +52,11 @@ class ProjectsController < ApplicationController
   
   protected
   def find_project
-    @project = Project.find_by_name!(params[:id])
+    @project = Project.find_by_name(params[:id])
+    if @project.nil?
+      render_404 'unknown_project'
+      return false
+    end
   end
   
 end
