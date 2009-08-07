@@ -1,0 +1,9 @@
+<h1>All Users</h1>
+<div id="users">
+	<!-- contributors is the wrong id - it's just for css reasons it's there-->
+	<ul>
+	<% @users.each do |user|%>
+    <%= render 'users/collabli', :object => user %>
+	<% end %>
+</ul>
+</div>

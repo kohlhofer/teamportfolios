@@ -335,7 +335,7 @@ p.option {
 	color: #666;
 }
 
-#contributors ul, .small-project-list ul {
+#contributors ul, #users ul , .small-project-list ul {
 	line-height: 1.3em;
 	font-size: 0.8em;
 }
@@ -359,7 +359,7 @@ p.option {
 	text-decoration: none;
 }
 
-#contributors li {
+#contributors li, #users li {
   	clear: left;
 }
 
@@ -394,11 +394,11 @@ li.validated a {
   	text-decoration: none;
 }
 
-#contributors a:hover strong {
+#contributors a:hover strong, #users a:hover strong {
   	text-decoration: underline;
 }
 
-#contributors li img {
+#contributors li img, #users li img{
   	float: left;
 }
 

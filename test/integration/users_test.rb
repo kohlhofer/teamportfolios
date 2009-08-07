@@ -24,6 +24,14 @@ class UsersTest < ActionController::IntegrationTest
       assert_response_ok
       assert !User.find_by_login('someone_new').nil?
     end
+    
+    should "be able to see a list of users" do
+      get_ok("users")
+      view
+      %w{bert duff tim alex}.each do |user|
+        assert_select "a[href=/users/#{user}]", :min=>1
+      end
+    end
   end
   
   context "Logged in user" do

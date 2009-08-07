@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
   before_filter :check_for_hide_admin, :only=>:show
   before_filter :check_params_for_activation_code, :only => [:new, :create]
-  # render new.rhtml
 
+  def index 
+    @users = User.all
+  end
+  
   def new
     if !@email_address.nil?
       @user = User.new(:name=>@email_address.name, :login=>@email_address.name.strip.downcase.gsub(/[^a-zA-Z0-9]+/,'_'))
