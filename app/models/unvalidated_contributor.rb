@@ -15,6 +15,11 @@ class UnvalidatedContributor < ActiveRecord::Base
     email_address = uvc.email_address
     email_address.queue_unvalidated_contributor_notification unless email_address.nil?
   end
+
+  def email
+    return nil if email_address.nil?
+    email_address.email
+  end
   
 #  def name
 #    if !self.email_address.nil? && !self.email_address.user.nil? 

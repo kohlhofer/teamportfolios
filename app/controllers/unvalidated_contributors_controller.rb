@@ -59,18 +59,16 @@ class UnvalidatedContributorsController < ApplicationController
   def update
     @unvalidated_contributor = UnvalidatedContributor.find(params[:id])
     
-    if (
-     (@unvalidated_contributor.email_address.nil? && params[:email].blank?) || 
-     (!@unvalidated_contributor.email_address.nil? && @unvalidated_contributor.email_address.email != params[:email])
-      )
+    if form_has_change_to_email
       email_addr_ok = set_email
     end
     respond_to do |format|
-      if email_addr_ok &&@unvalidated_contributor.update_attributes(params[:unvalidated_contributor])
+      if email_addr_ok && @unvalidated_contributor.update_attributes(params[:unvalidated_contributor])
         flash[:notice] = 'UnvalidatedContributor was successfully updated.'
         format.html { redirect_to(@project) }
         format.xml  { head :ok }
       else
+        flash[:error] = 'Some problem updating Unvalidated Contributor.'
         format.html { render :action => "edit" }
         format.xml  { render :xml => @unvalidated_contributor.errors, :status => :unprocessable_entity }
       end
@@ -127,5 +125,12 @@ class UnvalidatedContributorsController < ApplicationController
     end
     @unvalidated_contributor.email_address = email_addr
     return email_addr_ok
+  end
+  def form_has_change_to_email
+    if @unvalidated_contributor.email_address.nil? 
+      return !params[:email].blank?
+    else
+      return  @unvalidated_contributor.email != params[:email]
+    end
   end
 end
