@@ -53,16 +53,6 @@
         <% @user.collaborators.each do |user|%>
   			         <%= render :partial => 'users/collabli', :object => user%>
         <%end%>
-  		  <%@user.unvalidated_collaborator_names.each do |name|%>
-          <li class="not-validated">
-            <img src="/images/no-avatar-small.png" width="40px" height="40px" />
-            <div class="user-details">
-              <%= name %>
-              <span class="strapline">(unclaimed profile)</span>
-            </div>
-            <div class="clear-this"> </div>
-          </li>
-        <%end%> 
   		</ul>
   	</div>
   </div>
