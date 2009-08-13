@@ -1,6 +1,10 @@
-<h1>All Projects</h1>
+<div class="grid_16">
+  <h1>All Projects</h1>
+</div>
+<div class="grid_9 prefix_7">
 <ul id="projects">
 	<% @projects.each do |project|%>
     <%= render 'projects/preview', :project => project %>
 	<% end %>
 </ul>
+</div>
