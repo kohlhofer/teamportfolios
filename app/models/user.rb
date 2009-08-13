@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :email_addresses, :conditions=>['activation_code is null'], :dependent=>:destroy
   has_many :unactivated_email_addresses, :class_name=>'EmailAddress', :conditions=>['activation_code is not null'], :dependent=>:destroy
   
-  named_scope :featurable, :include => [:avatar, :projects], :conditions => [ "bio <> ? AND avatars.filename <> ? AND projects_count > 3", '', '']
+  named_scope :featurable, :include => [:avatar, :projects], :conditions => [ "bio <> ? AND avatars.filename <> ? AND projects_count >= 3", '', '']
 
   
   validates_presence_of     :login
