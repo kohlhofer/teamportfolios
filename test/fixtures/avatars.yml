@@ -5,3 +5,6 @@
 #
 # two:
 #   column: value
+alex_avatar:
+  user: alex
+  filename: somewhere

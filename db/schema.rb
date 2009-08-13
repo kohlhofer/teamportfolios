@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(:version => 20090813210055) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "strapline"
-    t.integer  "tasks_count", :default => 0
   end
 
   create_table "unvalidated_contributors", :force => true do |t|
