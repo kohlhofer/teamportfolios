@@ -2,7 +2,7 @@ class Avatar < ActiveRecord::Base
   belongs_to      :user
   has_attachment(
     :content_type => :image, :storage => :file_system, 
-    :thumbnails => { :small => '40', :large => '160' },
+    :thumbnails => { :small => '40', :medium => '100', :large => '160' },
     :max_size => 5.megabytes, :processor => 'ImageScience'
     )
   validates_as_attachment

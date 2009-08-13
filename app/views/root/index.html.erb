@@ -24,12 +24,12 @@
   
   <div id="user-list" class="grid_9 prefix_1">
     <% @users.each do |user|%>
-      <div class="grid_3 alpha">
+      <div class="grid_2 alpha">
         <div class="avatar">
-        	<%= link_to avatar_for(user, :large), user %>
+        	<%= link_to avatar_for(user, :medium), user %>
       	</div>
       </div>
-      <div class="grid_6 omega">
+      <div class="grid_7 omega">
         <h2><%= link_to user, user %></h2>
         <p><%= user.strapline %></p>
         <p><%= user.projects.count %> Projects</p>
