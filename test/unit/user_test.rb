@@ -138,11 +138,22 @@ class UserTest < ActiveSupport::TestCase
   end
 
   should "be able to get users who have an avatar and three projects" do
+    User.reset_column_information
+    User.find(:all).each do |u|
+      User.update_counters u.id, :projects_count => u.projects.length
+    end
+
+    puts "arg"
     User.featurable.each do |user|
-      puts user
+      puts "user: #{user}"
       assert user.projects.size >= 3
       assert !user.avatar.nil?
     end
+    u = User.find_by_login('alex')
+    puts "alex: #{u}"
+    assert !u.avatar.filename.nil?
+    puts "alex: #{u.avatar.filename}"
+    puts "alex: #{u.projects_count}"
   end
   
   
