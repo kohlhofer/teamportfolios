@@ -2,12 +2,37 @@
 
 
 
-
+<h1 id="logo" class="grid_16"><%= @page_title = "Share your work like ..." %></h1>
   
 
   
-  <div id="teaser" class="grid_6">
-    <h1 id="logo"><%= @page_title = "Share your work..." %></h1>
+
+  
+  
+
+  
+  <div id="user-list" class="grid_9">
+    <% @users.each do |user|%>
+      <div class="user">
+        <div class="grid_2 alpha">
+          <div class="avatar">
+          	<%= link_to avatar_for(user, :medium), user %>
+        	</div>
+        </div>
+        <div class="grid_7 omega">
+          <h2><%= link_to user, user %></h2>
+          <p class="list-strapline"><%= user.strapline %></p>
+          
+        </div>
+        <div class="clear-this"> </div>
+      </div>
+    <% end %>
+        
+  </div>
+  
+  
+  <div id="teaser" class="grid_6 prefix_1">
+    
     <p>Portfolios and profiles for you and your collaborators.</p>
       
       
@@ -18,26 +43,4 @@
        <% end -%>
     
   </div>
-  
-  
-
-  
-  <div id="user-list" class="grid_9 prefix_1">
-    <% @users.each do |user|%>
-      <div class="grid_2 alpha">
-        <div class="avatar">
-        	<%= link_to avatar_for(user, :medium), user %>
-      	</div>
-      </div>
-      <div class="grid_7 omega">
-        <h2><%= link_to user, user %></h2>
-        <p><%= user.strapline %></p>
-        <p><%= user.projects.count %> Projects</p>
-      </div>
-      <div class="clear-this"> </div>
-    <% end %>
-        
-  </div>
-  
-  
   

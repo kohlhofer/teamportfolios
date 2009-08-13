@@ -1,10 +1,3 @@
-/* @override 
-	http://localhost:3000/stylesheets/teamportfolios.css?1248821229
-	http://localhost:3000/stylesheets/teamportfolios.css?1249662184
-	http://localhost:3000/stylesheets/teamportfolios.css?1250192638
-	http://localhost:3000/stylesheets/teamportfolios.css?1250199180
-*/
-
 /* v1.0 | 20080212 */
 
 /* from http://meyerweb.com/eric/tools/css/reset/ */
@@ -192,11 +185,27 @@ input[type="submit"], button {
 
 #user-list {
   	font-size: 0.9em;
+  	border-top: 1px solid #EEE;
+  	margin-top: 1em;
+}
+
+p.list-strapline {
+  	font-size: 1em;
+  	font-weight: normal;
+  	color: #666;
+  	margin-top: 0.5em;
+  	display:block;
+}
+
+.user {
+  	 border-bottom: 1px solid #EEE; 	
+  	 padding-top: 0.5em;
 }
 
 #user-list h2 {
-  	font-size: 1.1em;
+  	font-size: 1.2em;
   	margin-top: 0.5em;
+  	font-weight: normal;
 }
 
 
@@ -570,7 +579,7 @@ border: 0px;
 
 
 .avatar {
-  	margin: 0.5em 0 2em 0;
+  	margin: 0.5em 0 1.5em 0;
 }
 
 .avatar img {
