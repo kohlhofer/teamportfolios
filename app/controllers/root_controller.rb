@@ -2,7 +2,7 @@ class RootController < ApplicationController
 #turning off everything by default
 
   def index
-    @users = User.featurable
+    @users = User.featurable.random_order
   end
   
   def exception

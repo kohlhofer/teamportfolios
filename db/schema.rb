@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20090813214559) do
   create_table "email_addresses", :force => true do |t|
     t.string   "email"
     t.integer  "user_id"
+    t.datetime "activation_at"
     t.string   "activation_code"
     t.datetime "activated_at"
     t.datetime "created_at"
@@ -79,7 +80,6 @@ ActiveRecord::Schema.define(:version => 20090813214559) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "strapline"
-    t.integer  "tasks_count", :default => 0
   end
 
   create_table "unvalidated_contributors", :force => true do |t|
