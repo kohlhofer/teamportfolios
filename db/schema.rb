@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090813210055) do
+ActiveRecord::Schema.define(:version => 20090729133650) do
 
   create_table "avatars", :force => true do |t|
     t.integer  "user_id"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20090813210055) do
   create_table "email_addresses", :force => true do |t|
     t.string   "email"
     t.integer  "user_id"
-    t.datetime "activation_at"
     t.string   "activation_code"
     t.datetime "activated_at"
     t.datetime "created_at"
@@ -110,7 +109,6 @@ ActiveRecord::Schema.define(:version => 20090813210055) do
     t.datetime "remember_token_expires_at"
     t.string   "strapline"
     t.text     "bio"
-    t.integer  "projects_count",                           :default => 0
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

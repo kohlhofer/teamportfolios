@@ -3,10 +3,11 @@
 
 
 
-  <h1 id="logo" class="grid_16"><%= @page_title = "Share your work..." %></h1>
+  
 
   
   <div id="teaser" class="grid_6">
+    <h1 id="logo"><%= @page_title = "Share your work..." %></h1>
     <p>Portfolios and profiles for you and your collaborators.</p>
       
       
@@ -21,9 +22,19 @@
   
 
   
-  <div class="grid_9 prefix_1">
+  <div id="user-list" class="grid_9 prefix_1">
     <% @users.each do |user|%>
-      <%= user %>
+      <div class="grid_3 alpha">
+        <div class="avatar">
+        	<%= link_to avatar_for(user, :large), user %>
+      	</div>
+      </div>
+      <div class="grid_6 omega">
+        <h2><%= link_to user, user %></h2>
+        <p><%= user.strapline %></p>
+        <p><%= user.projects.count %> Projects</p>
+      </div>
+      <div class="clear-this"> </div>
     <% end %>
         
   </div>

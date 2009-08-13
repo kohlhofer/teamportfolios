@@ -1,6 +1,8 @@
 /* @override 
 	http://localhost:3000/stylesheets/teamportfolios.css?1248821229
 	http://localhost:3000/stylesheets/teamportfolios.css?1249662184
+	http://localhost:3000/stylesheets/teamportfolios.css?1250192638
+	http://localhost:3000/stylesheets/teamportfolios.css?1250199180
 */
 
 /* v1.0 | 20080212 */
@@ -91,6 +93,7 @@ p {
 	margin:0.7em 0;
 	line-height:1.4em;
 }
+
 p.note {
 	font-size: 0.8em;
 	margin: 0.3em 0;
@@ -185,7 +188,15 @@ input[type="submit"], button {
 
 #teaser {
   	font-size: 0.9em;
-  	margin-top: -1em;
+}
+
+#user-list {
+  	font-size: 0.9em;
+}
+
+#user-list h2 {
+  	font-size: 1.1em;
+  	margin-top: 0.5em;
 }
 
 
