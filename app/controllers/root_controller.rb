@@ -2,7 +2,7 @@ class RootController < ApplicationController
 #turning off everything by default
 
   def index
-    @projects = Project.random12.having_image
+    @users = User.featurable
   end
   
   def exception

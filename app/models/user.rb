@@ -4,6 +4,16 @@ class User < ActiveRecord::Base
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
+
+  has_many :contributions, :dependent=>:destroy
+  has_many :projects, :through=>:contributions, :uniq=>true
+  has_many :links, :class_name => 'UserLink'
+  has_one :avatar
+  has_many :email_addresses, :conditions=>['activation_code is null'], :dependent=>:destroy
+  has_many :unactivated_email_addresses, :class_name=>'EmailAddress', :conditions=>['activation_code is not null'], :dependent=>:destroy
+  
+  named_scope :featurable, :include => [:avatar, :projects], :conditions => [ "bio <> ? AND avatars.filename <> ? AND projects_count > 3", '', '']
+
   
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
@@ -20,13 +30,6 @@ class User < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :name, :password, :password_confirmation, :strapline, :avatar, :bio
-  
-  has_many :contributions, :dependent=>:destroy
-  has_many :projects, :through=>:contributions, :uniq=>true
-  has_many :links, :class_name => 'UserLink'
-  has_one :avatar
-  has_many :email_addresses, :conditions=>['activation_code is null'], :dependent=>:destroy
-  has_many :unactivated_email_addresses, :class_name=>'EmailAddress', :conditions=>['activation_code is not null'], :dependent=>:destroy
   
   def primary_email
     email_addresses.first

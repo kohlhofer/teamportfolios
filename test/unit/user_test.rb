@@ -136,6 +136,15 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 1, tim.email_addresses.size
     assert_equal 1, tim.unactivated_email_addresses.size
   end
+
+  should "be able to get users who have an avatar and three projects" do
+    User.featurable.each do |user|
+      puts user
+      assert user.projects.size >= 3
+      assert !user.avatar.nil?
+    end
+  end
+  
   
   protected
   def create_user(options = {})
