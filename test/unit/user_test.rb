@@ -143,17 +143,12 @@ class UserTest < ActiveSupport::TestCase
       User.update_counters u.id, :projects_count => u.projects.length
     end
 
-    puts "arg"
     User.featurable.each do |user|
-      puts "user: #{user}"
       assert user.projects.size >= 3
       assert !user.avatar.nil?
     end
     u = User.find_by_login('alex')
-    puts "alex: #{u}"
     assert !u.avatar.filename.nil?
-    puts "alex: #{u.avatar.filename}"
-    puts "alex: #{u.projects_count}"
   end
   
   

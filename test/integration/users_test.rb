@@ -63,7 +63,9 @@ end
 context "Logged in user on their own page" do
   setup do
     login('alex')
+    get 'users/alex'
     get_ok 'users/alex'
+    
   end
   
   should "be able to edit profile details" do

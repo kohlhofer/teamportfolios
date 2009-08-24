@@ -364,7 +364,6 @@ end
 
 def assert_project_contains email_address, debug=false
     @project.unvalidated_contributors.each do |uvc|
-      puts "found #{uvc.email}" if debug
       return if uvc.email == email_address
     end
     flunk "expected project #{project} to contain uvc with email #{email_address}"

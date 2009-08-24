@@ -1,10 +1,34 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
 alex_avatar:
   user: alex
-  filename: somewhere
+  filename: alexav.png
+  content_type: image/png
+  size: 35557
+  width: 120
+  height: 120
+
+alex_avatar_small:
+  content_type: image/png
+  filename: alexav_small.png
+  thumbnail: small
+  size: 3859
+  width: 40
+  height: 40
+  parent: alex_avatar
+
+alex_avatar_medium:
+  content_type: image/png
+  filename: alexav_medium.png
+  thumbnail: medium
+  size: 24036
+  width: 100
+  height: 100
+  parent: alex_avatar
+
+alex_avatar_large:
+  content_type: image/png
+  filename: alexav_large.png
+  thumbnail: large
+  size: 56708
+  width: 160
+  height: 160
+  parent: alex_avatar
