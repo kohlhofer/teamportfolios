@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper :layout
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  
+  skip_before_filter :verify_authenticity_token, :only=> :render_404
+
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   

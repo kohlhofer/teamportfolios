@@ -1,6 +1,6 @@
 class RootController < ApplicationController
-#turning off everything by default
-
+  #turning off everything by default
+  
   def index
     @users = User.featurable.random_order
   end
