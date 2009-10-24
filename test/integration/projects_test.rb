@@ -32,14 +32,14 @@ class ProjectsTest < ActionController::IntegrationTest
     end
     
     should "be able to see own projects" do
-      get("users/alex")
+      get("http://alex.teamportfolios.dev")
       assert_response :success
       assert_doesnt_have_login_form
       assert_select '#projects div.project-preview', :count => 3
     end
     
     should "be able to create new project page" do
-      get 'users/alex'
+      get 'http://alex.teamportfolios.dev'
       click_link "new-project-link"
       assert_response_ok
       fill_in :title, :with => 'My Lovely New Project'
@@ -166,7 +166,7 @@ class ProjectsTest < ActionController::IntegrationTest
       fill_in 'project_link[label]', :with=> 'blog'
       fill_in 'project_link[url]', :with=>'http://blog.wee.com'
       click_button
-      follow_redirect!
+      follow_redirect! while redirect?
       assert_select 'a[href=http://blog.wee.com]', :text=> 'blog', :count=>1
       assert_select 'a[href=http://weewar.com]', :text=> 'homepage', :count=>1
     end
@@ -207,13 +207,13 @@ class ProjectsTest < ActionController::IntegrationTest
     raise "unexpected project #@project"
   end
   def link_path
-    polymorphic_path([@project, example_project_link])
+    polymorphic_path([@project, example_project_link], :subdomain=>false)
   end
   def edit_link_path
-    edit_polymorphic_path([@project, example_project_link])
+    edit_polymorphic_url([@project, example_project_link], :subdomain=>false)
   end
   def new_link_path
-    new_project_project_link_path(@project)
+    new_project_project_link_path(@project, :subdomain=>false)
   end
   
   def assert_not_able_to_edit_project
@@ -354,7 +354,7 @@ class ProjectsTest < ActionController::IntegrationTest
   
   def assert_am_contributor_to_this_project
     assert_select "#contributors" do 
-      assert_select"a[href='/users/alex']"
+      assert_select"a[href=http://alex.teamportfolios.dev/]"
     end
   end
   

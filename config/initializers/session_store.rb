@@ -5,6 +5,7 @@
 # Make sure the secret is at least 30 characters and all random, 
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
+  :domain         => RAILS_ENV=='production' ?  '.teamportfolios.com' : '.teamportfolios.dev',
   :key         => '_teamportfolios_session',
   :secret      => 'd7acd0808ed9f4226ab508610896ae56ee348a2560cdcf16eaeba5bab422e7a8fbacfaf0ff4e650bb01f934764b004b53289b603824eb15d9aa967f933e9e3b1'
 }

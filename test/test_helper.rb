@@ -81,7 +81,7 @@ class ActionController::IntegrationTest
   
   def assert_response_404
     assert_response 404
-    assert_select "a[href=/]"
+    assert_select "a[href=http://teamportfolios.dev/]"
   end
   
   

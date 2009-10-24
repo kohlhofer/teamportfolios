@@ -11,9 +11,9 @@ class LoginAndOutTest < ActionController::IntegrationTest
       assert_response :success
       assert_doesnt_have_login_form      
       get("/")
-      assert_doesnt_have_login_form      
-      assert_select "a[href=/logout]"
-      assert_select "a[href='/users/alex']"
+      assert_doesnt_have_login_form
+      assert_select "a[href=http://teamportfolios.dev/logout]"
+      assert_select "a[href=http://alex.teamportfolios.dev/]"
     end
     
   end

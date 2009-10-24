@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-
+  map.root :controller => 'subdomain_root', :conditions => {:subdomain => true}
+  map.connect "*path", :controller => "root", :action => "render_404", :conditions => {:subdomain => true}
+  
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.join '/join', :controller => 'users', :action => 'new'
@@ -57,6 +59,7 @@ map.contact '/contact', :controller => 'root', :action => 'contact'
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.root :controller => 'root'
+  map.root :controller => 'root', :conditions => {:subdomain => false}
+  
   map.connect "*path", :controller => "root", :action => "render_404"
 end

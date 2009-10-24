@@ -1,0 +1,54 @@
+<div class="grid_3" id="user-lefthand">
+  <div class="avatar">
+    <%=avatar_for(@user, :large) %>
+  </div>
+</div>
+
+<div class="grid_13">
+  <%= render :partial => 'shared/admin_toggle' %>
+
+  <h1><%= @page_title = h(@user.name) %>  
+  </h1>
+  <p class="strapline"><%= h(@user.strapline)%></p>
+  
+  <% unless @user.bio.blank? %>
+    <div id="user-description">
+      <%= htmltext(@user.bio) %>
+    </div>
+  <% end %>
+</div>
+
+
+<div class="grid_16">
+  <div class="grid_3 alpha">
+    <%= render :partial=>'links/list' %>
+  </div>
+  
+  <div class="grid_9">
+
+    <div id="projects">
+      <% @user.projects.each do |project| %>
+          <%= render 'projects/preview', :project => project %>
+      <% end %>    
+      <div class="clear-this"> </div>
+
+    </div>
+
+  </div>
+
+  <div class="grid_4 omega">
+    <div id="contributors">
+      <h2>Collaborators</h2>
+      <ul>
+        <% @user.collaborators.each do |user|%>
+                 <%= render :partial => 'users/collabli', :object => user%>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+
+
+</div>
+
+
+<% @footer_class="prefix_3" -%>

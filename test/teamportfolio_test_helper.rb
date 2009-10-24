@@ -5,4 +5,11 @@ module TeamportfolioTestHelper
     assert (NotificationMailer.respond_to? "deliver_#{expected_action}".to_sym)   
   end
   
+    def recount_stuff!
+    User.reset_column_information
+    User.find(:all).each do |u|
+      User.update_counters u.id, :projects_count => u.projects.length
+    end
+  end
+
 end

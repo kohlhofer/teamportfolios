@@ -137,12 +137,10 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 1, tim.unactivated_email_addresses.size
   end
 
+  
   should "be able to get users who have an avatar and three projects" do
-    User.reset_column_information
-    User.find(:all).each do |u|
-      User.update_counters u.id, :projects_count => u.projects.length
-    end
-
+    recount_stuff!
+    
     User.featurable.each do |user|
       assert user.projects.size >= 3
       assert !user.avatar.nil?

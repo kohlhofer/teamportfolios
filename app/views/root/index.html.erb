@@ -16,11 +16,11 @@
       <div class="user">
         <div class="grid_2 alpha">
           <div class="avatar">
-          	<%= link_to avatar_for(user, :medium), user %>
+          	<%= link_to_user user, :content_text=>avatar_for(user, :medium) %>
         	</div>
         </div>
         <div class="grid_7 omega">
-          <h2><%= link_to user, user %></h2>
+          <h2><%= link_to_user(user) %></h2>
           <p class="list-strapline"><%= user.strapline %></p>
           
         </div>

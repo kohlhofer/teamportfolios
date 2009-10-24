@@ -16,7 +16,7 @@ module ProjectsHelper
   end
   
   def link_using_main_project_image(project, size=:small, html_options = {}) 
-    link_to(main_project_image_for(project, size), project, html_options)
+    link_to(main_project_image_for(project, size), project_url(project, :subdomain=>false), html_options)
   end
     
 end

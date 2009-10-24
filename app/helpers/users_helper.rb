@@ -16,7 +16,7 @@ module UsersHelper
       yield action, resource
     end
   end
-
+  
   #
   # Link to user's page ('users/1')
   #
@@ -43,15 +43,19 @@ module UsersHelper
   #   link_to_user @user, :content_text => 'Your user page'
   #   # => <a href="/users/3" title="barmy" class="nickname">Your user page</a>
   #
-  def link_to_user(user, options={})
+  def link_to_user(user, options={}, &block)
     raise "Invalid user" unless user
-    options.reverse_merge! :content_method => :login, :title_method => :login, :class => :nickname
-    content_text      = options.delete(:content_text)
-    content_text    ||= user.send(options.delete(:content_method))
-    options[:title] ||= user.send(options.delete(:title_method))
-    link_to h(content_text), user_path(user), options
+    options[:title] ||= user.name
+    url =root_url(:subdomain=>user.login)
+    if block_given?
+      link_to url, options, &block
+    else
+      content_text      = options.delete(:content_text)
+      content_text    ||= h(user.name)
+      link_to content_text, url, options
+    end
   end
-
+  
   #
   # Link to login page using remote ip address as link content
   #
@@ -74,7 +78,7 @@ module UsersHelper
       link_to h(content_text), login_path, options
     end
   end
-
+  
   #
   # Link to the current user's page (using link_to_user) or to the login page
   # (using link_to_login_with_IP).
@@ -89,5 +93,5 @@ module UsersHelper
       link_to_login_with_IP content_text, options
     end
   end
-
+  
 end

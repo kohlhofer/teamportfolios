@@ -26,3 +26,6 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+#ensure static assets always come from teamportfolios.com and not from subdomain
+config.action_controller.asset_host = 'http://teamportfolios.com'

@@ -3,7 +3,10 @@ require "#{File.dirname(__FILE__)}/../test_helper"
 class RootPageTest < ActionController::IntegrationTest
   
   should "be able to view home page" do
+    recount_stuff!
     get_ok '/'
+    assert_select 'a[href=/users/alex]', :count=>0
+    assert_select 'a[href=http://alex.teamportfolios.dev/]'
   end
   should 'be able to view exception page and get a 500' do
     get '/exception'

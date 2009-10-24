@@ -69,7 +69,7 @@
               <%= link_to image_tag("user_delete.png"), leave_project_path(@project), :method=>:put, :id=>'leave-project', :confirm=> "Do you really want to leave this project?", :class=>'admin', :title => "Remove this project from your projects?" %>
               <% end %>
             <% end %>
-            <% link_to user do %>
+            <% link_to_user user do %>
             <%= avatar_for(user) %>
             <div class="user-details">
                   
