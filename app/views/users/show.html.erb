@@ -34,7 +34,7 @@
   <div class="grid_9">
 
     <div id="projects">
-    	<% @user.projects.each do |project| %>
+    	<% @user.projects.sort_by{ rand }.each do |project| %>
     	  	<%= render 'projects/preview', :project => project %>
       <% end %>    
     	<div class="clear-this"> </div>

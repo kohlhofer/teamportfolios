@@ -60,7 +60,7 @@
    <div id="contributors">
     <h2>Created by </h2>
     <ul>
-        <% @project.contributors.each do |user| %>
+        <% @project.contributors.sort_by{ rand }.each do |user| %>
         <li class="validated">
             <% if user == current_user %>
               <% if current_user.sole_contributor_to?(@project) %>
@@ -81,7 +81,7 @@
             <% end %>
         </li>
         <%end %>
-        <%@project.unvalidated_contributors.each do |uvc| %>
+        <%@project.unvalidated_contributors.sort_by{ rand }.each do |uvc| %>
         <li class="not-validated">
         	  <% if uvc.email_address.nil? || uvc.email_address.user.nil?%>
               <img src="/images/no-avatar-small.png" width="40px" height="40px" />
