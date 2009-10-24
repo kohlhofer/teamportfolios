@@ -40,7 +40,7 @@
     <div id="contributors">
       <h2>Collaborators</h2>
       <ul>
-        <% @user.collaborators.each do |user|%>
+        <% @user.collaborators.sort_by{ rand }.each do |user|%>
                  <%= render :partial => 'users/collabli', :object => user%>
         <%end%>
       </ul>

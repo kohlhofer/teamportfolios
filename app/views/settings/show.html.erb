@@ -69,7 +69,7 @@
       <div id="contributors">
         <h2>Your collaborators</h2>
         <ul>
-  			<% current_user.collaborators.each do |user|%>
+  			<% current_user.collaborators.sort_by{ rand }.each do |user|%>
   	      <%= render :partial => 'users/collabli', :object => user%>
   	    <%end%>
   	    </ul>
