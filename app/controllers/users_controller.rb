@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       redirect_back_or_default('/dashboard')
       flash[:notice] = "Thanks for signing up!"
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or <a href='/contact'>contact us for help</a>."
       render :action => 'new'
     end
   end

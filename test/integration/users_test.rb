@@ -37,7 +37,6 @@ class UsersTest < ActionController::IntegrationTest
       click_button
       assert_response_ok
       assert_select '#errorExplanation', :text=>/Activation code/
-      view
     end
     
     should "be able to see join page and sign up" do
@@ -64,7 +63,6 @@ class UsersTest < ActionController::IntegrationTest
       click_button
       assert_response_ok
       assert User.find_by_login('someone_new').nil?
-      view :too_short
       assert_select 'li', :text=>/too short/
     end
     
