@@ -17,11 +17,17 @@
     <div class="grid_6">
     <% if !@has_activation %>
         <% form_tag join_path do -%>
+				<% if !@email.blank? %>
+				   <div class="errorExplanation" id="errorExplanation">
+				   	  <h2>Activation code did not match, or email not found</h2>
+							</div>
+
+				<% end %>
         <p>
             <%= label_tag :email %>
             <%= text_field_tag :email, @email %>
         </p>
-        <p>
+        <p class="<%= 'fieldWithErrors' unless @email.blank?%>">
             <%= label_tag :activation_code %>
             <%= text_field_tag :activation_code, @activation_code %>
         </p>
@@ -33,6 +39,7 @@
         <% end -%>
     <% else %>
         <% form_for :user, :url=>users_path do |f| -%>
+        <%= f.error_messages %>
         <p>
             <%= f.label :login %>
             <%= f.text_field :login %>

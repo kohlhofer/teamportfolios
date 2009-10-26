@@ -31,6 +31,14 @@ class UsersTest < ActionController::IntegrationTest
       assert_response_404
     end
     
+    should "be get error message if no activation code found" do
+      get_ok('join')
+      fill_in :email, :with=>'someone_new@elsewhere.com'
+      click_button
+      assert_response_ok
+      assert_select '#errorExplanation', :text=>/Activation code/
+      view
+    end
     
     should "be able to see join page and sign up" do
       get_ok('join')
@@ -43,6 +51,21 @@ class UsersTest < ActionController::IntegrationTest
       click_button
       assert_response_ok
       assert !User.find_by_login('someone_new').nil?
+    end
+    
+    should "expect join page to give error if password too short" do
+      get_ok('join')
+      fill_in :email, :with=>'someone_new@elsewhere.com'
+      fill_in :activation_code, :with=>'somenewrandomhash'
+      click_button
+      assert_response_ok
+      fill_in :password, :with=>'sh' #too short
+      fill_in 'user[password_confirmation]', :with=>'sh'
+      click_button
+      assert_response_ok
+      assert User.find_by_login('someone_new').nil?
+      view :too_short
+      assert_select 'li', :text=>/too short/
     end
     
     should "be able to see a list of users" do
