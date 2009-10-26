@@ -13,6 +13,8 @@ class EmailAddressTest < ActiveSupport::TestCase
     assert_equal "Tim Diggins", email_addresses(:tim_primary).name
     assert_equal "Tim Diggins", email_addresses(:tim_other_unactivated).name
     assert_equal "Someone New", email_addresses(:someone_new).name
+    assert_equal "Someone New", email_addresses(:someone_new).name
+    assert_equal "First Last", email_addresses(:someone_with_dot_in_email).name
   end
   
   

@@ -49,3 +49,7 @@ someone_new:
 someone_else_new:
   email: someone_else_new@elsewhere.com
   activation_code: someelsenewrandomhash
+
+someone_with_dot_in_email:
+  email: first.last@gmail.com
+  activation_code: firstlastrandomhash

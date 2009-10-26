@@ -52,6 +52,19 @@ class UsersTest < ActionController::IntegrationTest
       assert !User.find_by_login('someone_new').nil?
     end
     
+    should "be able to join even with dot in email and without being a uvc yet" do
+      get_ok('join')
+      fill_in :email, :with=>'first.last@gmail.com'
+      fill_in :activation_code, :with=>'firstlastrandomhash'
+      click_button
+      assert_response_ok
+      fill_in :password, :with=>'somepass'
+      fill_in 'user[password_confirmation]', :with=>'somepass'
+      click_button
+      assert_response_ok
+      assert !User.find_by_login('first_last').nil?
+    end
+    
     should "expect join page to give error if password too short" do
       get_ok('join')
       fill_in :email, :with=>'someone_new@elsewhere.com'

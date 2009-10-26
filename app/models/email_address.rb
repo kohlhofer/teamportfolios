@@ -25,8 +25,9 @@ class EmailAddress < ActiveRecord::Base
   def name
     return self.user.name unless self.user.nil?
     uvcs = self.unvalidated_contributors
-    raise Exception.new('Expect user or unvalidated contribution!') if uvcs.size==0
-    uvcs[0].name
+    #raise Exception.new('Expect user or unvalidated contribution!') if uvcs.size==0
+    return uvcs[0].name unless uvcs.size==0
+    return email.split('@')[0].gsub('.',' ').titleize
   end
   
   def orphaned? 
