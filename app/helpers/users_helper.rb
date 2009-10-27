@@ -46,7 +46,11 @@ module UsersHelper
   def link_to_user(user, options={}, &block)
     raise "Invalid user" unless user
     options[:title] ||= user.name
-    url =root_url(:subdomain=>user.login)
+    begin
+      url =root_url(:subdomain=>user.login)
+    rescue NoMethodError
+      raise "Is the hostname correct? \n(try http://teamportfolios.dev instead of localhost \nand/or read the README http://nokahuna.com/projects/6775/messages/38) (NoMethodError)"
+    end
     if block_given?
       link_to url, options, &block
     else
