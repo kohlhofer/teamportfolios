@@ -42,6 +42,24 @@ class NotificationIntegrationTest < ActionController::IntegrationTest
       assert_match /added/, email.subject
       assert_match /WeeWar/, email.body
     end
+    
+    should "be able to request password change" do
+      get_ok '/login/forgot_password'
+      fill_in 'email', :with=>'alex@teamportfolios.com'
+      click_button
+      follow_redirect! while redirect?
+      
+      Notification.process_queue
+      
+      assert_equal(1, @emails.size)
+      email = @emails.first
+      assert_equal 'alex@teamportfolios.com', email.to[0]
+      preview_mail :forgot_password
+      assert_match %r{http://[a-z.]+#{reset_password_path_for('alex')}}, email.body
+      assert_match /Forgot your password/, email.subject
+      assert_match /reset your password/, email.body
+    end
+    
   end
   
   

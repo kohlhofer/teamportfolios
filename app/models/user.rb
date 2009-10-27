@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
-
+  
   has_many :contributions, :dependent=>:destroy
   has_many :projects, :through=>:contributions, :uniq=>true
   has_many :links, :class_name => 'UserLink'
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   
   named_scope :featurable, :include => [:avatar, :projects], :conditions => [ "bio <> ? AND avatars.filename <> ? AND projects_count >= 3", '', '']
   named_scope :random_order, :order => "RAND()"
-
+  
   
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
   attr_accessible :login, :name, :password, :password_confirmation, :strapline, :avatar, :bio
   
   def primary_email
-    email_addresses.first
+    return email_addresses.first if email_addresses.size == 1
+    email_addresses.detect{ |eml| eml.primary }
   end
   
   def unvalidated_contributions
@@ -58,6 +59,11 @@ class User < ActiveRecord::Base
   
   def login=(value)
     write_attribute :login, (value ? value.downcase : nil)
+  end
+  
+  def forgot_password!
+    self.update_attribute(:reset_password_code, self.class.make_token) if self.reset_password_code.nil?
+    self.primary_email.queue_forgot_password_notification
   end
   
   def contributor_to? project

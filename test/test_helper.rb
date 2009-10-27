@@ -84,7 +84,11 @@ class ActionController::IntegrationTest
     assert_select "a[href=http://teamportfolios.dev/]"
   end
   
-  
+  def reset_password_path_for user_login
+    code = User.find_by_login(user_login).reset_password_code
+     "/reset/#{code}"
+  end
+
 end
 
 

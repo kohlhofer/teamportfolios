@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090813214559) do
+ActiveRecord::Schema.define(:version => 20091026234634) do
 
   create_table "avatars", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20090813214559) do
     t.string   "activation_code"
     t.datetime "activated_at"
     t.datetime "created_at"
+    t.boolean  "primary",         :default => true
   end
 
   add_index "email_addresses", ["email"], :name => "index_email_addresses_on_email", :unique => true
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20090813214559) do
     t.string   "strapline"
     t.text     "bio"
     t.integer  "projects_count",                           :default => 0
+    t.string   "reset_password_code"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

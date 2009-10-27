@@ -32,8 +32,9 @@ class NotificationMailer < ActionMailer::Base
   def forgot_password(email_address)
     setup_email email_address
     
-    subject 'Team Portfolios: Forgot password?'
-    body ({:user=> email_address.user, :activation_code=> email_address.activation_code})
+    subject 'Team Portfolios: Forgot your password?'
+    user = email_address.user
+    body ({:user=> user, :reset_password_code=> user.reset_password_code})
   end
   
   protected

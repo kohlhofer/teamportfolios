@@ -32,6 +32,7 @@ alex_primary:
 alex_other:
   email: alex@somewhereelse.com
   user: alex
+  primary: false
 
 tim_primary:
   email: tim@teamportfolios.com

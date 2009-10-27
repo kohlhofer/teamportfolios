@@ -131,6 +131,7 @@ class UserTest < ActiveSupport::TestCase
   should "know email addresses and unactivated email addresses" do
     alex = users(:alex)
     assert_equal 2, alex.email_addresses.size
+    assert_equal 'alex@teamportfolios.com', alex.primary_email.email
     assert_equal 0, alex.unactivated_email_addresses.size
     tim = users(:tim)
     assert_equal 1, tim.email_addresses.size

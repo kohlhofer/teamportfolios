@@ -4,9 +4,12 @@ ActionController::Routing::Routes.draw do |map|
   
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
+  map.forgot_password '/login/forgot_password', :controller => 'sessions', :action => 'forgot_password'
+  map.reset_password 'reset/:reset_password_code', :controller => "sessions", :action => 'reset_password', :reset_password_code=>nil
   map.join '/join', :controller => 'users', :action => 'new'
+
   map.exception '/exception', :controller => 'root', :action => 'exception'
-map.contact '/contact', :controller => 'root', :action => 'contact'
+  map.contact '/contact', :controller => 'root', :action => 'contact'
   map.resources :users do |user|
     user.resources :user_links
   end

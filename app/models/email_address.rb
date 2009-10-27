@@ -60,10 +60,14 @@ class EmailAddress < ActiveRecord::Base
   def queue_notification
     return if self.activation_code.nil?
     if active? 
-      self.notifications.create!(:action=>'forgot_password')
+      raise 'not expecting email_address to be active'
     elsif self.user
       self.notifications.create!(:action=>'added_email_address')
     end
+  end
+  
+  def queue_forgot_password_notification
+    self.notifications.create!(:action=>'forgot_password')
   end
   
   def queue_unvalidated_contributor_notification

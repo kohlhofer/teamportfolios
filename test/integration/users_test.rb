@@ -10,6 +10,7 @@ class UsersTest < ActionController::IntegrationTest
     assert_select 'a[href=http://tim.homepage.com]', :text=>'homepage', :count => 1
     assert_have_new_project_link false
   end
+  
   context "Unlogged in user" do
     should "be able to see user page" do
       get("users/tim")
@@ -85,6 +86,33 @@ class UsersTest < ActionController::IntegrationTest
         assert_select "a[href=http://#{user}.teamportfolios.dev/]", :min=>1
       end
     end
+    
+    should "be able to see reset password page" do
+      users(:alex).forgot_password!
+      get_ok 'reset'
+      fill_in 'reset_password_code', :with => users(:alex).reset_password_code
+      click_button
+      can_change_password_and_login
+    end
+    
+    should "be able to reset password" do
+      users(:alex).forgot_password!
+      get_ok reset_password_path_for('alex')
+      can_change_password_and_login
+    end
+  end
+  
+  def can_change_password_and_login
+    fill_in 'user[password]', :with=>'splonge'
+      fill_in 'user[password_confirmation]', :with=>'splonge'
+      click_button
+      view
+      post 'logout'
+      get_ok 'login'
+      fill_in :user, :with=>'alex'
+      fill_in :password, :with=>'splonge'
+      click_button
+      assert_doesnt_have_login_form
   end
   
   context "Logged in user" do
@@ -176,6 +204,7 @@ class UsersTest < ActionController::IntegrationTest
       assert_response :forbidden
     end
     
+
     
   end
   

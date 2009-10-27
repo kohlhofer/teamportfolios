@@ -39,6 +39,7 @@ alex:
   crypted_password:          7c629fe527bd6ff6edb4e696223b80bea25167af # 'monkey'
   created_at:                <%= 2.days.ago.to_s :db %>
   bio:                       My name is alex
+
 tim:
   login:                     tim
   name:                      Tim Diggins
