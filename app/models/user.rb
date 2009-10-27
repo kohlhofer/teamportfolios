@@ -61,9 +61,10 @@ class User < ActiveRecord::Base
     write_attribute :login, (value ? value.downcase : nil)
   end
   
-  def forgot_password!
+  def forgot_password! email_addr=nil
+    email_addr ||= primary_email
     self.update_attribute(:reset_password_code, self.class.make_token) if self.reset_password_code.nil?
-    self.primary_email.queue_forgot_password_notification
+    email_addr.queue_forgot_password_notification
   end
   
   def contributor_to? project

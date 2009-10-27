@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
         emladdr.queue_notification 
         flash[:notice] = "An email to help you create your account will be sent to #{@email}."
       else
-        emladdr.user.forgot_password!
+        emladdr.user.forgot_password! emladdr
         flash[:notice] = "An email to help you login will be sent to #{@email}."
       end      
       redirect_to login_url
