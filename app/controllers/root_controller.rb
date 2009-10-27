@@ -2,6 +2,7 @@ class RootController < ApplicationController
   #turning off everything by default
   
   def index
+    redirect_to "http://teamportfolios.dev:#{request.port}" if request.host == "localhost" 
     @users = User.featurable.random_order
   end
   

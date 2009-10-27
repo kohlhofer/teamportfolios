@@ -49,7 +49,7 @@ module UsersHelper
     begin
       url =root_url(:subdomain=>user.login)
     rescue NoMethodError
-      raise "Is the hostname correct? \n(try http://teamportfolios.dev instead of localhost \nand/or read the README http://nokahuna.com/projects/6775/messages/38) (NoMethodError)"
+      raise "Is the hostname #{request.host}:#{request.port} correct? \n(try http://teamportfolios.dev instead of localhost \nand/or read the README http://nokahuna.com/projects/6775/messages/38) (NoMethodError)"
     end
     if block_given?
       link_to url, options, &block
