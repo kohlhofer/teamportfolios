@@ -106,7 +106,6 @@ class UsersTest < ActionController::IntegrationTest
     fill_in 'user[password]', :with=>'splonge'
       fill_in 'user[password_confirmation]', :with=>'splonge'
       click_button
-      view
       post 'logout'
       get_ok 'login'
       fill_in :user, :with=>'alex'

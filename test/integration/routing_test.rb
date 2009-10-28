@@ -50,7 +50,6 @@ class RoutingTest < ActionController::IntegrationTest
   
   def assert_parses(expected_host, expected_path, url)
     host, path = parseurlorpath(url)
-    puts "host:%s path:%s" % [host,path]
     assert_equal(expected_host, host)
     assert_equal(expected_path, path)
   end

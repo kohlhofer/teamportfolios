@@ -23,7 +23,8 @@ class Notification < ActiveRecord::Base
       save
       return
     end 
-    puts "# #{event} '#{self.action}' to #{self.email_address.email}"
+    #puts "# #{event} '#{self.action}' to #{self.email_address.email}"
     self.destroy
   end
 end
+
