@@ -3,29 +3,24 @@
 
 
 <h1 id="logo" class="grid_16">People using Team Portfolios<br />to share their projects... </h1>
-  
-
-  
-
-  
-  
-
-  
+    
   <div id="user-list" class="grid_9">
     <% @users.each do |user|%>
       <div class="user">
-        <div class="grid_2 alpha">
-          <div class="avatar">
-          	<%= link_to_user user, :content_text=>avatar_for(user, :medium) %>
-        	</div>
-        </div>
-        <div class="grid_7 omega">
-          <h2><%= link_to_user(user) %></h2>
+            <%= link_to_user user, :content_text=>avatar_for(user, :medium) %>
+          <div class="text">
+          <h2>
+          <%= link_to_user(user) %></h2>
           <p class="list-strapline"><%= user.strapline %></p>
-          
-        </div>
-        <div class="clear-this"> </div>
+					</div>
+          <div class="projectsgrid">
+          	<% user.projects.limit3.random_order.each do |project| %>
+              <%= render 'projects/image', :project => project %>
+						<% end %>
+          </div>
       </div>
+			        <div class="clear-this"> </div>
+
     <% end %>
         
   </div>

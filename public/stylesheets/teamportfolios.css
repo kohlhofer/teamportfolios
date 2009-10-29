@@ -1,3 +1,5 @@
+/* @override http://teamportfolios.dev:3000/stylesheets/teamportfolios.css */
+
 /* v1.0 | 20080212 */
 
 /* from http://meyerweb.com/eric/tools/css/reset/ */
@@ -19,6 +21,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	vertical-align: baseline;
 	background: transparent;
 }
+
 
 li.not-validated img {
 	opacity: 0.5;
@@ -202,11 +205,33 @@ p.list-strapline {
   	 padding-top: 0.5em;
 }
 
+
+#user-list .user img.user_avatar_medium {
+	float: right;	
+	padding-left: 5px;
+	padding-bottom: 5px;
+	background-color: rgba(255,255,255,0.5);
+	position: relative;
+	right: 0px;
+	top: 0px;
+	z-index: 100;
+	xopacity: 0.75;
+}
+
 #user-list h2 {
   	font-size: 1.2em;
   	margin-top: 0.5em;
   	font-weight: normal;
 }
+
+#user-list .user img.project_image_small {
+	margin-bottom: 1em;
+}
+#user-list .text {
+	min-height: 40px;
+	padding-bottom: 15px;
+}
+
 
 
 #flash p {
@@ -635,6 +660,19 @@ form.admin {
   	font-size: 0.8em;
 }
 
+
 .email-list span {
   	color: #999;
 }
+
+
+.preview-image {
+	margin-bottom: 15px;		
+	
+}
+
+.projectsgrid .preview-image.omega {
+	position: absolute;	
+	z-index: 1;
+}
+

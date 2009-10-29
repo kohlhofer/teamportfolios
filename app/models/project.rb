@@ -15,7 +15,8 @@ class Project < ActiveRecord::Base
 
   named_scope :random12, :limit => 11, :order => "RAND()" 
   named_scope :having_image, :include => :image, :conditions => [ "description <> '' AND images.filename <> ''"]
-
+  named_scope :random_order, :order => "RAND()"
+  named_scope :limit3, :limit =>3
 
 
   before_create do |project|

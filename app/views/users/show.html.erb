@@ -2,7 +2,7 @@
   <div class="avatar">
   	<%=avatar_for(@user, :large) %>
 		<% if @show_admin %>
-		 <p class="option"><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_path(:subdomain=>false), :class=>'admin') %></p>
+		 <p class="option"><%=link_to((@user.avatar.nil? ? 'Upload avatar' : 'Change avatar'), edit_avatar_settings_url(:subdomain=>false), :class=>'admin') %></p>
 		 <% end %>
 	</div>
 </div>
