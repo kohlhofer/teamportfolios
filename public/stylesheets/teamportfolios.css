@@ -1,4 +1,8 @@
-/* @override http://teamportfolios.dev:3000/stylesheets/teamportfolios.css */
+/* @override 
+	http://teamportfolios.dev:3000/stylesheets/teamportfolios.css
+	http://tim.teamportfolios.dev:3000/stylesheets/teamportfolios.css
+	http://alex.teamportfolios.dev:3000/stylesheets/teamportfolios.css
+*/
 
 /* v1.0 | 20080212 */
 
@@ -204,6 +208,12 @@ p.list-strapline {
   	 border-bottom: 1px solid #EEE; 	
   	 padding-top: 0.5em;
 }
+#user-list .user {
+	display: block;
+  	margin: 0.8em 0;
+  	text-decoration: none;
+
+}
 
 
 #user-list .user img.user_avatar_medium {
@@ -312,6 +322,7 @@ img.project_image_small {
 	padding: 1px;
 	margin-left: -1px;
   	background-color: #999;
+  	margin-bottom: 5px;
 }
 
 
@@ -453,13 +464,16 @@ li.validated a {
   	margin: 0.8em 0;
   	text-decoration: none;
 }
-
 #contributors a:hover strong, #users a:hover strong {
   	text-decoration: underline;
 }
 
 #contributors li img, #users li img{
   	float: left;
+}
+
+div.projectsgrid {
+	padding-top: 5px;
 }
 
 li .user-details {
@@ -673,9 +687,19 @@ form.admin {
 }
 
 
-.preview-image {
-	margin-bottom: 15px;		
-	
+ul#users.homepage li.validated a {
+	margin: 15px 0;
+	padding: 5px 0;	
+}
+
+ul#users.homepage li.validated a:hover{
+	background-color: #DDD;
+}
+
+#users li.user.validated a span.projectname {
+	font-size: 0.8em;
+  	color: #999;
+  	display: block;
 }
 
 .projectsgrid .preview-image.omega {

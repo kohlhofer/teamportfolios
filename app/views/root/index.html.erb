@@ -4,23 +4,25 @@
 
 <h1 id="logo" class="grid_16">People using Team Portfolios<br />to share their projects... </h1>
     
-  <div id="user-list" class="grid_9">
+  <ul id="users" class="grid_9 homepage">
     <% @users.each do |user|%>
-      <div class="user">
-            <%= link_to_user user, :content_text=>avatar_for(user, :medium), :class=>'avatar' %>
-          <div class="text">
-          <h2>
-          <%= link_to_user(user) %></h2>
-          <p class="list-strapline"><%= user.strapline %></p>
-					</div>
+      <li class="user validated">
+      	  <% link_to_user user do %>
+				    <%= avatar_for(user) %>
+				    <div class="user-details">
+				      <strong><%= user %></strong>
+				      <span class="strapline"><%= user.strapline %></span>
+				    </div>
+				    <div class="clear-this"> </div>
+
           <div class="projectsgrid">
           	<% user.projects.limit3.random_order.each do |project| %>
               <%= render 'projects/image', :project => project %>
 						<% end %>
           </div>
-      </div>
-			        <div class="clear-this"> </div>
-
+           <div class="clear-this"> </div>
+          <% end %>
+      </li>
     <% end %>
         
   </div>
