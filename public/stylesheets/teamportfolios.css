@@ -207,12 +207,19 @@ p.list-strapline {
 
 
 #user-list .user img.user_avatar_medium {
+	margin: 0;
+	padding: 1px;
+	margin-right: -1px;
+  	background-color: #999;
+}
+#user-list .user a.avatar {
 	float: right;	
-	padding-left: 5px;
-	padding-bottom: 5px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 	background-color: rgba(255,255,255,0.5);
 	position: relative;
-	right: 0px;
+	right: -1px;
 	top: 0px;
 	z-index: 100;
 	xopacity: 0.75;

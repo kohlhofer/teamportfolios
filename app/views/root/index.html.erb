@@ -7,7 +7,7 @@
   <div id="user-list" class="grid_9">
     <% @users.each do |user|%>
       <div class="user">
-            <%= link_to_user user, :content_text=>avatar_for(user, :medium) %>
+            <%= link_to_user user, :content_text=>avatar_for(user, :medium), :class=>'avatar' %>
           <div class="text">
           <h2>
           <%= link_to_user(user) %></h2>
